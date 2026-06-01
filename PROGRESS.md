@@ -25,7 +25,7 @@ This document tracks the current state of implementation for the FIFA World Cup 
   - [x] Implement `/api/xg` shot calculations.
   - [x] Implement `/api/shootout` Monte Carlo simulations.
 
-- [x] **Phase 4: Frontend Development (Single Page Website)**
+- [x] **Phase 4A: Vanilla HTML Prototype (Archived)**
   - [x] Create HTML structure (`index.html`) using semantic tags.
   - [x] Style the dashboard (`style.css`) using custom HSL World Cup theme (maroon/gold glassmorphism).
   - [x] Implement JS interactions (`app.js`):
@@ -34,7 +34,18 @@ This document tracks the current state of implementation for the FIFA World Cup 
     - [x] SVG Penalty Shootout Goal Target grid.
     - [x] Timeline slider synced with `/api/fixtures`.
 
+- [x] **Phase 4B: Luxurious React UI Re-Architecture**
+  - [x] Initialize Vite + React workspace.
+  - [x] Set up TailwindCSS, Framer Motion, Recharts, and Lucide React dependencies.
+  - [x] Configure `vite.config.js` API proxy routing to FastAPI port 8000.
+  - [x] Implement responsive sidebar, global headers, and Tournament slider framework.
+  - [x] Refactor `TournamentHub` (incorporating layout transition cards for group standings).
+  - [x] Refactor `MatchPredictor` (integrating Recharts Radar chart comparison).
+  - [x] Refactor `XgSandbox` (designing isometric 3D-shaded SVG pitch and Recharts Radial gauges).
+  - [x] Refactor `ShootoutArena` (building goalkeeper Framer Motion dive physics and zone heatmap).
+
 - [x] **Phase 5: Verification & Launch**
   - [x] Perform API endpoint unit testing.
-  - [x] Conduct visual manual check of the date slider (verifying the opening match Mexico vs. South Africa updates to completed and standings adjust).
+  - [x] Conduct visual manual check of the date slider (verifying the opening match Mexico vs. South Africa updates to completed and standings adjust in React UI).
   - [x] Perform validation of calculated values (e.g. penalty spot xG ≈ 0.75).
+

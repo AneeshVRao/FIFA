@@ -17,8 +17,6 @@ from backend.app import (
     get_shootout,
     get_shootout_montecarlo,
     get_index,
-    get_style,
-    get_js,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -95,14 +93,6 @@ async def run_tests():
         idx_res = await get_index()
         print(f"  Root route index.html path: {idx_res.path}")
         assert "index.html" in str(idx_res.path), "Should route index.html"
-        
-        style_res = await get_style()
-        print(f"  Style route style.css path: {style_res.path}")
-        assert "style.css" in str(style_res.path), "Should route style.css"
-        
-        js_res = await get_js()
-        print(f"  JS route app.js path: {js_res.path}")
-        assert "app.js" in str(js_res.path), "Should route app.js"
         print("  [OK] Static files verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")

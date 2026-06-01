@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Outfit', 'Montserrat', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  --color-maroon-dark: hsl(332, 70%, 4%);
+  --color-maroon-light: hsl(332, 60%, 8%);
+  --color-gold: hsl(46, 68%, 53%);
+  --color-gold-hover: hsl(46, 85%, 58%);
+  --color-gold-glow: hsla(46, 68%, 53%, 0.35);
+  --color-field-green: hsl(145, 63%, 45%);
+  --color-field-green-glow: hsla(145, 63%, 45%, 0.3);
+  
+  --color-white: hsl(0, 0%, 97%);
+  --color-gray-light: hsl(332, 10%, 80%);
+  --color-gray-dark: hsl(332, 20%, 15%);
+  --color-glass-bg: hsla(332, 45%, 9%, 0.65);
+  --color-glass-border: hsla(46, 68%, 53%, 0.18);
+  
+  --color-success: hsl(145, 80%, 45%);
+  --color-danger: hsl(355, 75%, 50%);
+  --color-info: hsl(205, 80%, 50%);
+
+  --animate-pulse: pulse 1.5s infinite;
+}
+
+/* ── Custom Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(332, 20%, 15%);
+  border-radius: 4px;
+  border: 1px solid hsla(46, 68%, 53%, 0.18);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(46, 68%, 53%);
+}
+
+/* ── Custom Styles & Utilities ───────────────────────────────────────────── */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: hsl(0, 0%, 97%);
+  background: linear-gradient(135deg, hsl(332, 70%, 4%) 0%, hsl(332, 60%, 8%) 100%);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Glassmorphism custom classes */
+.glass-panel {
+  background: hsla(332, 45%, 9%, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsla(46, 68%, 53%, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+.glass-panel-hover {
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.glass-panel-hover:hover {
+  border-color: hsla(46, 68%, 53%, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.55), 0 0 15px 0 hsla(46, 68%, 53%, 0.2);
+}
+
+/* Keyframes for pulse */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Goalkeeper visual transition helper */
+.goalkeeper-transition {
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
