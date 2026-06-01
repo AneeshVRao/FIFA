@@ -47,7 +47,7 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-maroon-dark to-maroon-light">
+    <div className="flex min-h-screen bg-transparent">
       {/* Sidebar Navigation */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
