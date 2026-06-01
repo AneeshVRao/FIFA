@@ -11,12 +11,12 @@ This document tracks the current state of implementation for the FIFA World Cup 
   - [x] Write `requirements.txt` containing `fastapi`, `uvicorn`, `pandas`, `numpy`, `scikit-learn`, `statsbombpy`, `requests`.
   - [x] Configure `run.py` launch orchestrator script.
 
-- [ ] **Phase 2: Data Pipeline & Model Training**
-  - [ ] Implement historical results caching parser (`results.csv`).
-  - [ ] Build baseline Elo calculation pipeline.
-  - [ ] Write Match Outcome Predictor training pipeline (`model_match.py`).
-  - [ ] Fetch StatsBomb open shot-event data and train xG model (`model_xg.py`).
-  - [ ] Implement Shootout simulator logic (`model_shootout.py`).
+- [x] **Phase 2: Data Pipeline & Model Training**
+  - [x] Implement historical results caching parser (`data_loader.py` — downloads and caches `results.csv`, normalises team names).
+  - [x] Build baseline Elo calculation pipeline (`elo.py` — rolling Elo with Poisson prediction and score simulation).
+  - [x] Write Match Outcome Predictor training pipeline (`model_match.py` — LogisticRegression, 52.3% 3-class accuracy).
+  - [x] Fetch StatsBomb open shot-event data and train xG model (`model_xg.py` — 5-fold Stratified CV ROC-AUC: 0.792).
+  - [x] Implement Shootout simulator logic (`model_shootout.py` — 9-zone Monte Carlo, verified 50/50 split).
 
 - [ ] **Phase 3: Backend API Server**
   - [ ] Setup FastAPI server in `app.py`.
