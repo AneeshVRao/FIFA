@@ -18,12 +18,12 @@ This document tracks the current state of implementation for the FIFA World Cup 
   - [x] Fetch StatsBomb open shot-event data and train xG model (`model_xg.py` — 5-fold Stratified CV ROC-AUC: 0.792).
   - [x] Implement Shootout simulator logic (`model_shootout.py` — 9-zone Monte Carlo, verified 50/50 split).
 
-- [ ] **Phase 3: Backend API Server**
-  - [ ] Setup FastAPI server in `app.py`.
-  - [ ] Implement `/api/fixtures` with sequential rolling Elo updater.
-  - [ ] Implement `/api/predict` for match outcome forecasts.
-  - [ ] Implement `/api/xg` shot calculations.
-  - [ ] Implement `/api/shootout` Monte Carlo simulations.
+- [x] **Phase 3: Backend API Server**
+  - [x] Setup FastAPI server in `app.py`.
+  - [x] Implement `/api/fixtures` with sequential rolling Elo updater.
+  - [x] Implement `/api/predict` for match outcome forecasts.
+  - [x] Implement `/api/xg` shot calculations.
+  - [x] Implement `/api/shootout` Monte Carlo simulations.
 
 - [ ] **Phase 4: Frontend Development (Single Page Website)**
   - [ ] Create HTML structure (`index.html`) using semantic tags.
