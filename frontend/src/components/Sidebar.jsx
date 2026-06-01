@@ -1,9 +1,10 @@
 import React from "react";
-import { Trophy, BarChart3, Sparkles, Target } from "lucide-react";
+import { Trophy, BarChart3, Sparkles, Target, Network } from "lucide-react";
 
 export function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
     { id: "tournament-hub", label: "Tournament Hub", icon: BarChart3 },
+    { id: "tournament-bracket", label: "Tournament Bracket", icon: Network },
     { id: "match-predictor", label: "Match Predictor", icon: Sparkles },
     { id: "xg-sandbox", label: "xG Pitch Sandbox", icon: Target },
     { id: "penalty-simulator", label: "Penalty Shootout", icon: Trophy }
@@ -36,7 +37,7 @@ export function Sidebar({ activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-lg text-sm font-semibold transition-all duration-300 font-heading cursor-pointer text-left border ${
+                className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-lg text-sm font-semibold transition-all duration-300 font-heading cursor-pointer text-left border btn-tactile ${
                   isActive
                     ? "bg-gradient-to-r from-gold/15 to-gold/3 border-gold text-gold shadow-[0_0_12px_rgba(212,175,55,0.15)]"
                     : "border-transparent text-gray-light hover:bg-white/5 hover:text-white"

@@ -16,6 +16,34 @@ export function MatchPredictor({ ratings, currentDate }) {
   const [awayTeam, setAwayTeam] = useState("Germany");
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [homeSquad, setHomeSquad] = useState([]);
+  const [awaySquad, setAwaySquad] = useState([]);
+  const [squadLoading, setSquadLoading] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function loadSquads() {
+      setSquadLoading(true);
+      try {
+        const resHome = await fetch(`/api/squad?team=${encodeURIComponent(homeTeam)}`);
+        const resAway = await fetch(`/api/squad?team=${encodeURIComponent(awayTeam)}`);
+        if (resHome.ok && resAway.ok && active) {
+          const homeData = await resHome.json();
+          const awayData = await resAway.json();
+          setHomeSquad(homeData.squad || []);
+          setAwaySquad(awayData.squad || []);
+        }
+      } catch (err) {
+        console.error("Error loading squads:", err);
+      } finally {
+        if (active) setSquadLoading(false);
+      }
+    }
+    loadSquads();
+    return () => {
+      active = false;
+    };
+  }, [homeTeam, awayTeam]);
 
   // Sync ratings to defaults on start
   useEffect(() => {
@@ -86,7 +114,8 @@ export function MatchPredictor({ ratings, currentDate }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+    <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
       
       {/* ── Matchup Form Controls ── */}
       <div className="glass-panel rounded-2xl p-6 border border-gold/15 flex flex-col justify-between">
@@ -160,7 +189,7 @@ export function MatchPredictor({ ratings, currentDate }) {
         <button
           onClick={fetchPrediction}
           disabled={loading}
-          className="w-full bg-gradient-to-r from-gold to-[#b28d1d] hover:from-gold-hover hover:to-gold text-maroon-dark font-heading font-extrabold text-sm py-4 rounded-xl cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] hover:-translate-y-0.5 disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-gold to-[#b28d1d] hover:from-gold-hover hover:to-gold text-maroon-dark font-heading font-extrabold text-sm py-4 rounded-xl cursor-pointer transition-all duration-300 shadow-[0_4px_15px_rgba(212,175,55,0.25)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] hover:-translate-y-0.5 disabled:opacity-50 btn-tactile"
         >
           {loading ? "Simulating Forecast..." : "Simulate Matchup"}
         </button>
@@ -306,6 +335,134 @@ export function MatchPredictor({ ratings, currentDate }) {
           </div>
         )}
       </div>
+    </div>
+
+      {/* Roster & Squad Value comparisons */}
+      {prediction && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          {/* Home Team Squad Profile */}
+          <div className="glass-panel rounded-2xl p-6 border border-gold/15 flex flex-col">
+            <div className="flex justify-between items-center pb-4 mb-4 border-b border-white/5">
+              <div>
+                <h4 className="font-heading font-extrabold text-lg text-white">{prediction.home} Squad</h4>
+                <p className="text-[10px] text-white/40 tracking-wider uppercase mt-1">Squad Roster & Valuation</p>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-extrabold text-gold font-heading">
+                  €{prediction.home_metadata?.squad_value || 0}M
+                </div>
+                <div className="text-[9px] text-white/50 tracking-wider uppercase">Rank #{prediction.home_metadata?.fifa_rank || 50}</div>
+              </div>
+            </div>
+
+            {squadLoading ? (
+              <div className="flex justify-center items-center h-48">
+                <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs text-left border-collapse">
+                  <thead>
+                    <tr className="text-gold font-heading border-b border-white/10 font-bold">
+                      <th className="py-2.5 px-2">#</th>
+                      <th className="py-2.5 px-2">Name</th>
+                      <th className="py-2.5 px-2">Pos</th>
+                      <th className="py-2.5 px-2">Age</th>
+                      <th className="py-2.5 px-2 text-right">Club</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {homeSquad.map((player) => {
+                      const posColors = {
+                        GK: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+                        DF: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+                        MF: "bg-green-500/10 text-green-400 border-green-500/20",
+                        FW: "bg-rose-500/10 text-rose-400 border-rose-500/20"
+                      };
+                      const badgeClass = posColors[player.position] || "bg-white/5 text-white/80 border-white/10";
+                      
+                      return (
+                        <tr key={player.number} className="hover:bg-white/[0.02] border-b border-white/5 transition-colors">
+                          <td className="py-3 px-2 font-bold font-numeric text-white/50">{player.number}</td>
+                          <td className="py-3 px-2 font-semibold text-white">{player.name}</td>
+                          <td className="py-3 px-2">
+                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${badgeClass}`}>
+                              {player.position}
+                            </span>
+                          </td>
+                          <td className="py-3 px-2 font-numeric text-white/70">{player.age}</td>
+                          <td className="py-3 px-2 text-white/60 truncate max-w-[120px] text-right">{player.club}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Away Team Squad Profile */}
+          <div className="glass-panel rounded-2xl p-6 border border-gold/15 flex flex-col">
+            <div className="flex justify-between items-center pb-4 mb-4 border-b border-white/5">
+              <div>
+                <h4 className="font-heading font-extrabold text-lg text-white">{prediction.away} Squad</h4>
+                <p className="text-[10px] text-white/40 tracking-wider uppercase mt-1">Squad Roster & Valuation</p>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-extrabold text-gold font-heading">
+                  €{prediction.away_metadata?.squad_value || 0}M
+                </div>
+                <div className="text-[9px] text-white/50 tracking-wider uppercase">Rank #{prediction.away_metadata?.fifa_rank || 50}</div>
+              </div>
+            </div>
+
+            {squadLoading ? (
+              <div className="flex justify-center items-center h-48">
+                <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs text-left border-collapse">
+                  <thead>
+                    <tr className="text-gold font-heading border-b border-white/10 font-bold">
+                      <th className="py-2.5 px-2">#</th>
+                      <th className="py-2.5 px-2">Name</th>
+                      <th className="py-2.5 px-2">Pos</th>
+                      <th className="py-2.5 px-2">Age</th>
+                      <th className="py-2.5 px-2 text-right">Club</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {awaySquad.map((player) => {
+                      const posColors = {
+                        GK: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+                        DF: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+                        MF: "bg-green-500/10 text-green-400 border-green-500/20",
+                        FW: "bg-rose-500/10 text-rose-400 border-rose-500/20"
+                      };
+                      const badgeClass = posColors[player.position] || "bg-white/5 text-white/80 border-white/10";
+
+                      return (
+                        <tr key={player.number} className="hover:bg-white/[0.02] border-b border-white/5 transition-colors">
+                          <td className="py-3 px-2 font-bold font-numeric text-white/50">{player.number}</td>
+                          <td className="py-3 px-2 font-semibold text-white">{player.name}</td>
+                          <td className="py-3 px-2">
+                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold border ${badgeClass}`}>
+                              {player.position}
+                            </span>
+                          </td>
+                          <td className="py-3 px-2 font-numeric text-white/70">{player.age}</td>
+                          <td className="py-3 px-2 text-white/60 truncate max-w-[120px] text-right">{player.club}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
