@@ -132,6 +132,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve React static assets
+from fastapi.staticfiles import StaticFiles
+assets_dir = FRONTEND_DIR / "dist" / "assets"
+if assets_dir.exists():
+    app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
 
 # ── helper function for tournament state ─────────────────────────
 def calculate_tournament_state(simulated_date_str: str) -> dict:
@@ -285,24 +291,10 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
 # ── Frontend Routes ──────────────────────────────────────────────
 @app.get("/")
 async def get_index():
-    index_path = FRONTEND_DIR / "index.html"
+    index_path = FRONTEND_DIR / "dist" / "index.html"
     if not index_path.exists():
-        raise HTTPException(status_code=404, detail="index.html not found")
+        raise HTTPException(status_code=404, detail="React production build not found in frontend/dist. Run npm run build first.")
     return FileResponse(index_path)
-
-@app.get("/style.css")
-async def get_style():
-    style_path = FRONTEND_DIR / "style.css"
-    if not style_path.exists():
-        raise HTTPException(status_code=404, detail="style.css not found")
-    return FileResponse(style_path)
-
-@app.get("/app.js")
-async def get_js():
-    js_path = FRONTEND_DIR / "app.js"
-    if not js_path.exists():
-        raise HTTPException(status_code=404, detail="app.js not found")
-    return FileResponse(js_path)
 
 
 # ── API Routes ───────────────────────────────────────────────────

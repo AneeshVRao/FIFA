@@ -4,9 +4,9 @@ import subprocess
 import webbrowser
 import time
 
-def run_cmd(args, shell=False):
+def run_cmd(args, shell=False, cwd=None):
     print(f"Running: {' '.join(args)}")
-    result = subprocess.run(args, shell=shell)
+    result = subprocess.run(args, shell=shell, cwd=cwd)
     if result.returncode != 0:
         print(f"Error executing command: {' '.join(args)}")
         sys.exit(result.returncode)
@@ -34,8 +34,6 @@ def main():
     train_match = os.path.join(workspace_dir, "backend", "model_match.py")
     train_xg = os.path.join(workspace_dir, "backend", "model_xg.py")
     
-    # We will trigger the execution of training scripts if they exist
-    # These will be written in Phase 2
     if os.path.exists(train_match):
         print("Training/verifying Match Predictor model...")
         run_cmd([python_exe, "-m", "backend.model_match"])
@@ -44,7 +42,29 @@ def main():
         print("Training/verifying Expected Goals (xG) model...")
         run_cmd([python_exe, "-m", "backend.model_xg"])
 
-    # 4. Start backend FastAPI server
+    # 4. Build frontend React assets if Node is available
+    frontend_dir = os.path.join(workspace_dir, "frontend")
+    node_modules_dir = os.path.join(frontend_dir, "node_modules")
+    
+    node_available = False
+    try:
+        result = subprocess.run(["node", "-v"], capture_output=True, text=True, shell=True)
+        if result.returncode == 0:
+            node_available = True
+            print(f"Node.js found: {result.stdout.strip()}")
+    except Exception:
+        print("Warning: Node.js not found. Bypassing frontend React build compilation.")
+        print("Please ensure Node.js is installed to execute builds.")
+        
+    if node_available:
+        if not os.path.exists(node_modules_dir):
+            print("Installing frontend Node packages...")
+            run_cmd(["npm", "install"], shell=True, cwd=frontend_dir)
+            
+        print("Building React production bundle...")
+        run_cmd(["npm", "run", "build"], shell=True, cwd=frontend_dir)
+
+    # 5. Start backend FastAPI server
     print("Launching FastAPI server...")
     # Launch uvicorn as a non-blocking process so we can open the browser
     server_process = subprocess.Popen([
@@ -55,9 +75,9 @@ def main():
         "--reload"
     ])
 
-    # 5. Open Web Browser
+    # 6. Open Web Browser
     print("Opening web browser...")
-    time.sleep(2)  # Give uvicorn a couple of seconds to bind to port
+    time.sleep(2.5)  # Give uvicorn a couple of seconds to bind to port & load models
     webbrowser.open("http://127.0.0.1:8000")
 
     try:
