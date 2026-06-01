@@ -6,10 +6,10 @@ This document tracks the current state of implementation for the FIFA World Cup 
 
 ## Roadmap & Checklist
 
-- [ ] **Phase 1: Project Setup & Dependencies**
-  - [ ] Initialize Python Virtual Environment.
-  - [ ] Write `requirements.txt` containing `fastapi`, `uvicorn`, `pandas`, `numpy`, `scikit-learn`, `statsbombpy`, `requests`.
-  - [ ] Configure `run.py` launch orchestrator script.
+- [x] **Phase 1: Project Setup & Dependencies**
+  - [x] Initialize Python Virtual Environment.
+  - [x] Write `requirements.txt` containing `fastapi`, `uvicorn`, `pandas`, `numpy`, `scikit-learn`, `statsbombpy`, `requests`.
+  - [x] Configure `run.py` launch orchestrator script.
 
 - [ ] **Phase 2: Data Pipeline & Model Training**
   - [ ] Implement historical results caching parser (`results.csv`).
