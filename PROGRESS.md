@@ -25,16 +25,16 @@ This document tracks the current state of implementation for the FIFA World Cup 
   - [x] Implement `/api/xg` shot calculations.
   - [x] Implement `/api/shootout` Monte Carlo simulations.
 
-- [ ] **Phase 4: Frontend Development (Single Page Website)**
-  - [ ] Create HTML structure (`index.html`) using semantic tags.
-  - [ ] Style the dashboard (`style.css`) using custom HSL World Cup theme (maroon/gold glassmorphism).
-  - [ ] Implement JS interactions (`app.js`):
-    - [ ] Tab switching with fade transitions.
-    - [ ] SVG Soccer Pitch click-to-plot shot locator.
-    - [ ] SVG Penalty Shootout Goal Target grid.
-    - [ ] Timeline slider synced with `/api/fixtures`.
+- [x] **Phase 4: Frontend Development (Single Page Website)**
+  - [x] Create HTML structure (`index.html`) using semantic tags.
+  - [x] Style the dashboard (`style.css`) using custom HSL World Cup theme (maroon/gold glassmorphism).
+  - [x] Implement JS interactions (`app.js`):
+    - [x] Tab switching with fade transitions.
+    - [x] SVG Soccer Pitch click-to-plot shot locator.
+    - [x] SVG Penalty Shootout Goal Target grid.
+    - [x] Timeline slider synced with `/api/fixtures`.
 
 - [ ] **Phase 5: Verification & Launch**
-  - [ ] Perform API endpoint unit testing.
+  - [x] Perform API endpoint unit testing.
   - [ ] Conduct visual manual check of the date slider (verifying the opening match Mexico vs. South Africa updates to completed and standings adjust).
-  - [ ] Perform validation of calculated values (e.g. penalty spot xG ≈ 0.75).
+  - [x] Perform validation of calculated values (e.g. penalty spot xG ≈ 0.75).
