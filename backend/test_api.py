@@ -16,6 +16,9 @@ from backend.app import (
     get_xg,
     get_shootout,
     get_shootout_montecarlo,
+    get_index,
+    get_style,
+    get_js,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -87,6 +90,20 @@ async def run_tests():
         print(f"  Monte Carlo (500 runs) win rate Team A: {data_mc['team_a_win_rate']}")
         assert 0.4 <= data_mc["team_a_win_rate"] <= 0.6, "Team A win rate should be around 50%"
         print("  [OK] Monte Carlo simulation validated.")
+        
+        print("\n[Test 6] Static file routing")
+        idx_res = await get_index()
+        print(f"  Root route index.html path: {idx_res.path}")
+        assert "index.html" in str(idx_res.path), "Should route index.html"
+        
+        style_res = await get_style()
+        print(f"  Style route style.css path: {style_res.path}")
+        assert "style.css" in str(style_res.path), "Should route style.css"
+        
+        js_res = await get_js()
+        print(f"  JS route app.js path: {js_res.path}")
+        assert "app.js" in str(js_res.path), "Should route app.js"
+        print("  [OK] Static files verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 
