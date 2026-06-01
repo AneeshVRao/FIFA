@@ -38,11 +38,11 @@ def main():
     # These will be written in Phase 2
     if os.path.exists(train_match):
         print("Training/verifying Match Predictor model...")
-        run_cmd([python_exe, train_match])
+        run_cmd([python_exe, "-m", "backend.model_match"])
         
     if os.path.exists(train_xg):
         print("Training/verifying Expected Goals (xG) model...")
-        run_cmd([python_exe, train_xg])
+        run_cmd([python_exe, "-m", "backend.model_xg"])
 
     # 4. Start backend FastAPI server
     print("Launching FastAPI server...")
