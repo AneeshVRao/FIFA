@@ -1,16 +1,20 @@
-# FIFA World Cup Analytics Suite (React Redesign)
+# FIFA World Cup Analytics Suite
 
-A premium, high-fidelity analytics and predictive dashboard for the FIFA World Cup. This application predicts match outcomes using a rolling Elo algorithm, evaluates shot qualities using an Expected Goals (xG) model trained on StatsBomb event data, and simulates penalty shootouts using a Monte Carlo simulator.
+A prestigious, television-broadcast styled analytics and predictive dashboard for the FIFA World Cup. This application predicts match outcomes using a rolling Elo algorithm combined with a 9-feature Gradient Boosting Classifier, evaluates shot qualities using a spatial Expected Goals (xG) model trained on StatsBomb event data, and simulates penalty shootouts using a 9-zone Monte Carlo simulator with goalkeeper physics.
 
-The UI is built as a luxurious, responsive Single Page Application utilizing **React, TailwindCSS, Framer Motion, and Recharts**. It is themed after standard sports television broadcasts, incorporating glassmorphic layers, dark mesh gradients, and interactive canvas components.
+The UI is built as a luxurious, responsive Single Page Application utilizing **Vite, React 18, TailwindCSS, Framer Motion, Recharts, and Lucide Icons**.
 
 ---
 
-## Key Features
-1.  **Tournament Time Machine & Standings**: Syncs simulated dates with background API fetches to dynamically recalculate group standings and upcoming match predictions.
-2.  **Match Predictor & Radar Compare**: Select any two teams to compare attributes (Attack, Defense, Elo, Form, Prestige) in an animated Radar chart, alongside comparative outcome probabilities.
-3.  **Expected Goals (xG) Sandbox**: An isometric, 3D-shaded SVG pitch coordinate plotter showing radial probability gauge output.
-4.  **Penalty Shootout Arena**: An interactive penalty game utilizing goalkeeper Framer Motion dive physics and an empirical zone-based success heat map.
+## Core Modules
+1.  **Tournament Time Machine & Standings**: Syncs simulated dates via the FastAPI backend to dynamically recalculate group standings and upcoming match predictions as dates advance from June 11 to July 19, 2026.
+2.  **Knockout Bracket Tree**: Simulates and visualizes the entire knockout stage (Round of 32 down to the Final) dynamically. Highlights winner paths on hover using animated Bezier curves. Supports extra-time and sudden-death penalty deciders.
+3.  **Unified Power Ratings**: Blends historical rolling Elo with squad market valuations and official FIFA rankings to calculate boosted competitive ratings.
+4.  **Match Predictor & Radar Compare**: Select any two teams to compare tactical attributes in an animated Radar chart, alongside comparative outcome probabilities and squad listings.
+5.  **Multi-Source Roster Integration**: Fetches official team rosters using a fallback client wrapper connecting to WorldCupAPI, football-data.org, or balldontlie, with a local squad database fallback.
+6.  **xG Sandbox**: An isometric, 3D-shaded vector pitch coordinate plotter showing radial probability gauge output based on distance, angle, headers, and pressure.
+7.  **Penalty Shootout Arena**: An interactive penalty game using zone selection, animated goalkeeper spring dive physics, and an empirical zone-based Monte Carlo conversion heatmap.
+8.  **Intro Loader Opener**: A full-screen entrance animation featuring a custom WebGL shaded golden sphere loader synced with backend model initialization.
 
 ---
 
@@ -19,20 +23,29 @@ The UI is built as a luxurious, responsive Single Page Application utilizing **R
 ```
 fifa/
 ├── backend/
-│   ├── app.py                      # FastAPI server & route handlers
-│   ├── data_loader.py             # Parses & caches results datasets
-│   ├── elo.py                     # Rolling Elo rating engine
-│   ├── model_match.py             # Match predictor ML model
-│   ├── model_xg.py                # xG shot modeling pipeline
-│   ├── model_shootout.py          # Penalty shootout simulator
-│   └── test_api.py                # API handler unit test suite
+│   ├── app.py                      # FastAPI server, endpoints & tournament simulator
+│   ├── data_loader.py             # Downloads, normalises, and caches results
+│   ├── elo.py                     # Elo calculations, Poisson ratings, and KO simulators
+│   ├── team_metadata.py           # Squad values, FIFA ranks, and Unified Elo calculation
+│   ├── worldcup_api.py            # External roster API client (3 endpoints fallback)
+│   ├── model_match.py             # Gradient Boosting Classifier training pipeline
+│   ├── model_xg.py                # xG Logistic Regression shot modeling pipeline
+│   ├── model_shootout.py          # 9-zone shootout Monte Carlo simulator
+│   └── test_api.py                # TDD unit test suites 1-10
 ├── frontend/
 │   ├── src/                       # React source files
-│   │   ├── components/            # UI components (Sidebar, Pitch, Radar)
-│   │   ├── App.jsx                # Layout orchestrator
+│   │   ├── components/            # UI components (Sidebar, Pitch, Radar, Bracket, Loader)
+│   │   │   ├── KnockoutBracket.jsx
+│   │   │   ├── MatchPredictor.jsx
+│   │   │   ├── OpenerLoader.jsx
+│   │   │   ├── ShootoutArena.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── TimeMachine.jsx
+│   │   │   ├── TournamentHub.jsx
+│   │   │   └── XgSandbox.jsx
+│   │   ├── App.jsx                # Layout orchestrator & live stats ticker
 │   │   └── main.jsx               # React DOM entrypoint
 │   ├── vite.config.js             # Vite configuration and API proxy
-│   ├── tailwind.config.js         # Custom HSL variables & typography specs
 │   └── package.json               # Node packages
 ├── data/
 │   ├── fixtures_2026.json         # 2026 World Cup Group schedules
@@ -41,8 +54,9 @@ fifa/
 │   ├── model_match.pkl            # Serialized match outcome model
 │   └── model_xg.pkl               # Serialized xG model
 ├── requirements.txt               # Python package dependencies
-├── run.py                         # Launches backend server and frontend builder
-└── PROGRESS.md                    # Roadmap checklist
+├── run.py                         # Launches backend server, builds frontend, trains models
+├── PROGRESS.md                    # Detailed roadmap checklist
+└── PRD.md                         # Product Requirements Document
 ```
 
 ---
@@ -54,30 +68,24 @@ fifa/
 *   Node.js (LTS version recommended)
 *   Google Chrome or any modern web browser
 
+### API Integration (Optional)
+To enable live rosters and players from external sources, create a `.env` file in the root directory:
+```env
+WORLDCUP_API_KEY=your_worldcupapi_key_here
+FOOTBALL_DATA_API_KEY=your_football_data_org_key_here
+BALLDONTLIE_API_KEY=your_balldontlie_key_here
+```
+If no keys are provided, the application will automatically fall back to local mock squad data.
+
 ### Running the Suite
-To automatically build the React assets, train the ML models, start the FastAPI server, and launch the web interface, run:
+To automatically build the React assets, train the ML models, start the FastAPI server, and launch the web interface, run the orchestrator:
 ```bash
 python run.py
 ```
-This script will:
-1.  Verify the Python virtual environment and install backend requirements.
-2.  Trigger model training if pickled parameters are missing.
-3.  Verify Node.js is installed, install frontend dependencies listed in `package.json`, and execute the production build (`npm run build`).
-4.  Launch the FastAPI server (which serves the compiled static React assets from `frontend/dist`).
-5.  Open your browser pointing to `http://127.0.0.1:8000/`.
+This script will install Python dependencies, compile frontend packages, launch the FastAPI server, and open `http://127.0.0.1:8000/`.
 
----
-
-## Frontend Development Mode
-To edit the frontend with active Hot Module Replacement (HMR):
-1.  Start the FastAPI backend:
-    ```bash
-    venv\Scripts\python.exe -m uvicorn backend.app:app --reload
-    ```
-2.  Launch the Vite dev server in another terminal:
-    ```bash
-    cd frontend
-    npm install
-    npm run dev
-    ```
-3.  Open the dev server URL (usually `http://localhost:5173`). All API calls will be automatically proxied to the backend at port `8000`.
+### Running Verification Tests
+To run the automated unit test suite and verify endpoints, standings, ELO boosts, best 3rd-places, knockout stages, and roster retrievals:
+```bash
+venv\Scripts\python -m backend.test_api
+```

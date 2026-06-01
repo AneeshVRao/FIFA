@@ -141,24 +141,25 @@ if assets_dir.exists():
 
 # ── helper function for tournament state ─────────────────────────
 def calculate_tournament_state(simulated_date_str: str) -> dict:
-    """Simulates the tournament up to the simulated_date_str.
+    """Simulates the tournament (Group Stage + Knockout Stages) up to simulated_date_str.
 
-    Returns the updated team ratings, fixtures with scores/predictions,
-    and group standings.
+    Completed matches use real/simulated results.
+    Upcoming/projected matches are simulated on the fly using a shadow state.
     """
+    from backend.team_metadata import get_unified_elo
+    from backend.elo import simulate_knockout_score
+
     sim_date = pd.Timestamp(simulated_date_str).date()
     
-    # 1. Reset Elo ratings and team forms to baseline
-    current_ratings = state["baseline_ratings"].copy()
+    # 1. Reset Elo ratings and team forms to baseline, applying the Unified Elo boost
+    current_ratings = {team: get_unified_elo(team, elo) for team, elo in state["baseline_ratings"].items()}
     team_forms = {team: list(pts) for team, pts in state["team_recent_results_baseline"].items()}
     
-    # 2. Sort fixtures chronologically
+    # 2. Sort group-stage fixtures chronologically
     fixtures_list = [dict(f) for f in state["fixtures_seed"]]
-    # Sort key: date
     fixtures_list.sort(key=lambda x: x["date"])
     
     # Initialize standings dictionary
-    # group_name -> {team_name: {...}}
     standings = {}
     with open(DATA_DIR / "fixtures_2026.json", "r", encoding="utf-8") as fh:
         fixtures_data = json.load(fh)
@@ -169,7 +170,7 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             for t in teams
         }
 
-    # 3. Process fixtures sequentially
+    # 3. Process Group Stage matches
     for idx, fixture in enumerate(fixtures_list, start=1):
         home = fixture["home"]
         away = fixture["away"]
@@ -185,19 +186,27 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         home_elo = current_ratings.setdefault(home, 1500.0)
         away_elo = current_ratings.setdefault(away, 1500.0)
         
-        # Win/draw/loss predictions from Elo model
+        # Predictions
         elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
-        
-        # Win/draw/loss predictions from ML model
-        # Features: elo_diff, elo_sum, home_form, away_form, tournament_weight
+        from backend.team_metadata import TEAM_METADATA
+        home_meta = TEAM_METADATA.get(home, {"squad_value": 50.0, "fifa_rank": 80})
+        away_meta = TEAM_METADATA.get(away, {"squad_value": 50.0, "fifa_rank": 80})
+        squad_diff = home_meta["squad_value"] - away_meta["squad_value"]
+        rank_diff = away_meta["fifa_rank"] - home_meta["fifa_rank"]
+        squad_ratio = home_meta["squad_value"] / (away_meta["squad_value"] + 1.0)
+        form_diff = home_form_val - away_form_val
+
         features = np.array([[
             home_elo - away_elo,
             (home_elo + away_elo) / 2.0,
             home_form_val,
             away_form_val,
-            1.0  # World Cup weight
+            1.0,  # World Cup weight
+            squad_diff,
+            rank_diff,
+            squad_ratio,
+            form_diff
         ]])
-        
         ml_probs = state["match_model"].predict_proba(features)[0]
         ml_preds = {
             "away_win": round(float(ml_probs[0]), 4),
@@ -209,12 +218,9 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         fixture["ml_prediction"] = ml_preds
         fixture["match_id"] = idx
         
-        # Determine status based on simulated timeline date
         if fixture_date < sim_date:
-            # Match is COMPLETED -> Simulate deterministic outcome
+            # Match is COMPLETED -> Simulate deterministically
             fixture["status"] = "completed"
-            
-            # Deterministic RNG based on match ID to keep simulation stable
             rng = np.random.default_rng(2026 + idx)
             home_goals, away_goals = simulate_score(current_ratings, home, away, is_neutral=True, rng=rng)
             
@@ -255,7 +261,7 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
                 a_stat["Pts"] += 1
                 h_pts, a_pts = 1, 1
                 
-            # Update rolling form history
+            # Update rolling form
             h_recent.append(h_pts)
             if len(h_recent) > 5:
                 h_recent.pop(0)
@@ -271,14 +277,356 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             fixture["home_score"] = None
             fixture["away_score"] = None
 
-    # Format and sort standings
+    # Now create shadow ratings, shadow forms, and shadow standings to simulate the REST of the tournament
+    import copy
+    shadow_ratings = current_ratings.copy()
+    shadow_forms = copy.deepcopy(team_forms)
+    shadow_standings = copy.deepcopy(standings)
+    
+    # Run shadow group-stage simulation for any upcoming group fixtures
+    for idx, fixture in enumerate(fixtures_list, start=1):
+        if fixture["status"] == "upcoming":
+            home = fixture["home"]
+            away = fixture["away"]
+            group_name = fixture["group"]
+            
+            rng = np.random.default_rng(2026 + idx)
+            h_goals, a_goals = simulate_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            
+            update_elo(shadow_ratings, home, away, h_goals, a_goals, is_neutral=True)
+            
+            # Update shadow standings
+            h_stat = shadow_standings[group_name][home]
+            a_stat = shadow_standings[group_name][away]
+            h_stat["P"] += 1
+            a_stat["P"] += 1
+            h_stat["GF"] += h_goals
+            h_stat["GA"] += a_goals
+            a_stat["GF"] += a_goals
+            a_stat["GA"] += h_goals
+            h_stat["GD"] = h_stat["GF"] - h_stat["GA"]
+            a_stat["GD"] = a_stat["GF"] - a_stat["GA"]
+            
+            if h_goals > a_goals:
+                h_stat["W"] += 1
+                h_stat["Pts"] += 3
+                a_stat["L"] += 1
+                h_pts, a_pts = 3, 0
+            elif h_goals < a_goals:
+                a_stat["W"] += 1
+                a_stat["Pts"] += 3
+                h_stat["L"] += 1
+                h_pts, a_pts = 0, 3
+            else:
+                h_stat["D"] += 1
+                h_stat["Pts"] += 1
+                a_stat["D"] += 1
+                a_stat["Pts"] += 1
+                h_pts, a_pts = 1, 1
+                
+            sh_rec = shadow_forms.setdefault(home, [1.0])
+            sh_rec.append(h_pts)
+            if len(sh_rec) > 5:
+                sh_rec.pop(0)
+            shadow_forms[home] = sh_rec
+            
+            sa_rec = shadow_forms.setdefault(away, [1.0])
+            sa_rec.append(a_pts)
+            if len(sa_rec) > 5:
+                sa_rec.pop(0)
+            shadow_forms[away] = sa_rec
+
+    # Re-calculate real standings for the date display
     sorted_standings = {}
     for group_name, group_teams in standings.items():
-        # Sort by: Pts (desc), GD (desc), GF (desc), team name (asc)
         sorted_standings[group_name] = sorted(
             group_teams.values(),
             key=lambda x: (-x["Pts"], -x["GD"], -x["GF"], x["team"])
         )
+
+    # 4. Generate & Simulate Knockout Stages
+    # Calculate group winners, runners-up, and best 3rd-places based on shadow standings
+    group_winners = {}
+    group_runners_up = {}
+    third_place_teams = []
+    
+    for g_name in ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]:
+        g_st = shadow_standings[g_name]
+        sorted_g = sorted(
+            g_st.values(),
+            key=lambda x: (-x["Pts"], -x["GD"], -x["GF"], x["team"])
+        )
+        group_winners[g_name] = sorted_g[0]["team"]
+        group_runners_up[g_name] = sorted_g[1]["team"]
+        third_place_teams.append(sorted_g[2])
+
+    # Find 8 best 3rd-place teams
+    ranked_3rd = sorted(
+        third_place_teams,
+        key=lambda x: (-x["Pts"], -x["GD"], -x["GF"], x["team"])
+    )
+    best_3rd = [t["team"] for t in ranked_3rd[:8]]
+
+    # Define Round of 32 fixtures structure
+    # Pairing index -> (home_team, away_team, date, venue)
+    r32_pairings = [
+        (group_winners["A"], best_3rd[0], "2026-06-28", "Boston"),
+        (group_winners["B"], group_runners_up["C"], "2026-06-28", "New York"),
+        (group_winners["C"], best_3rd[1], "2026-06-28", "Los Angeles"),
+        (group_winners["D"], group_runners_up["E"], "2026-06-29", "Dallas"),
+        (group_winners["E"], best_3rd[2], "2026-06-29", "Atlanta"),
+        (group_winners["F"], group_runners_up["G"], "2026-06-29", "Seattle"),
+        (group_winners["G"], best_3rd[3], "2026-06-30", "Miami"),
+        (group_winners["H"], group_runners_up["I"], "2026-06-30", "Philadelphia"),
+        (group_winners["I"], best_3rd[4], "2026-06-30", "Toronto"),
+        (group_winners["J"], group_runners_up["K"], "2026-07-01", "Vancouver"),
+        (group_winners["K"], best_3rd[5], "2026-07-01", "San Francisco"),
+        (group_winners["L"], best_3rd[6], "2026-07-01", "Houston"),
+        (group_runners_up["A"], best_3rd[7], "2026-07-02", "Mexico City"),
+        (group_runners_up["B"], group_runners_up["H"], "2026-07-02", "Guadalajara"),
+        (group_runners_up["D"], group_runners_up["J"], "2026-07-03", "Monterrey"),
+        (group_runners_up["F"], group_runners_up["L"], "2026-07-03", "Kansas City")
+    ]
+
+    r32_results = []
+    
+    # Simulate Round of 32
+    for idx, (home, away, m_date, venue) in enumerate(r32_pairings, start=73):
+        fixture_date = pd.Timestamp(m_date).date()
+        match_id = idx
+        
+        # Calculate pre-match ratings
+        home_elo = current_ratings.setdefault(home, 1500.0)
+        away_elo = current_ratings.setdefault(away, 1500.0)
+        
+        # Get Elo prediction
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        
+        fixture = {
+            "match_id": match_id,
+            "date": m_date,
+            "group": "Round of 32",
+            "home": home,
+            "away": away,
+            "venue": venue,
+            "prediction": elo_preds,
+            "ml_prediction": elo_preds
+        }
+        
+        if fixture_date < sim_date:
+            fixture["status"] = "completed"
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            
+            fixture.update(res)
+            fixture["home_score"] = res["home_goals"]
+            fixture["away_score"] = res["away_goals"]
+            # Update real Elo ratings
+            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            # Sync shadow Elo ratings
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            
+            r32_results.append(res["winner"])
+        else:
+            fixture["status"] = "upcoming"
+            fixture["home_score"] = None
+            fixture["away_score"] = None
+            
+            # Simulate shadow winner
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            
+            r32_results.append(res["winner"])
+            
+        fixtures_list.append(fixture)
+
+    # Simulate Round of 16 (8 matches)
+    r16_pairings = [
+        (r32_results[0], r32_results[1], "2026-07-04", "New York"),
+        (r32_results[2], r32_results[3], "2026-07-04", "Dallas"),
+        (r32_results[4], r32_results[5], "2026-07-05", "Miami"),
+        (r32_results[6], r32_results[7], "2026-07-05", "Atlanta"),
+        (r32_results[8], r32_results[9], "2026-07-06", "Los Angeles"),
+        (r32_results[10], r32_results[11], "2026-07-06", "San Francisco"),
+        (r32_results[12], r32_results[13], "2026-07-07", "Vancouver"),
+        (r32_results[14], r32_results[15], "2026-07-07", "Seattle")
+    ]
+    
+    r16_results = []
+    for idx, (home, away, m_date, venue) in enumerate(r16_pairings, start=89):
+        fixture_date = pd.Timestamp(m_date).date()
+        match_id = idx
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        fixture = {
+            "match_id": match_id,
+            "date": m_date,
+            "group": "Round of 16",
+            "home": home,
+            "away": away,
+            "venue": venue,
+            "prediction": elo_preds,
+            "ml_prediction": elo_preds
+        }
+        
+        if fixture_date < sim_date:
+            fixture["status"] = "completed"
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            fixture.update(res)
+            fixture["home_score"] = res["home_goals"]
+            fixture["away_score"] = res["away_goals"]
+            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            r16_results.append(res["winner"])
+        else:
+            fixture["status"] = "upcoming"
+            fixture["home_score"] = None
+            fixture["away_score"] = None
+            
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            r16_results.append(res["winner"])
+            
+        fixtures_list.append(fixture)
+
+    # Simulate Quarterfinals (4 matches)
+    qf_pairings = [
+        (r16_results[0], r16_results[1], "2026-07-09", "Boston"),
+        (r16_results[2], r16_results[3], "2026-07-10", "Miami"),
+        (r16_results[4], r16_results[5], "2026-07-11", "Dallas"),
+        (r16_results[6], r16_results[7], "2026-07-11", "Los Angeles")
+    ]
+    
+    qf_results = []
+    for idx, (home, away, m_date, venue) in enumerate(qf_pairings, start=97):
+        fixture_date = pd.Timestamp(m_date).date()
+        match_id = idx
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        fixture = {
+            "match_id": match_id,
+            "date": m_date,
+            "group": "Quarterfinals",
+            "home": home,
+            "away": away,
+            "venue": venue,
+            "prediction": elo_preds,
+            "ml_prediction": elo_preds
+        }
+        
+        if fixture_date < sim_date:
+            fixture["status"] = "completed"
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            fixture.update(res)
+            fixture["home_score"] = res["home_goals"]
+            fixture["away_score"] = res["away_goals"]
+            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            qf_results.append(res["winner"])
+        else:
+            fixture["status"] = "upcoming"
+            fixture["home_score"] = None
+            fixture["away_score"] = None
+            
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            qf_results.append(res["winner"])
+            
+        fixtures_list.append(fixture)
+
+    # Simulate Semifinals (2 matches)
+    sf_pairings = [
+        (qf_results[0], qf_results[1], "2026-07-14", "Atlanta"),
+        (qf_results[2], qf_results[3], "2026-07-15", "New York")
+    ]
+    
+    sf_results = []
+    for idx, (home, away, m_date, venue) in enumerate(sf_pairings, start=101):
+        fixture_date = pd.Timestamp(m_date).date()
+        match_id = idx
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        fixture = {
+            "match_id": match_id,
+            "date": m_date,
+            "group": "Semifinals",
+            "home": home,
+            "away": away,
+            "venue": venue,
+            "prediction": elo_preds,
+            "ml_prediction": elo_preds
+        }
+        
+        if fixture_date < sim_date:
+            fixture["status"] = "completed"
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            fixture.update(res)
+            fixture["home_score"] = res["home_goals"]
+            fixture["away_score"] = res["away_goals"]
+            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            
+            loser = away if res["winner"] == home else home
+            sf_results.append((res["winner"], loser))
+        else:
+            fixture["status"] = "upcoming"
+            fixture["home_score"] = None
+            fixture["away_score"] = None
+            
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            
+            loser = away if res["winner"] == home else home
+            sf_results.append((res["winner"], loser))
+            
+        fixtures_list.append(fixture)
+
+    # 3rd-Place Match (July 18) and Final (July 19)
+    ko_finals = [
+        (sf_results[0][1], sf_results[1][1], "2026-07-18", "Miami", "3rd Place Match", 103),
+        (sf_results[0][0], sf_results[1][0], "2026-07-19", "New York", "Final", 104)
+    ]
+    
+    for home, away, m_date, venue, grp, match_id in ko_finals:
+        fixture_date = pd.Timestamp(m_date).date()
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        fixture = {
+            "match_id": match_id,
+            "date": m_date,
+            "group": grp,
+            "home": home,
+            "away": away,
+            "venue": venue,
+            "prediction": elo_preds,
+            "ml_prediction": elo_preds
+        }
+        
+        if fixture_date < sim_date:
+            fixture["status"] = "completed"
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            fixture.update(res)
+            fixture["home_score"] = res["home_goals"]
+            fixture["away_score"] = res["away_goals"]
+            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+        else:
+            fixture["status"] = "upcoming"
+            fixture["home_score"] = None
+            fixture["away_score"] = None
+            
+            rng = np.random.default_rng(2026 + match_id)
+            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            
+        fixtures_list.append(fixture)
 
     return {
         "simulated_date": simulated_date_str,
@@ -372,13 +720,25 @@ async def get_predict(
     # 1. Elo Prediction (Poisson)
     elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
 
+    from backend.team_metadata import TEAM_METADATA
+    home_meta = TEAM_METADATA.get(home, {"squad_value": 100, "fifa_rank": 50, "fifa_points": 1500})
+    away_meta = TEAM_METADATA.get(away, {"squad_value": 100, "fifa_rank": 50, "fifa_points": 1500})
+    squad_diff = home_meta["squad_value"] - away_meta["squad_value"]
+    rank_diff = away_meta["fifa_rank"] - home_meta["fifa_rank"]
+    squad_ratio = home_meta["squad_value"] / (away_meta["squad_value"] + 1.0)
+    form_diff = home_form_val - away_form_val
+
     # 2. ML Prediction (Logistic Regression)
     features = np.array([[
         home_elo - away_elo,
         (home_elo + away_elo) / 2.0,
         home_form_val,
         away_form_val,
-        1.0  # World Cup neutral
+        1.0,  # World Cup neutral
+        squad_diff,
+        rank_diff,
+        squad_ratio,
+        form_diff
     ]])
     ml_probs = state["match_model"].predict_proba(features)[0]
     ml_preds = {
@@ -392,6 +752,8 @@ async def get_predict(
         "away": away,
         "elo_home": round(home_elo, 1),
         "elo_away": round(away_elo, 1),
+        "home_metadata": home_meta,
+        "away_metadata": away_meta,
         "elo_prediction": elo_preds,
         "ml_prediction": ml_preds
     }
@@ -455,3 +817,16 @@ async def get_shootout_montecarlo(
     except Exception as exc:
         logger.error("Error running Monte Carlo: %s", exc)
         raise HTTPException(status_code=500, detail="Monte Carlo simulation failed.")
+
+@app.get("/api/squad")
+async def get_squad_endpoint(
+    team: str = Query(..., description="Team name to fetch roster for")
+):
+    """Returns the squad roster for a specific team."""
+    from backend.worldcup_api import get_squad
+    try:
+        squad = get_squad(team)
+        return JSONResponse(content={"team": team, "squad": squad})
+    except Exception as exc:
+        logger.error("Error fetching squad for %s: %s", team, exc)
+        raise HTTPException(status_code=500, detail=f"Could not load squad for {team}")

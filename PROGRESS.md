@@ -7,45 +7,45 @@ This document tracks the current state of implementation for the FIFA World Cup 
 ## Roadmap & Checklist
 
 - [x] **Phase 1: Project Setup & Dependencies**
-  - [x] Initialize Python Virtual Environment.
-  - [x] Write `requirements.txt` containing `fastapi`, `uvicorn`, `pandas`, `numpy`, `scikit-learn`, `statsbombpy`, `requests`.
-  - [x] Configure `run.py` launch orchestrator script.
+  - [x] Configure Python virtual environment.
+  - [x] Define package dependencies in `requirements.txt`.
+  - [x] Create `run.py` launch orchestrator script (handles builds, training, and servers).
 
-- [x] **Phase 2: Data Pipeline & Model Training**
-  - [x] Implement historical results caching parser (`data_loader.py` — downloads and caches `results.csv`, normalises team names).
-  - [x] Build baseline Elo calculation pipeline (`elo.py` — rolling Elo with Poisson prediction and score simulation).
-  - [x] Write Match Outcome Predictor training pipeline (`model_match.py` — LogisticRegression, 52.3% 3-class accuracy).
-  - [x] Fetch StatsBomb open shot-event data and train xG model (`model_xg.py` — 5-fold Stratified CV ROC-AUC: 0.792).
-  - [x] Implement Shootout simulator logic (`model_shootout.py` — 9-zone Monte Carlo, verified 50/50 split).
+- [x] **Phase 2: Ingestion & Data Sources Layer**
+  - [x] Implement historical results caching parser in [data_loader.py](file:///d:/Projects/ML/fifa/backend/data_loader.py).
+  - [x] Build baseline Elo calculation engine with home-advantage offsets in [elo.py](file:///d:/Projects/ML/fifa/backend/elo.py).
+  - [x] Build multi-client external rosters loader (integrating WorldCupAPI, football-data.org, and balldontlie.io) in [worldcup_api.py](file:///d:/Projects/ML/fifa/backend/worldcup_api.py) with local mock fallback databases.
 
-- [x] **Phase 3: Backend API Server**
-  - [x] Setup FastAPI server in `app.py`.
-  - [x] Implement `/api/fixtures` with sequential rolling Elo updater.
-  - [x] Implement `/api/predict` for match outcome forecasts.
-  - [x] Implement `/api/xg` shot calculations.
-  - [x] Implement `/api/shootout` Monte Carlo simulations.
+- [x] **Phase 3: Specialized Machine Learning Models**
+  - [x] Train 9-feature Gradient Boosting Classifier for match outcomes in [model_match.py](file:///d:/Projects/ML/fifa/backend/model_match.py) (persisted to `data/model_match.pkl`).
+  - [x] Train Expected Goals (xG) spatial Logistic Regression classifier in [model_xg.py](file:///d:/Projects/ML/fifa/backend/model_xg.py) (persisted to `data/model_xg.pkl`).
+  - [x] Implement 9-zone shootout probability simulator with goalkeeper dive physics in [model_shootout.py](file:///d:/Projects/ML/fifa/backend/model_shootout.py).
 
-- [x] **Phase 4A: Vanilla HTML Prototype (Archived)**
-  - [x] Create HTML structure (`index.html`) using semantic tags.
-  - [x] Style the dashboard (`style.css`) using custom HSL World Cup theme (maroon/gold glassmorphism).
-  - [x] Implement JS interactions (`app.js`):
-    - [x] Tab switching with fade transitions.
-    - [x] SVG Soccer Pitch click-to-plot shot locator.
-    - [x] SVG Penalty Shootout Goal Target grid.
-    - [x] Timeline slider synced with `/api/fixtures`.
+- [x] **Phase 4: Backend FastAPI Service**
+  - [x] Establish backend server in [app.py](file:///d:/Projects/ML/fifa/backend/app.py) with CORS middleware.
+  - [x] Create `/api/fixtures` date-slider endpoint updating Elo and group standings chronologically.
+  - [x] Expose `/api/predict` (pre-match outcome), `/api/xg` (sandbox calculations), `/api/shootout` (single-kick penalty), `/api/shootout/montecarlo` (batch simulations), and `/api/squad` (rosters).
+  - [x] Implement shadow simulation parser dynamically generating R32, R16, QF, SF, 3rd Place, and Finals fixtures on the fly.
+  - [x] Implement best 3rd-place team ranking logic to expand group qualifiers into the newly added Round of 32 knockout bracket.
 
-- [x] **Phase 4B: Luxurious React UI Re-Architecture**
-  - [x] Initialize Vite + React workspace.
-  - [x] Set up TailwindCSS, Framer Motion, Recharts, and Lucide React dependencies.
-  - [x] Configure `vite.config.js` API proxy routing to FastAPI port 8000.
-  - [x] Implement responsive sidebar, global headers, and Tournament slider framework.
-  - [x] Refactor `TournamentHub` (incorporating layout transition cards for group standings).
-  - [x] Refactor `MatchPredictor` (integrating Recharts Radar chart comparison).
-  - [x] Refactor `XgSandbox` (designing isometric 3D-shaded SVG pitch and Recharts Radial gauges).
-  - [x] Refactor `ShootoutArena` (building goalkeeper Framer Motion dive physics and zone heatmap).
+- [x] **Phase 5: Vite + React 18 UI Development**
+  - [x] Initialize Vite SPA workspace with Tailwind CSS, Recharts, Framer Motion, and Lucide React.
+  - [x] Design broadcast TV styled sidebar navigation in [Sidebar.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/Sidebar.jsx).
+  - [x] Build date timeline controller in [TimeMachine.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/TimeMachine.jsx) and standings list in [TournamentHub.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/TournamentHub.jsx).
+  - [x] Create [MatchPredictor.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/MatchPredictor.jsx) displaying comparative Elo radars, mock rosters, and squad metrics.
+  - [x] Build isometric 3D-shaded vector pitch sandbox in [XgSandbox.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/XgSandbox.jsx).
+  - [x] Implement penalty shootout simulator in [ShootoutArena.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/ShootoutArena.jsx) (includes goalkeeper animations and Monte Carlo conversion rate heatmaps).
 
-- [x] **Phase 5: Verification & Launch**
-  - [x] Perform API endpoint unit testing.
-  - [x] Conduct visual manual check of the date slider (verifying the opening match Mexico vs. South Africa updates to completed and standings adjust in React UI).
-  - [x] Perform validation of calculated values (e.g. penalty spot xG ≈ 0.75).
+- [x] **Phase 6: Opener Loader & Tournament Brackets**
+  - [x] Create WebGL shaded golden sphere loader in [OpenerLoader.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/OpenerLoader.jsx) mapping backend loading status.
+  - [x] Create connecting Bezier lines and path-traced tree in [KnockoutBracket.jsx](file:///d:/Projects/ML/fifa/frontend/src/components/KnockoutBracket.jsx) showing knockout stages (R32 down to Finals).
 
+- [x] **Phase 7: Visual Polish & Details**
+  - [x] Add global rolling statistics ticker feed on top of the main screen.
+  - [x] Replace emoji flags with circular gold-bordered text abbreviation badges.
+  - [x] Configure glassmorphic panels (`border-white/10` and inset shadows) and tactile scale button animations.
+
+- [x] **Phase 8: Test-Driven Verification**
+  - [x] Write and run FastAPI lifespan tests in [test_api.py](file:///d:/Projects/ML/fifa/backend/test_api.py).
+  - [x] Verify England group-stage qualification under the new Unified Elo rating boost (Test 7).
+  - [x] Verify bracket generation (Test 8), extra-time/shootout deciders (Test 9), and roster APIs (Test 10).

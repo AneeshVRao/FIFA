@@ -17,6 +17,7 @@ from backend.app import (
     get_shootout,
     get_shootout_montecarlo,
     get_index,
+    get_squad_endpoint,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -89,11 +90,67 @@ async def run_tests():
         assert 0.4 <= data_mc["team_a_win_rate"] <= 0.6, "Team A win rate should be around 50%"
         print("  [OK] Monte Carlo simulation validated.")
         
+        print("\n[Test 7] Unified Elo Rating Boost")
+        # Try to import team_metadata (will fail initially in RED phase)
+        from backend.team_metadata import get_unified_elo, TEAM_METADATA
+        england_meta = TEAM_METADATA["England"]
+        print(f"  England metadata: {england_meta}")
+        england_unified = get_unified_elo("England", 1838.5)
+        print(f"  England Unified Elo: {england_unified}")
+        # Expected boost: 0.1 * (1795 - 1500) + 0.05 * 1300 = 29.5 + 65.0 = 94.5. 1838.5 + 94.5 = 1933.0
+        assert england_unified == 1933.0, "England Unified Elo should be exactly 1933.0"
+        print("  [OK] Unified Elo rating calculations verified.")
+
+        print("\n[Test 8] Best 3rd-place Selection & Knockout Generation")
+        response_ko = await get_fixtures(date="2026-06-29")
+        data_ko = json.loads(response_ko.body.decode("utf-8"))
+        fixtures_ko = data_ko["fixtures"]
+        
+        # Round of 32 matches are scheduled from June 28 onwards
+        r32_matches = [f for f in fixtures_ko if f.get("group") == "Round of 32"]
+        print(f"  Total Round of 32 Matches: {len(r32_matches)}")
+        assert len(r32_matches) == 16, "Should generate exactly 16 Round of 32 matches after group stage"
+        
+        # Verify that England is in the Round of 32 (Unified Elo should qualify them)
+        england_r32 = [f for f in r32_matches if f["home"] == "England" or f["away"] == "England"]
+        assert len(england_r32) > 0, "England should qualify for the Round of 32"
+        print("  [OK] Best 3rd-place teams selected and Round of 32 matchups seeded successfully.")
+
+        print("\n[Test 9] Knockout Match Extra Time & Penalties")
+        response_final = await get_fixtures(date="2026-07-20")
+        data_final = json.loads(response_final.body.decode("utf-8"))
+        fixtures_final = data_final["fixtures"]
+        
+        # Verify knockout fixtures are simulated (completed) and have a winner
+        knockout_groups = ["Round of 32", "Round of 16", "Quarterfinals", "Semifinals", "3rd Place Match", "Final"]
+        ko_fixtures = [f for f in fixtures_final if f.get("group") in knockout_groups]
+        completed_ko = [f for f in ko_fixtures if f["status"] == "completed"]
+        
+        print(f"  Total Knockout matches simulated: {len(completed_ko)}")
+        assert len(completed_ko) == 32, "Should simulate exactly 32 knockout matches by end of tournament"
+        
+        # Check that every completed knockout match has a winner and no draws
+        for match in completed_ko:
+            assert match.get("winner") is not None, f"Knockout Match {match['match_id']} must have a winner"
+            if match.get("home_score") == match.get("away_score"):
+                assert match.get("extra_time") is True or match.get("penalties") is True, "Tied matches must go to extra time/penalties"
+                if match.get("penalties") is True:
+                    assert "penalty_scores" in match, "Penalty shootout details must be recorded"
+        print("  [OK] Knockout extra time and penalty deciders simulated and validated.")
+
         print("\n[Test 6] Static file routing")
         idx_res = await get_index()
         print(f"  Root route index.html path: {idx_res.path}")
         assert "index.html" in str(idx_res.path), "Should route index.html"
         print("  [OK] Static files verified.")
+
+        print("\n[Test 10] /api/squad (Team roster endpoint)")
+        squad_response = await get_squad_endpoint(team="England")
+        squad_data = json.loads(squad_response.body.decode("utf-8"))
+        print(f"  England Roster Size: {len(squad_data['squad'])}")
+        assert len(squad_data["squad"]) > 0, "Squad roster should not be empty"
+        assert any(p["name"] == "Harry Kane" for p in squad_data["squad"]), "Harry Kane should be in England squad"
+        print("  [OK] Roster endpoint verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 

@@ -164,48 +164,58 @@ def update_elo(
     return ratings
 
 
+# Global cache for Dixon-Coles model to avoid repeated load overhead
+_dixon_coles = None
+
+def get_dixon_coles():
+    """Retrieve or load the Dixon-Coles model dynamically to avoid circular imports."""
+    global _dixon_coles
+    if _dixon_coles is None:
+        try:
+            from backend.model_match import load_dixon_coles
+            _dixon_coles = load_dixon_coles()
+        except Exception as e:
+            logger.warning("Could not load Dixon-Coles model: %s. Using default Poisson fallback.", e)
+    return _dixon_coles
+
+
 def predict_match(
     ratings: dict[str, float],
     home_team: str,
     away_team: str,
     is_neutral: bool = True,
 ) -> dict[str, float]:
-    """Return win/draw/loss probabilities using Elo difference.
-
-    Uses a Poisson-style approximation for goal expectations to
-    split draw probability from a simple expected-score value.
-
-    Returns
-    -------
-    dict
-        ``{"home_win": float, "draw": float, "away_win": float}``
-        where values sum to ~1.0.
-    """
+    """Return win/draw/loss probabilities using the fitted Dixon-Coles Poisson model."""
     ratings.setdefault(home_team, DEFAULT_ELO)
     ratings.setdefault(away_team, DEFAULT_ELO)
 
     home_elo = ratings[home_team] + (0 if is_neutral else HOME_ADVANTAGE)
     away_elo = ratings[away_team]
-
     elo_diff = home_elo - away_elo
 
-    # Derive expected goals from Elo difference
-    avg_goals = 1.35  # average goals per team in WC
+    dc = get_dixon_coles()
+    if dc is not None:
+        from backend.team_metadata import TEAM_METADATA
+        h_meta = TEAM_METADATA.get(home_team, {"squad_value": 50.0, "fifa_rank": 80})
+        a_meta = TEAM_METADATA.get(away_team, {"squad_value": 50.0, "fifa_rank": 80})
+        squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
+        # Standalone predict defaults form differential to 0.0
+        return dc.predict_probs(elo_diff, squad_ratio, 0.0)
+
+    # Fallback to simple Poisson
+    avg_goals = 1.35
     home_xg = avg_goals * 10 ** (elo_diff / 800.0)
     away_xg = avg_goals * 10 ** (-elo_diff / 800.0)
 
-    # Cap extreme values
     home_xg = min(max(home_xg, 0.2), 5.0)
     away_xg = min(max(away_xg, 0.2), 5.0)
 
-    # Poisson draw probability
     draw_prob = 0.0
     for k in range(8):
         p_home_k = (home_xg ** k) * np.exp(-home_xg) / math.factorial(k)
         p_away_k = (away_xg ** k) * np.exp(-away_xg) / math.factorial(k)
         draw_prob += p_home_k * p_away_k
 
-    # Remaining probability split by Elo expected score
     expected_home = _expected_score(home_elo, away_elo)
     remaining = 1.0 - draw_prob
     home_win = remaining * expected_home
@@ -225,24 +235,7 @@ def simulate_score(
     is_neutral: bool = True,
     rng: np.random.Generator | None = None,
 ) -> tuple[int, int]:
-    """Simulate a single match scoreline using Poisson distributions.
-
-    Parameters
-    ----------
-    ratings : dict
-        Current Elo ratings.
-    home_team, away_team : str
-        Team names.
-    is_neutral : bool
-        True for World Cup matches.
-    rng : np.random.Generator or None
-        Seeded generator for reproducibility.
-
-    Returns
-    -------
-    tuple[int, int]
-        (home_goals, away_goals)
-    """
+    """Simulate a single match scoreline using the Dixon-Coles Poisson model."""
     if rng is None:
         rng = np.random.default_rng()
 
@@ -253,6 +246,15 @@ def simulate_score(
     away_elo = ratings[away_team]
     elo_diff = home_elo - away_elo
 
+    dc = get_dixon_coles()
+    if dc is not None:
+        from backend.team_metadata import TEAM_METADATA
+        h_meta = TEAM_METADATA.get(home_team, {"squad_value": 50.0, "fifa_rank": 80})
+        a_meta = TEAM_METADATA.get(away_team, {"squad_value": 50.0, "fifa_rank": 80})
+        squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
+        return dc.sample_score(elo_diff, squad_ratio, 0.0, rng)
+
+    # Fallback to simple Poisson
     avg_goals = 1.35
     home_xg = avg_goals * 10 ** (elo_diff / 800.0)
     away_xg = avg_goals * 10 ** (-elo_diff / 800.0)
@@ -264,6 +266,98 @@ def simulate_score(
     away_goals = int(rng.poisson(away_xg))
 
     return (home_goals, away_goals)
+
+
+def simulate_knockout_score(
+    ratings: dict[str, float],
+    home_team: str,
+    away_team: str,
+    is_neutral: bool = True,
+    rng: np.random.Generator | None = None,
+) -> dict:
+    """Simulate a knockout match, resolving draws via Extra Time and Penalties."""
+    if rng is None:
+        rng = np.random.default_rng()
+
+    ratings.setdefault(home_team, DEFAULT_ELO)
+    ratings.setdefault(away_team, DEFAULT_ELO)
+
+    home_elo = ratings[home_team] + (0 if is_neutral else HOME_ADVANTAGE)
+    away_elo = ratings[away_team]
+    elo_diff = home_elo - away_elo
+
+    dc = get_dixon_coles()
+    if dc is not None:
+        from backend.team_metadata import TEAM_METADATA
+        h_meta = TEAM_METADATA.get(home_team, {"squad_value": 50.0, "fifa_rank": 80})
+        a_meta = TEAM_METADATA.get(away_team, {"squad_value": 50.0, "fifa_rank": 80})
+        squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
+        
+        # 1. Regulation 90 minutes
+        home_goals, away_goals = dc.sample_score(elo_diff, squad_ratio, 0.0, rng)
+        lambda_H, lambda_A = dc.predict_lambdas(elo_diff, squad_ratio, 0.0)
+    else:
+        # Fallback to simple Poisson
+        avg_goals = 1.35
+        lambda_H = min(max(avg_goals * 10 ** (elo_diff / 800.0), 0.2), 5.0)
+        lambda_A = min(max(avg_goals * 10 ** (-elo_diff / 800.0), 0.2), 5.0)
+        home_goals = int(rng.poisson(lambda_H))
+        away_goals = int(rng.poisson(lambda_A))
+
+    extra_time = False
+    penalties = False
+    penalty_scores = None
+    winner = None
+
+    if home_goals > away_goals:
+        winner = home_team
+    elif home_goals < away_goals:
+        winner = away_team
+    else:
+        # 2. 30-minute Extra Time
+        extra_time = True
+        home_et = int(rng.poisson(lambda_H * 0.33))
+        away_et = int(rng.poisson(lambda_A * 0.33))
+        
+        home_goals += home_et
+        away_goals += away_et
+        
+        if home_goals > away_goals:
+            winner = home_team
+        elif home_goals < away_goals:
+            winner = away_team
+        else:
+            # 3. Penalty Shootout
+            penalties = True
+            p_home = 0
+            p_away = 0
+            
+            # Initial 5 kicks
+            for _ in range(5):
+                if rng.random() < 0.75:
+                    p_home += 1
+                if rng.random() < 0.75:
+                    p_away += 1
+            
+            # Sudden death
+            while p_home == p_away:
+                if rng.random() < 0.75:
+                    p_home += 1
+                if rng.random() < 0.75:
+                    p_away += 1
+            
+            penalty_scores = [p_home, p_away]
+            winner = home_team if p_home > p_away else away_team
+
+    return {
+        "home_goals": home_goals,
+        "away_goals": away_goals,
+        "extra_time": extra_time,
+        "penalties": penalties,
+        "penalty_scores": penalty_scores,
+        "winner": winner
+    }
+
 
 
 # ── quick self-test ──────────────────────────────────────────────
