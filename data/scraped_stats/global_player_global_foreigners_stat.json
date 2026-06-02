@@ -1,0 +1,152 @@
+[
+  {
+    "rank": "1",
+    "country": "Wales",
+    "number_of_foreigners": "728",
+    "total_value": "€76.13m"
+  },
+  {
+    "rank": "2",
+    "country": "United States",
+    "number_of_foreigners": "402",
+    "total_value": "€25.70m"
+  },
+  {
+    "rank": "3",
+    "country": "Scotland",
+    "number_of_foreigners": "165",
+    "total_value": "€41.09m"
+  },
+  {
+    "rank": "4",
+    "country": "Australia",
+    "number_of_foreigners": "140",
+    "total_value": "€2.05m"
+  },
+  {
+    "rank": "5",
+    "country": "New Zealand",
+    "number_of_foreigners": "76",
+    "total_value": "€1.84m"
+  },
+  {
+    "rank": "6",
+    "country": "Germany",
+    "number_of_foreigners": "58",
+    "total_value": "€155.38m"
+  },
+  {
+    "rank": "7",
+    "country": "Gibraltar",
+    "number_of_foreigners": "54",
+    "total_value": "€1.08m"
+  },
+  {
+    "rank": "8",
+    "country": "Ireland",
+    "number_of_foreigners": "42",
+    "total_value": "€3.85m"
+  },
+  {
+    "rank": "9",
+    "country": "United Arab Emirates",
+    "number_of_foreigners": "33",
+    "total_value": "-"
+  },
+  {
+    "rank": "10",
+    "country": "Northern Ireland",
+    "number_of_foreigners": "32",
+    "total_value": "€2.80m"
+  },
+  {
+    "rank": "11",
+    "country": "Switzerland",
+    "number_of_foreigners": "28",
+    "total_value": "€4.00m"
+  },
+  {
+    "rank": "12",
+    "country": "Spain",
+    "number_of_foreigners": "25",
+    "total_value": "€259.45m"
+  },
+  {
+    "rank": "13",
+    "country": "France",
+    "number_of_foreigners": "19",
+    "total_value": "€185.60m"
+  },
+  {
+    "rank": "14",
+    "country": "Italy",
+    "number_of_foreigners": "19",
+    "total_value": "€122.39m"
+  },
+  {
+    "rank": "15",
+    "country": "Iceland",
+    "number_of_foreigners": "16",
+    "total_value": "€75k"
+  },
+  {
+    "rank": "16",
+    "country": "Sweden",
+    "number_of_foreigners": "15",
+    "total_value": "€600k"
+  },
+  {
+    "rank": "17",
+    "country": "Hongkong",
+    "number_of_foreigners": "15",
+    "total_value": "€35k"
+  },
+  {
+    "rank": "18",
+    "country": "Portugal",
+    "number_of_foreigners": "14",
+    "total_value": "€4.95m"
+  },
+  {
+    "rank": "19",
+    "country": "Cyprus",
+    "number_of_foreigners": "14",
+    "total_value": "€2.85m"
+  },
+  {
+    "rank": "20",
+    "country": "Malta",
+    "number_of_foreigners": "14",
+    "total_value": "€200k"
+  },
+  {
+    "rank": "21",
+    "country": "Canada",
+    "number_of_foreigners": "13",
+    "total_value": "€1.35m"
+  },
+  {
+    "rank": "22",
+    "country": "Türkiye",
+    "number_of_foreigners": "9",
+    "total_value": "€14.09m"
+  },
+  {
+    "rank": "23",
+    "country": "Belgium",
+    "number_of_foreigners": "9",
+    "total_value": "€10.95m"
+  },
+  {
+    "rank": "24",
+    "country": "Netherlands",
+    "number_of_foreigners": "9",
+    "total_value": "€8.70m"
+  },
+  {
+    "rank": "25",
+    "country": "Slovakia",
+    "number_of_foreigners": "8",
+    "total_value": "€1.11m"
+  }
+]

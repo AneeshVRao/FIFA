@@ -18,10 +18,8 @@ recalculate_from_date(ratings, fixtures, date_str) -> tuple
     and list of match dicts with outcomes attached.
 """
 
-import copy
 import math
 import logging
-from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -88,10 +86,10 @@ def build_initial_elo(
 
     ratings: dict[str, float] = {}
 
-    for _, row in recent.iterrows():
-        home = row["home_team"]
-        away = row["away_team"]
-        is_neutral = bool(row.get("neutral", False))
+    for row in recent.itertuples():
+        home = row.home_team
+        away = row.away_team
+        is_neutral = bool(getattr(row, "neutral", False))
 
         ratings.setdefault(home, DEFAULT_ELO)
         ratings.setdefault(away, DEFAULT_ELO)
@@ -103,9 +101,9 @@ def build_initial_elo(
         expected_away = 1.0 - expected_home
 
         actual_home, actual_away = _actual_score(
-            int(row["home_score"]), int(row["away_score"])
+            int(row.home_score), int(row.away_score)
         )
-        goal_diff = int(row["home_score"]) - int(row["away_score"])
+        goal_diff = int(row.home_score) - int(row.away_score)
         multiplier = _goal_diff_multiplier(goal_diff)
 
         ratings[home] += K_FACTOR * multiplier * (actual_home - expected_home)

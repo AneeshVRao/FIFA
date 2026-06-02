@@ -1,0 +1,72 @@
+[
+  {
+    "rank": "1",
+    "nation": "Argentina",
+    "points": "1875",
+    "confederation": "CONMEBOL",
+    "total_value": "€818.5m"
+  },
+  {
+    "rank": "2",
+    "nation": "France",
+    "points": "1877",
+    "confederation": "UEFA",
+    "total_value": "€1.53bn"
+  },
+  {
+    "rank": "3",
+    "nation": "Spain",
+    "points": "1876",
+    "confederation": "UEFA",
+    "total_value": "€1.26bn"
+  },
+  {
+    "rank": "4",
+    "nation": "England",
+    "points": "1826",
+    "confederation": "UEFA",
+    "total_value": "€1.31bn"
+  },
+  {
+    "rank": "5",
+    "nation": "Brazil",
+    "points": "1785",
+    "confederation": "CONMEBOL",
+    "total_value": "€950.0m"
+  },
+  {
+    "rank": "6",
+    "nation": "Belgium",
+    "points": "1768",
+    "confederation": "UEFA",
+    "total_value": "€580.0m"
+  },
+  {
+    "rank": "7",
+    "nation": "Netherlands",
+    "points": "1755",
+    "confederation": "UEFA",
+    "total_value": "€760.0m"
+  },
+  {
+    "rank": "8",
+    "nation": "Portugal",
+    "points": "1749",
+    "confederation": "UEFA",
+    "total_value": "€980.0m"
+  },
+  {
+    "rank": "9",
+    "nation": "Colombia",
+    "points": "1738",
+    "confederation": "CONMEBOL",
+    "total_value": "€280.0m"
+  },
+  {
+    "rank": "10",
+    "nation": "Italy",
+    "points": "1726",
+    "confederation": "UEFA",
+    "total_value": "€720.0m"
+  }
+]

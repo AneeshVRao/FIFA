@@ -1,0 +1,72 @@
+[
+  {
+    "rank": "1",
+    "player": "David Raya",
+    "club": "Arsenal",
+    "clean_sheets": "16",
+    "matches": "32"
+  },
+  {
+    "rank": "2",
+    "player": "Jordan Pickford",
+    "club": "Everton",
+    "clean_sheets": "13",
+    "matches": "38"
+  },
+  {
+    "rank": "3",
+    "player": "Bernd Leno",
+    "club": "Fulham",
+    "clean_sheets": "10",
+    "matches": "38"
+  },
+  {
+    "rank": "4",
+    "player": "Ederson",
+    "club": "Manchester City",
+    "clean_sheets": "10",
+    "matches": "33"
+  },
+  {
+    "rank": "5",
+    "player": "André Onana",
+    "club": "Manchester United",
+    "clean_sheets": "9",
+    "matches": "38"
+  },
+  {
+    "rank": "6",
+    "player": "Alisson Becker",
+    "club": "Liverpool",
+    "clean_sheets": "8",
+    "matches": "28"
+  },
+  {
+    "rank": "7",
+    "player": "Guglielmo Vicario",
+    "club": "Tottenham Hotspur",
+    "clean_sheets": "7",
+    "matches": "38"
+  },
+  {
+    "rank": "8",
+    "player": "Emi Martínez",
+    "club": "Aston Villa",
+    "clean_sheets": "8",
+    "matches": "34"
+  },
+  {
+    "rank": "9",
+    "player": "Neto",
+    "club": "Bournemouth",
+    "clean_sheets": "7",
+    "matches": "32"
+  },
+  {
+    "rank": "10",
+    "player": "Nick Pope",
+    "club": "Newcastle United",
+    "clean_sheets": "6",
+    "matches": "15"
+  }
+]

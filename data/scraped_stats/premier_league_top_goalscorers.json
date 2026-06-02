@@ -1,0 +1,82 @@
+[
+  {
+    "rank": "1",
+    "player": "Erling Haaland",
+    "club": "Manchester City",
+    "goals": "27",
+    "assists": "5",
+    "matches": "31"
+  },
+  {
+    "rank": "2",
+    "player": "Cole Palmer",
+    "club": "Chelsea",
+    "goals": "22",
+    "assists": "11",
+    "matches": "33"
+  },
+  {
+    "rank": "3",
+    "player": "Alexander Isak",
+    "club": "Newcastle United",
+    "goals": "21",
+    "assists": "2",
+    "matches": "30"
+  },
+  {
+    "rank": "4",
+    "player": "Ollie Watkins",
+    "club": "Aston Villa",
+    "goals": "19",
+    "assists": "13",
+    "matches": "37"
+  },
+  {
+    "rank": "5",
+    "player": "Dominic Solanke",
+    "club": "Bournemouth",
+    "goals": "19",
+    "assists": "3",
+    "matches": "38"
+  },
+  {
+    "rank": "6",
+    "player": "Mohamed Salah",
+    "club": "Liverpool",
+    "goals": "18",
+    "assists": "10",
+    "matches": "32"
+  },
+  {
+    "rank": "7",
+    "player": "Son Heung-min",
+    "club": "Tottenham Hotspur",
+    "goals": "17",
+    "assists": "10",
+    "matches": "35"
+  },
+  {
+    "rank": "8",
+    "player": "Phil Foden",
+    "club": "Manchester City",
+    "goals": "19",
+    "assists": "8",
+    "matches": "35"
+  },
+  {
+    "rank": "9",
+    "player": "Bukayo Saka",
+    "club": "Arsenal",
+    "goals": "16",
+    "assists": "9",
+    "matches": "35"
+  },
+  {
+    "rank": "10",
+    "player": "Jarrod Bowen",
+    "club": "West Ham United",
+    "goals": "16",
+    "assists": "6",
+    "matches": "34"
+  }
+]

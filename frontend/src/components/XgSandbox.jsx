@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Crosshair, ShieldAlert, CircleDot } from "lucide-react";
 
 export function XgSandbox() {
   const [x, setX] = useState(108.0);
@@ -7,6 +6,7 @@ export function XgSandbox() {
   const [isHeader, setIsHeader] = useState(false);
   const [underPressure, setUnderPressure] = useState(false);
   const [xg, setXg] = useState(0.76);
+  const [xgBaseline, setXgBaseline] = useState(0.76);
   const [loading, setLoading] = useState(false);
 
   const svgRef = useRef(null);
@@ -24,6 +24,7 @@ export function XgSandbox() {
       if (!res.ok) throw new Error("xG API error");
       const json = await res.json();
       setXg(json.xg);
+      setXgBaseline(json.xg_baseline || json.xg);
     } catch (err) {
       console.error(err);
     } finally {
@@ -256,18 +257,38 @@ export function XgSandbox() {
                 {xg.toFixed(2)}
               </span>
               <span className="block text-[8px] text-gray-light/60 font-bold uppercase tracking-wider">
-                xG Odds
+                XGBoost xG
               </span>
             </div>
           </div>
 
-          <div className="flex-grow flex flex-col justify-center">
-            <h4 className="text-white text-xs font-extrabold font-heading tracking-wide uppercase">
-              Goal Probability
-            </h4>
-            <p className="text-gray-light/80 text-[11px] leading-relaxed mt-1">
-              {getInterpretation(xg)}
-            </p>
+          <div className="flex-grow flex flex-col justify-center gap-2">
+            <div>
+              <h4 className="text-white text-xs font-extrabold font-heading tracking-wide uppercase">
+                Goal Probability Comparison
+              </h4>
+              <p className="text-gray-light/80 text-[11px] leading-relaxed mt-1">
+                {getInterpretation(xg)}
+              </p>
+            </div>
+            <div className="flex gap-4 border-t border-white/5 pt-2 mt-1">
+              <div className="flex flex-col">
+                <span className="text-[9px] text-white/45 font-bold uppercase tracking-wider">Advanced (XGBoost)</span>
+                <span className="text-xs text-gold font-bold font-numeric">{(xg * 100).toFixed(1)}%</span>
+              </div>
+              <div className="w-[1px] bg-white/10" />
+              <div className="flex flex-col">
+                <span className="text-[9px] text-white/45 font-bold uppercase tracking-wider">Baseline (LogReg)</span>
+                <span className="text-xs text-white/80 font-bold font-numeric">{(xgBaseline * 100).toFixed(1)}%</span>
+              </div>
+              <div className="w-[1px] bg-white/10" />
+              <div className="flex flex-col">
+                <span className="text-[9px] text-white/45 font-bold uppercase tracking-wider">Variance</span>
+                <span className={`text-xs font-bold font-numeric ${Math.abs(xg - xgBaseline) > 0.05 ? "text-amber-400" : "text-white/60"}`}>
+                  {((xg - xgBaseline) * 100).toFixed(1)}%
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 

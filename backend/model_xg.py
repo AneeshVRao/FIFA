@@ -39,7 +39,6 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import roc_auc_score, brier_score_loss
 
 logger = logging.getLogger(__name__)
 
@@ -449,6 +448,28 @@ def predict_xg(
         num_teammates,
         gk_dist_goal,
         gk_dist_shooter
+    ]])
+    return float(pipeline.predict_proba(features)[:, 1][0])
+
+
+def predict_baseline_xg(
+    pipeline: Pipeline,
+    x: float,
+    y: float,
+    is_header: bool = False,
+    under_pressure: bool = False
+) -> float:
+    """Predict pre-shot xG using the baseline Logistic Regression model (6 spatial features)."""
+    dist = distance_to_goal(x, y)
+    angle = angle_to_goal(x, y)
+
+    features = np.array([[
+        dist,
+        angle,
+        int(is_header),
+        int(under_pressure),
+        x / PITCH_LENGTH,
+        y / PITCH_WIDTH,
     ]])
     return float(pipeline.predict_proba(features)[:, 1][0])
 

@@ -1,0 +1,72 @@
+[
+  {
+    "rank": "1",
+    "entity": "Manchester City",
+    "country": "England",
+    "score": "98.5",
+    "market_value": "€1.31bn"
+  },
+  {
+    "rank": "2",
+    "entity": "Real Madrid",
+    "country": "Spain",
+    "score": "97.2",
+    "market_value": "€1.04bn"
+  },
+  {
+    "rank": "3",
+    "entity": "Arsenal",
+    "country": "England",
+    "score": "94.6",
+    "market_value": "€1.16bn"
+  },
+  {
+    "rank": "4",
+    "entity": "Bayern Munich",
+    "country": "Germany",
+    "score": "93.1",
+    "market_value": "€929.0m"
+  },
+  {
+    "rank": "5",
+    "entity": "Paris Saint-Germain",
+    "country": "France",
+    "score": "92.0",
+    "market_value": "€1.02bn"
+  },
+  {
+    "rank": "6",
+    "entity": "Liverpool",
+    "country": "England",
+    "score": "91.8",
+    "market_value": "€921.0m"
+  },
+  {
+    "rank": "7",
+    "entity": "Inter Milan",
+    "country": "Italy",
+    "score": "90.5",
+    "market_value": "€622.0m"
+  },
+  {
+    "rank": "8",
+    "entity": "Bayer Leverkusen",
+    "country": "Germany",
+    "score": "89.4",
+    "market_value": "€595.0m"
+  },
+  {
+    "rank": "9",
+    "entity": "Barcelona",
+    "country": "Spain",
+    "score": "88.2",
+    "market_value": "€840.0m"
+  },
+  {
+    "rank": "10",
+    "entity": "Borussia Dortmund",
+    "country": "Germany",
+    "score": "87.0",
+    "market_value": "€465.0m"
+  }
+]

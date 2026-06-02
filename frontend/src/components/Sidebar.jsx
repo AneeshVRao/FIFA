@@ -1,11 +1,14 @@
 import React from "react";
-import { Trophy, BarChart3, Sparkles, Target, Network } from "lucide-react";
+import { Trophy, BarChart3, Sparkles, Target, Network, PlayCircle, Database, Compass } from "lucide-react";
 
 export function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
     { id: "tournament-hub", label: "Tournament Hub", icon: BarChart3 },
     { id: "tournament-bracket", label: "Tournament Bracket", icon: Network },
     { id: "match-predictor", label: "Match Predictor", icon: Sparkles },
+    { id: "live-simulator", label: "Live Simulator", icon: PlayCircle },
+    { id: "stats-center", label: "Stats Center", icon: Database },
+    { id: "tactics-analyzer", label: "Tactics Analyzer", icon: Compass },
     { id: "xg-sandbox", label: "xG Pitch Sandbox", icon: Target },
     { id: "penalty-simulator", label: "Penalty Shootout", icon: Trophy }
   ];

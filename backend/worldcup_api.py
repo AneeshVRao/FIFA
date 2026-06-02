@@ -223,7 +223,7 @@ def get_squad(team_name: str) -> list[dict]:
                     return data
                 elif isinstance(data, dict) and "squad" in data:
                     return data["squad"]
-        except Exception as exc:
+        except requests.RequestException as exc:
             logger.warning("Failed to fetch from WorldCupAPI: %s. Trying other APIs.", exc)
 
     # 2. Try football-data.org

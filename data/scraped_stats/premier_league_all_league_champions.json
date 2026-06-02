@@ -1,0 +1,764 @@
+[
+  {
+    "season": "25/26",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Mikel Arteta"
+  },
+  {
+    "season": "24/25",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Arne Slot"
+  },
+  {
+    "season": "23/24",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "22/23",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "21/22",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "20/21",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "19/20",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Jürgen Klopp"
+  },
+  {
+    "season": "18/19",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "17/18",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Pep Guardiola"
+  },
+  {
+    "season": "16/17",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "Antonio Conte"
+  },
+  {
+    "season": "15/16",
+    "wappen": "",
+    "club": "Leicester City",
+    "top_coaches": "Claudio Ranieri"
+  },
+  {
+    "season": "14/15",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "José Mourinho"
+  },
+  {
+    "season": "13/14",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Manuel Pellegrini"
+  },
+  {
+    "season": "12/13",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "11/12",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Roberto Mancini"
+  },
+  {
+    "season": "10/11",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "09/10",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "Carlo Ancelotti"
+  },
+  {
+    "season": "08/09",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "07/08",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "06/07",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "05/06",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "José Mourinho"
+  },
+  {
+    "season": "04/05",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "José Mourinho"
+  },
+  {
+    "season": "03/04",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Arsène Wenger"
+  },
+  {
+    "season": "02/03",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "01/02",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Arsène Wenger"
+  },
+  {
+    "season": "00/01",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "99/00",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "98/99",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "97/98",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Arsène Wenger"
+  },
+  {
+    "season": "96/97",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "95/96",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "94/95",
+    "wappen": "",
+    "club": "Blackburn Rovers",
+    "top_coaches": "Kenny Dalglish"
+  },
+  {
+    "season": "93/94",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "92/93",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Alex Ferguson"
+  },
+  {
+    "season": "91/92",
+    "wappen": "",
+    "club": "Leeds United",
+    "top_coaches": "Howard Wilkinson"
+  },
+  {
+    "season": "90/91",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "George Graham"
+  },
+  {
+    "season": "89/90",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Kenny Dalglish"
+  },
+  {
+    "season": "88/89",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "George Graham"
+  },
+  {
+    "season": "87/88",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Kenny Dalglish"
+  },
+  {
+    "season": "86/87",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Howard Kendall"
+  },
+  {
+    "season": "85/86",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Kenny Dalglish"
+  },
+  {
+    "season": "84/85",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Howard Kendall"
+  },
+  {
+    "season": "83/84",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Joe Fagan"
+  },
+  {
+    "season": "82/83",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "81/82",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "80/81",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": "Ron Saunders"
+  },
+  {
+    "season": "79/80",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "78/79",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "77/78",
+    "wappen": "",
+    "club": "Nottingham Forest",
+    "top_coaches": "Brian Clough"
+  },
+  {
+    "season": "76/77",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "75/76",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bob Paisley"
+  },
+  {
+    "season": "74/75",
+    "wappen": "",
+    "club": "Derby County",
+    "top_coaches": "Dave Mackay"
+  },
+  {
+    "season": "73/74",
+    "wappen": "",
+    "club": "Leeds United",
+    "top_coaches": "Don Revie"
+  },
+  {
+    "season": "72/73",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bill Shankly"
+  },
+  {
+    "season": "71/72",
+    "wappen": "",
+    "club": "Derby County",
+    "top_coaches": "Brian Clough"
+  },
+  {
+    "season": "70/71",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Bertie Mee"
+  },
+  {
+    "season": "69/70",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Harry Catterick"
+  },
+  {
+    "season": "68/69",
+    "wappen": "",
+    "club": "Leeds United",
+    "top_coaches": "Don Revie"
+  },
+  {
+    "season": "67/68",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Joe Mercer"
+  },
+  {
+    "season": "66/67",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Sir Matt Busby"
+  },
+  {
+    "season": "65/66",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bill Shankly"
+  },
+  {
+    "season": "64/65",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Sir Matt Busby"
+  },
+  {
+    "season": "63/64",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Bill Shankly"
+  },
+  {
+    "season": "62/63",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Harry Catterick"
+  },
+  {
+    "season": "61/62",
+    "wappen": "",
+    "club": "Ipswich Town",
+    "top_coaches": "Sir Alf Ramsey"
+  },
+  {
+    "season": "60/61",
+    "wappen": "",
+    "club": "Tottenham Hotspur",
+    "top_coaches": "Bill Nicholson"
+  },
+  {
+    "season": "59/60",
+    "wappen": "",
+    "club": "Burnley FC",
+    "top_coaches": "Harry Potts"
+  },
+  {
+    "season": "58/59",
+    "wappen": "",
+    "club": "Wolverhampton Wanderers",
+    "top_coaches": "Stan Cullis"
+  },
+  {
+    "season": "57/58",
+    "wappen": "",
+    "club": "Wolverhampton Wanderers",
+    "top_coaches": "Stan Cullis"
+  },
+  {
+    "season": "56/57",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Sir Matt Busby"
+  },
+  {
+    "season": "55/56",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Sir Matt Busby"
+  },
+  {
+    "season": "54/55",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "top_coaches": "Ted Drake"
+  },
+  {
+    "season": "53/54",
+    "wappen": "",
+    "club": "Wolverhampton Wanderers",
+    "top_coaches": "Stan Cullis"
+  },
+  {
+    "season": "52/53",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Tom Whittaker"
+  },
+  {
+    "season": "51/52",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Sir Matt Busby"
+  },
+  {
+    "season": "50/51",
+    "wappen": "",
+    "club": "Tottenham Hotspur",
+    "top_coaches": "Arthur Rowe"
+  },
+  {
+    "season": "49/50",
+    "wappen": "",
+    "club": "Portsmouth FC",
+    "top_coaches": "Bob Jackson"
+  },
+  {
+    "season": "48/49",
+    "wappen": "",
+    "club": "Portsmouth FC",
+    "top_coaches": "Bob Jackson"
+  },
+  {
+    "season": "47/48",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Tom Whittaker"
+  },
+  {
+    "season": "46/47",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "George Kay"
+  },
+  {
+    "season": "38/39",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Theo Kelly"
+  },
+  {
+    "season": "37/38",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "George Allison"
+  },
+  {
+    "season": "36/37",
+    "wappen": "",
+    "club": "Manchester City",
+    "top_coaches": "Wilf Wild"
+  },
+  {
+    "season": "35/36",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": "John Cochrane"
+  },
+  {
+    "season": "34/35",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "George Allison"
+  },
+  {
+    "season": "33/34",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Joe Shaw"
+  },
+  {
+    "season": "32/33",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Herbert Chapman"
+  },
+  {
+    "season": "31/32",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Thomas McIntosh"
+  },
+  {
+    "season": "30/31",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "top_coaches": "Herbert Chapman"
+  },
+  {
+    "season": "1929/30",
+    "wappen": "",
+    "club": "Sheffield Wednesday",
+    "top_coaches": "Robert Brown"
+  },
+  {
+    "season": "1928/29",
+    "wappen": "",
+    "club": "The Wednesday FC",
+    "top_coaches": "Robert Brown"
+  },
+  {
+    "season": "1927/28",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Thomas McIntosh"
+  },
+  {
+    "season": "1926/27",
+    "wappen": "",
+    "club": "Newcastle United",
+    "top_coaches": "Frank Watt"
+  },
+  {
+    "season": "1925/26",
+    "wappen": "",
+    "club": "Huddersfield Town",
+    "top_coaches": "Cecil Potter"
+  },
+  {
+    "season": "1924/25",
+    "wappen": "",
+    "club": "Huddersfield Town",
+    "top_coaches": "Herbert Chapman"
+  },
+  {
+    "season": "1923/24",
+    "wappen": "",
+    "club": "Huddersfield Town",
+    "top_coaches": "Herbert Chapman"
+  },
+  {
+    "season": "1922/23",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Matt McQueen"
+  },
+  {
+    "season": "1921/22",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "David Ashworth"
+  },
+  {
+    "season": "1920/21",
+    "wappen": "",
+    "club": "Burnley FC",
+    "top_coaches": "John Haworth"
+  },
+  {
+    "season": "1919/20",
+    "wappen": "",
+    "club": "West Bromwich Albion",
+    "top_coaches": "Fred Everiss"
+  },
+  {
+    "season": "1914/15",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Will Cuff"
+  },
+  {
+    "season": "1913/14",
+    "wappen": "",
+    "club": "Blackburn Rovers",
+    "top_coaches": "Robert Middleton"
+  },
+  {
+    "season": "1912/13",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": "Bob Kyle"
+  },
+  {
+    "season": "1911/12",
+    "wappen": "",
+    "club": "Blackburn Rovers",
+    "top_coaches": "Robert Middleton"
+  },
+  {
+    "season": "1910/11",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Ernest Mangnall"
+  },
+  {
+    "season": "1909/10",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1908/09",
+    "wappen": "",
+    "club": "Newcastle United",
+    "top_coaches": "Frank Watt"
+  },
+  {
+    "season": "1907/08",
+    "wappen": "",
+    "club": "Manchester United",
+    "top_coaches": "Ernest Mangnall"
+  },
+  {
+    "season": "1906/07",
+    "wappen": "",
+    "club": "Newcastle United",
+    "top_coaches": "Frank Watt"
+  },
+  {
+    "season": "1905/06",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Tom Watson"
+  },
+  {
+    "season": "1904/05",
+    "wappen": "",
+    "club": "Newcastle United",
+    "top_coaches": "Frank Watt"
+  },
+  {
+    "season": "1903/04",
+    "wappen": "",
+    "club": "The Wednesday FC",
+    "top_coaches": ""
+  },
+  {
+    "season": "1902/03",
+    "wappen": "",
+    "club": "The Wednesday FC",
+    "top_coaches": ""
+  },
+  {
+    "season": "1901/02",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": ""
+  },
+  {
+    "season": "1900/01",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "top_coaches": "Tom Watson"
+  },
+  {
+    "season": "1899/00",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1898/99",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1897/98",
+    "wappen": "",
+    "club": "Sheffield United",
+    "top_coaches": ""
+  },
+  {
+    "season": "1896/97",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1895/96",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1894/95",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": "Tom Watson"
+  },
+  {
+    "season": "1893/94",
+    "wappen": "",
+    "club": "Aston Villa",
+    "top_coaches": ""
+  },
+  {
+    "season": "1892/93",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": "Tom Watson"
+  },
+  {
+    "season": "1891/92",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "top_coaches": "Tom Watson"
+  },
+  {
+    "season": "1890/91",
+    "wappen": "",
+    "club": "Everton FC",
+    "top_coaches": "Dick Molyneux"
+  },
+  {
+    "season": "1889/90",
+    "wappen": "",
+    "club": "Preston North End",
+    "top_coaches": ""
+  },
+  {
+    "season": "1888/89",
+    "wappen": "",
+    "club": "Preston North End",
+    "top_coaches": ""
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "rank": "1",
+    "coach": "Pep Guardiola",
+    "club": "Manchester City",
+    "tactics": "4-3-3 Attacking",
+    "avg_points_per_match": "2.35"
+  },
+  {
+    "rank": "2",
+    "coach": "Carlo Ancelotti",
+    "club": "Real Madrid",
+    "tactics": "4-3-1-2 / 4-4-2 Diamond",
+    "avg_points_per_match": "2.28"
+  },
+  {
+    "rank": "3",
+    "coach": "Xabi Alonso",
+    "club": "Bayer Leverkusen",
+    "tactics": "3-4-2-1",
+    "avg_points_per_match": "2.42"
+  },
+  {
+    "rank": "4",
+    "coach": "Mikel Arteta",
+    "club": "Arsenal",
+    "tactics": "4-3-3",
+    "avg_points_per_match": "2.12"
+  },
+  {
+    "rank": "5",
+    "coach": "Simone Inzaghi",
+    "club": "Inter Milan",
+    "tactics": "3-5-2",
+    "avg_points_per_match": "2.18"
+  }
+]

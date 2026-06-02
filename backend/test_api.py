@@ -19,6 +19,8 @@ from backend.app import (
     get_shootout_montecarlo,
     get_index,
     get_squad_endpoint,
+    get_transfermarkt_stats,
+    get_tactics_matchup,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -140,10 +142,29 @@ async def run_tests():
         print("  [OK] Knockout extra time and penalty deciders simulated and validated.")
 
         print("\n[Test 6] Static file routing")
-        idx_res = await get_index()
-        print(f"  Root route index.html path: {idx_res.path}")
-        assert "index.html" in str(idx_res.path), "Should route index.html"
-        print("  [OK] Static files verified.")
+        import os
+        from pathlib import Path
+        dist_dir = Path("frontend/dist")
+        index_file = dist_dir / "index.html"
+        created_mock = False
+        if not index_file.exists():
+            dist_dir.mkdir(parents=True, exist_ok=True)
+            index_file.write_text("Mock index.html", encoding="utf-8")
+            created_mock = True
+
+        try:
+            idx_res = await get_index()
+            print(f"  Root route index.html path: {idx_res.path}")
+            assert "index.html" in str(idx_res.path), "Should route index.html"
+            print("  [OK] Static files verified.")
+        finally:
+            if created_mock:
+                try:
+                    index_file.unlink()
+                    if dist_dir.exists() and not any(dist_dir.iterdir()):
+                        dist_dir.rmdir()
+                except Exception:
+                    pass
 
         print("\n[Test 10] /api/squad (Team roster endpoint)")
         squad_response = await get_squad_endpoint(team="England")
@@ -178,6 +199,23 @@ async def run_tests():
         print(f"  Live prediction (Germany Red Card): {data_live_red['live_prediction']}")
         assert data_live_red["live_prediction"]["home_win"] > data_live["live_prediction"]["home_win"], "Spain win probability should increase after Germany red card"
         print("  [OK] Live Bayesian prediction updates verified.")
+        
+        print("\n[Test 12] /api/stats/transfermarkt (Scraped Statistics)")
+        response_stats = await get_transfermarkt_stats(category="premier_league_top_goalscorers")
+        data_stats = json.loads(response_stats.body.decode("utf-8"))
+        print(f"  Scraped stat count: {len(data_stats['data'])}")
+        assert len(data_stats["data"]) > 0, "Scraped statistical records list should not be empty"
+        assert any(p.get("player") == "Erling Haaland" for p in data_stats["data"]), "Haaland should be in the top scorers list"
+        print("  [OK] Transfermarkt stats endpoint verified.")
+        
+        print("\n[Test 13] /api/tactics/matchup (Playstyle Embeddings)")
+        response_tactics = await get_tactics_matchup(home="Spain", away="Germany")
+        data_tactics = json.loads(response_tactics.body.decode("utf-8"))
+        print(f"  Spain tactic vector length: {len(data_tactics['home_vector'])}")
+        print(f"  Closest analogue match similarity: {data_tactics['analogues'][0]['similarity']:.3f}")
+        assert len(data_tactics["home_vector"]) == 10, "Tactic profile embedding must be 10D"
+        assert len(data_tactics["analogues"]) == 5, "Must return exactly 5 closest analogues"
+        print("  [OK] Tactics engine matchup endpoint verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 

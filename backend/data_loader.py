@@ -9,11 +9,9 @@ Columns returned:
     date, home_team, away_team, home_score, away_score, tournament, neutral
 """
 
-import os
 import logging
 import json
 from pathlib import Path
-from datetime import datetime
 
 import pandas as pd
 import requests

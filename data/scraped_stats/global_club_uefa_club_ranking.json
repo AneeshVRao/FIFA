@@ -1,0 +1,62 @@
+[
+  {
+    "rank": "1",
+    "club": "Manchester City",
+    "association": "England",
+    "points": "148.0"
+  },
+  {
+    "rank": "2",
+    "club": "Real Madrid",
+    "association": "Spain",
+    "points": "144.0"
+  },
+  {
+    "rank": "3",
+    "club": "Bayern Munich",
+    "association": "Germany",
+    "points": "136.0"
+  },
+  {
+    "rank": "4",
+    "club": "Liverpool",
+    "association": "England",
+    "points": "114.0"
+  },
+  {
+    "rank": "5",
+    "club": "AS Roma",
+    "association": "Italy",
+    "points": "101.0"
+  },
+  {
+    "rank": "6",
+    "club": "Paris Saint-Germain",
+    "association": "France",
+    "points": "97.0"
+  },
+  {
+    "rank": "7",
+    "club": "Villarreal",
+    "association": "Spain",
+    "points": "91.0"
+  },
+  {
+    "rank": "8",
+    "club": "Chelsea",
+    "association": "England",
+    "points": "90.0"
+  },
+  {
+    "rank": "9",
+    "club": "Inter Milan",
+    "association": "Italy",
+    "points": "89.0"
+  },
+  {
+    "rank": "10",
+    "club": "Borussia Dortmund",
+    "association": "Germany",
+    "points": "88.0"
+  }
+]

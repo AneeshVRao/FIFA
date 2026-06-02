@@ -1,0 +1,164 @@
+[
+  {
+    "rank": "1",
+    "wappen": "",
+    "club": "Brentford FC",
+    "penalties_received": "10",
+    "scored": "8",
+    "missed": "2",
+    "goal_rate": "80.0 %"
+  },
+  {
+    "rank": "2",
+    "wappen": "",
+    "club": "Leeds United",
+    "penalties_received": "8",
+    "scored": "6",
+    "missed": "2",
+    "goal_rate": "75.0 %"
+  },
+  {
+    "rank": "3",
+    "wappen": "",
+    "club": "Chelsea FC",
+    "penalties_received": "8",
+    "scored": "7",
+    "missed": "1",
+    "goal_rate": "87.5 %"
+  },
+  {
+    "rank": "4",
+    "wappen": "",
+    "club": "Crystal Palace",
+    "penalties_received": "8",
+    "scored": "8",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "5",
+    "wappen": "",
+    "club": "Manchester United",
+    "penalties_received": "6",
+    "scored": "4",
+    "missed": "2",
+    "goal_rate": "66.7 %"
+  },
+  {
+    "rank": "6",
+    "wappen": "",
+    "club": "AFC Bournemouth",
+    "penalties_received": "6",
+    "scored": "5",
+    "missed": "1",
+    "goal_rate": "83.3 %"
+  },
+  {
+    "rank": "7",
+    "wappen": "",
+    "club": "Newcastle United",
+    "penalties_received": "6",
+    "scored": "6",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "8",
+    "wappen": "",
+    "club": "Brighton & Hove Albion",
+    "penalties_received": "5",
+    "scored": "3",
+    "missed": "2",
+    "goal_rate": "60.0 %"
+  },
+  {
+    "rank": "9",
+    "wappen": "",
+    "club": "Wolverhampton Wanderers",
+    "penalties_received": "5",
+    "scored": "3",
+    "missed": "2",
+    "goal_rate": "60.0 %"
+  },
+  {
+    "rank": "10",
+    "wappen": "",
+    "club": "Sunderland AFC",
+    "penalties_received": "5",
+    "scored": "4",
+    "missed": "1",
+    "goal_rate": "80.0 %"
+  },
+  {
+    "rank": "11",
+    "wappen": "",
+    "club": "Fulham FC",
+    "penalties_received": "5",
+    "scored": "5",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "12",
+    "wappen": "",
+    "club": "Manchester City",
+    "penalties_received": "4",
+    "scored": "3",
+    "missed": "1",
+    "goal_rate": "75.0 %"
+  },
+  {
+    "rank": "13",
+    "wappen": "",
+    "club": "Arsenal FC",
+    "penalties_received": "4",
+    "scored": "4",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "14",
+    "wappen": "",
+    "club": "West Ham United",
+    "penalties_received": "3",
+    "scored": "3",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "15",
+    "wappen": "",
+    "club": "Nottingham Forest",
+    "penalties_received": "3",
+    "scored": "3",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "16",
+    "wappen": "",
+    "club": "Liverpool FC",
+    "penalties_received": "2",
+    "scored": "1",
+    "missed": "1",
+    "goal_rate": "50.0 %"
+  },
+  {
+    "rank": "17",
+    "wappen": "",
+    "club": "Everton FC",
+    "penalties_received": "2",
+    "scored": "2",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  },
+  {
+    "rank": "18",
+    "wappen": "",
+    "club": "Burnley FC",
+    "penalties_received": "2",
+    "scored": "2",
+    "missed": "0",
+    "goal_rate": "100.0 %"
+  }
+]
