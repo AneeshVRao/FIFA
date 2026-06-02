@@ -6,3 +6,5 @@ __pycache__/
 *.pkl
 data/*
 !data/fixtures_2026.json
+!data/*.pkl
+!data/shots_cache.csv
