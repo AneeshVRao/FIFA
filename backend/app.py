@@ -17,6 +17,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 from contextlib import asynccontextmanager
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -127,7 +128,7 @@ app = FastAPI(lifespan=lifespan, title="FIFA World Cup Analytics Suite")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -140,6 +141,7 @@ if assets_dir.exists():
 
 
 # ── helper function for tournament state ─────────────────────────
+@lru_cache(maxsize=128)
 def calculate_tournament_state(simulated_date_str: str) -> dict:
     """Simulates the tournament (Group Stage + Knockout Stages) up to simulated_date_str.
 

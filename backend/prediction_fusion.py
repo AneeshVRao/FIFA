@@ -8,7 +8,6 @@ performance metrics: time elapsed, goals scored, red cards, and cumulative expec
 
 import math
 import numpy as np
-import scipy.stats as stats
 from backend.elo import predict_match
 
 def compute_live_probabilities(

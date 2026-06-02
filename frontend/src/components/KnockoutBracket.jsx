@@ -184,6 +184,18 @@ export default function KnockoutBracket({ fixtures }) {
     drawLine(sf_1, finalMatch, active1 ? STYLES.gold : undefined, active1 ? 3 : undefined);
     drawLine(sf_2, finalMatch, active2 ? STYLES.gold : undefined, active2 ? 3 : undefined);
 
+    // Connections: SF -> 3rd Place Playoff (103)
+    const thirdPlaceMatch = 103;
+    const match_sf1 = koFixtures.find(f => f.match_id === sf_1);
+    const match_sf2 = koFixtures.find(f => f.match_id === sf_2);
+    const loser1 = match_sf1 ? (match_sf1.winner === match_sf1.home ? match_sf1.away : match_sf1.home) : null;
+    const loser2 = match_sf2 ? (match_sf2.winner === match_sf2.home ? match_sf2.away : match_sf2.home) : null;
+    const activeLoser1 = hoveredTeam && loser1 === hoveredTeam;
+    const activeLoser2 = hoveredTeam && loser2 === hoveredTeam;
+
+    drawLine(sf_1, thirdPlaceMatch, activeLoser1 ? STYLES.gold : "rgba(255,255,255,0.04)", activeLoser1 ? 3 : 0.8);
+    drawLine(sf_2, thirdPlaceMatch, activeLoser2 ? STYLES.gold : "rgba(255,255,255,0.04)", activeLoser2 ? 3 : 0.8);
+
     return (
       <svg className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
         {paths}

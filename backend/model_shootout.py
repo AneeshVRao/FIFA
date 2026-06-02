@@ -390,23 +390,42 @@ def simulate_shootout(
     rng: np.random.Generator | None = None,
     team_a_name: str = "Team A",
     team_b_name: str = "Team B",
+    preloaded_a: list[dict] | None = None,
+    preloaded_b: list[dict] | None = None,
+    preloaded_gk_a_skill: float | None = None,
+    preloaded_gk_b_skill: float | None = None,
 ) -> ShootoutResult:
     """Simulate a full penalty shootout using team rosters and ML solver."""
     if rng is None:
         rng = np.random.default_rng()
 
-    from backend.worldcup_api import get_squad
-    squad_a = get_squad(team_a_name)
-    squad_b = get_squad(team_b_name)
-    
-    gk_a_name = next((p["name"] for p in squad_a if p["position"] == "GK"), "Goalkeeper A")
-    gk_b_name = next((p["name"] for p in squad_b if p["position"] == "GK"), "Goalkeeper B")
-    
-    gk_a_skill = get_gk_skill(gk_a_name)
-    gk_b_skill = get_gk_skill(gk_b_name)
-    
-    order_a = optimize_kick_order(squad_a)
-    order_b = optimize_kick_order(squad_b)
+    if preloaded_a is not None:
+        order_a = preloaded_a
+    else:
+        from backend.worldcup_api import get_squad
+        squad_a = get_squad(team_a_name)
+        order_a = optimize_kick_order(squad_a)
+
+    if preloaded_b is not None:
+        order_b = preloaded_b
+    else:
+        from backend.worldcup_api import get_squad
+        squad_b = get_squad(team_b_name)
+        order_b = optimize_kick_order(squad_b)
+
+    if preloaded_gk_a_skill is not None:
+        gk_a_skill = preloaded_gk_a_skill
+    else:
+        squad_a_list = squad_a if preloaded_a is None else preloaded_a
+        gk_a_name = next((p["name"] for p in squad_a_list if p["position"] == "GK"), "Goalkeeper A")
+        gk_a_skill = get_gk_skill(gk_a_name)
+
+    if preloaded_gk_b_skill is not None:
+        gk_b_skill = preloaded_gk_b_skill
+    else:
+        squad_b_list = squad_b if preloaded_b is None else preloaded_b
+        gk_b_name = next((p["name"] for p in squad_b_list if p["position"] == "GK"), "Goalkeeper B")
+        gk_b_skill = get_gk_skill(gk_b_name)
 
     zone_names = list(ZONES.keys())
     kicker_weights = np.array([
@@ -524,6 +543,19 @@ def monte_carlo_shootout(
     """Run Monte Carlo shootout simulations for team success rates."""
     rng = np.random.default_rng(seed)
 
+    from backend.worldcup_api import get_squad
+    squad_a = get_squad(team_a_name)
+    squad_b = get_squad(team_b_name)
+    
+    gk_a_name = next((p["name"] for p in squad_a if p["position"] == "GK"), "Goalkeeper A")
+    gk_b_name = next((p["name"] for p in squad_b if p["position"] == "GK"), "Goalkeeper B")
+    
+    gk_a_skill = get_gk_skill(gk_a_name)
+    gk_b_skill = get_gk_skill(gk_b_name)
+    
+    order_a = optimize_kick_order(squad_a)
+    order_b = optimize_kick_order(squad_b)
+
     a_wins = 0
     total_goals = 0
     total_rounds = 0
@@ -532,7 +564,11 @@ def monte_carlo_shootout(
 
     # Pre-load squads to make simulation faster
     for _ in range(n_simulations):
-        result = simulate_shootout(rng, team_a_name, team_b_name)
+        result = simulate_shootout(
+            rng, team_a_name, team_b_name,
+            preloaded_a=order_a, preloaded_b=order_b,
+            preloaded_gk_a_skill=gk_a_skill, preloaded_gk_b_skill=gk_b_skill
+        )
         if result.winner == "A":
             a_wins += 1
         total_goals += result.team_a_score + result.team_b_score

@@ -19,7 +19,6 @@ Features engineered per match
 """
 
 import logging
-import math
 from pathlib import Path
 
 import joblib
@@ -188,7 +187,9 @@ class DixonColesPoisson:
             
         flat_grid = p_grid.flatten()
         idx = rng.choice(len(flat_grid), p=flat_grid)
-        return int(x), int(y)
+        x_sim = idx // (max_goals + 1)
+        y_sim = idx % (max_goals + 1)
+        return int(x_sim), int(y_sim)
 
 
 # ── feature engineering ──────────────────────────────────────────
