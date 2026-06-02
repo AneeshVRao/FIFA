@@ -44,7 +44,7 @@ jobs:
       - name: Install Frontend Dependencies
         run: |
           cd frontend
-          npm ci
+          npm install
 
       - name: Compile React Production Bundle
         run: |
