@@ -5,7 +5,6 @@ Fetches and parses statistical tables from Transfermarkt and incident events fro
 Implements robust local file-based caching and mock fallbacks under scraping blocking.
 """
 
-import os
 import json
 import time
 import random

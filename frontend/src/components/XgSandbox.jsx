@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Crosshair, ShieldAlert, CircleDot } from "lucide-react";
 
 export function XgSandbox() {
   const [x, setX] = useState(108.0);

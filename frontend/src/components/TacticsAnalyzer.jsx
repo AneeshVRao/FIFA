@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Sparkles, Loader2, Compass, ShieldAlert, History, Activity } from "lucide-react";
+import { Sparkles, Loader2, Compass, History, Activity } from "lucide-react";
 import {
   Radar,
   RadarChart,

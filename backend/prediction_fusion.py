@@ -5,11 +5,7 @@ Computes live in-game match outcome probabilities (Home Win, Draw, Away Win)
 by updating pre-match priors (from Dixon-Coles and ELO ratings) with in-game
 performance metrics: time elapsed, goals scored, red cards, and cumulative expected goals (xG).
 """
-
-import math
 import numpy as np
-from backend.elo import predict_match
-
 def compute_live_probabilities(
     home_team: str,
     away_team: str,

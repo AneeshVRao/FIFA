@@ -1,0 +1,191 @@
+[
+  {
+    "club": "",
+    "name": "",
+    "squad": "560",
+    "ø_age": "26.4 Years",
+    "foreigners": "393",
+    "ø_market_value": "€22.71m",
+    "total_market_value": "€12.72bn"
+  },
+  {
+    "club": "",
+    "name": "Manchester City",
+    "squad": "28",
+    "ø_age": "26.3",
+    "foreigners": "19",
+    "ø_market_value": "€47.04m",
+    "total_market_value": "€1.32bn"
+  },
+  {
+    "club": "",
+    "name": "Arsenal FC",
+    "squad": "24",
+    "ø_age": "26.6",
+    "foreigners": "17",
+    "ø_market_value": "€51.21m",
+    "total_market_value": "€1.23bn"
+  },
+  {
+    "club": "",
+    "name": "Chelsea FC",
+    "squad": "31",
+    "ø_age": "23.7",
+    "foreigners": "21",
+    "ø_market_value": "€37.55m",
+    "total_market_value": "€1.16bn"
+  },
+  {
+    "club": "",
+    "name": "Liverpool FC",
+    "squad": "28",
+    "ø_age": "26.1",
+    "foreigners": "21",
+    "ø_market_value": "€36.59m",
+    "total_market_value": "€1.02bn"
+  },
+  {
+    "club": "",
+    "name": "Tottenham Hotspur",
+    "squad": "30",
+    "ø_age": "25.7",
+    "foreigners": "22",
+    "ø_market_value": "€27.03m",
+    "total_market_value": "€811.00m"
+  },
+  {
+    "club": "",
+    "name": "Manchester United",
+    "squad": "27",
+    "ø_age": "25.9",
+    "foreigners": "19",
+    "ø_market_value": "€27.72m",
+    "total_market_value": "€748.40m"
+  },
+  {
+    "club": "",
+    "name": "Newcastle United",
+    "squad": "29",
+    "ø_age": "28.0",
+    "foreigners": "13",
+    "ø_market_value": "€24.57m",
+    "total_market_value": "€712.65m"
+  },
+  {
+    "club": "",
+    "name": "Nottingham Forest",
+    "squad": "29",
+    "ø_age": "26.7",
+    "foreigners": "22",
+    "ø_market_value": "€19.59m",
+    "total_market_value": "€568.00m"
+  },
+  {
+    "club": "",
+    "name": "Crystal Palace",
+    "squad": "31",
+    "ø_age": "26.1",
+    "foreigners": "20",
+    "ø_market_value": "€18.05m",
+    "total_market_value": "€559.50m"
+  },
+  {
+    "club": "",
+    "name": "Aston Villa",
+    "squad": "26",
+    "ø_age": "28.1",
+    "foreigners": "17",
+    "ø_market_value": "€21.33m",
+    "total_market_value": "€554.50m"
+  },
+  {
+    "club": "",
+    "name": "Brighton & Hove Albion",
+    "squad": "33",
+    "ø_age": "26.5",
+    "foreigners": "22",
+    "ø_market_value": "€16.73m",
+    "total_market_value": "€552.00m"
+  },
+  {
+    "club": "",
+    "name": "AFC Bournemouth",
+    "squad": "26",
+    "ø_age": "25.6",
+    "foreigners": "20",
+    "ø_market_value": "€19.50m",
+    "total_market_value": "€507.10m"
+  },
+  {
+    "club": "",
+    "name": "Brentford FC",
+    "squad": "31",
+    "ø_age": "25.1",
+    "foreigners": "22",
+    "ø_market_value": "€15.64m",
+    "total_market_value": "€484.88m"
+  },
+  {
+    "club": "",
+    "name": "Everton FC",
+    "squad": "26",
+    "ø_age": "26.7",
+    "foreigners": "13",
+    "ø_market_value": "€17.34m",
+    "total_market_value": "€450.80m"
+  },
+  {
+    "club": "",
+    "name": "Fulham FC",
+    "squad": "25",
+    "ø_age": "28.0",
+    "foreigners": "21",
+    "ø_market_value": "€15.51m",
+    "total_market_value": "€387.85m"
+  },
+  {
+    "club": "",
+    "name": "Sunderland AFC",
+    "squad": "28",
+    "ø_age": "25.2",
+    "foreigners": "23",
+    "ø_market_value": "€13.64m",
+    "total_market_value": "€381.95m"
+  },
+  {
+    "club": "",
+    "name": "West Ham United",
+    "squad": "24",
+    "ø_age": "26.8",
+    "foreigners": "17",
+    "ø_market_value": "€15.12m",
+    "total_market_value": "€362.95m"
+  },
+  {
+    "club": "",
+    "name": "Leeds United",
+    "squad": "26",
+    "ø_age": "27.4",
+    "foreigners": "20",
+    "ø_market_value": "€13.31m",
+    "total_market_value": "€346.03m"
+  },
+  {
+    "club": "",
+    "name": "Wolverhampton Wanderers",
+    "squad": "27",
+    "ø_age": "26.0",
+    "foreigners": "22",
+    "ø_market_value": "€10.89m",
+    "total_market_value": "€294.05m"
+  },
+  {
+    "club": "",
+    "name": "Burnley FC",
+    "squad": "31",
+    "ø_age": "27.6",
+    "foreigners": "22",
+    "ø_market_value": "€8.36m",
+    "total_market_value": "€259.25m"
+  }
+]

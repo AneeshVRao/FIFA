@@ -8,7 +8,6 @@ match analogues using pgvector (PostgreSQL) or a NumPy-based cosine similarity f
 import os
 import logging
 import numpy as np
-from pathlib import Path
 from sqlalchemy import create_engine, text
 from backend.team_metadata import TEAM_METADATA, get_unified_elo
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Filter, Users } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 
 export function TournamentHub({ fixtures, standings, loading }) {
   const [selectedGroup, setSelectedGroup] = useState("A");

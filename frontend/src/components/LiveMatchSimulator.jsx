@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Play, Pause, RotateCcw, AlertTriangle, Goal, Info, Target, Plus } from "lucide-react";
+import { Play, Pause, RotateCcw, Goal, Info, Target } from "lucide-react";
 import {
   ResponsiveContainer,
   AreaChart,
   Area,
   XAxis,
   YAxis,
-  Tooltip,
-  Legend
+  Tooltip
 } from "recharts";
 
 export function LiveMatchSimulator({ ratings, currentDate }) {

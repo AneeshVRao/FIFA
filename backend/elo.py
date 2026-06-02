@@ -18,7 +18,6 @@ recalculate_from_date(ratings, fixtures, date_str) -> tuple
     and list of match dicts with outcomes attached.
 """
 
-import copy
 import math
 import logging
 

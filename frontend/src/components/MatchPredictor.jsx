@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Sparkles, HelpCircle } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import {
   Radar,
   RadarChart,

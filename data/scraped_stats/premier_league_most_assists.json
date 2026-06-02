@@ -1,0 +1,72 @@
+[
+  {
+    "rank": "1",
+    "player": "Ollie Watkins",
+    "club": "Aston Villa",
+    "assists": "13",
+    "matches": "37"
+  },
+  {
+    "rank": "2",
+    "player": "Cole Palmer",
+    "club": "Chelsea",
+    "assists": "11",
+    "matches": "33"
+  },
+  {
+    "rank": "3",
+    "player": "Kevin De Bruyne",
+    "club": "Manchester City",
+    "assists": "10",
+    "matches": "18"
+  },
+  {
+    "rank": "4",
+    "player": "Mohamed Salah",
+    "club": "Liverpool",
+    "assists": "10",
+    "matches": "32"
+  },
+  {
+    "rank": "5",
+    "player": "Son Heung-min",
+    "club": "Tottenham Hotspur",
+    "assists": "10",
+    "matches": "35"
+  },
+  {
+    "rank": "6",
+    "player": "Kieran Trippier",
+    "club": "Newcastle United",
+    "assists": "10",
+    "matches": "28"
+  },
+  {
+    "rank": "7",
+    "player": "Morgan Gibbs-White",
+    "club": "Nottingham Forest",
+    "assists": "10",
+    "matches": "37"
+  },
+  {
+    "rank": "8",
+    "player": "Anthony Gordon",
+    "club": "Newcastle United",
+    "assists": "10",
+    "matches": "35"
+  },
+  {
+    "rank": "9",
+    "player": "Pascal Groß",
+    "club": "Brighton & Hove Albion",
+    "assists": "10",
+    "matches": "36"
+  },
+  {
+    "rank": "10",
+    "player": "Martin Ødegaard",
+    "club": "Arsenal",
+    "assists": "10",
+    "matches": "35"
+  }
+]

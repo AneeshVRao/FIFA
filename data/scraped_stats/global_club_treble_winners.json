@@ -1,0 +1,177 @@
+[
+  {
+    "season": "24/25",
+    "country": "",
+    "club": "Paris Saint-Germain",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Luis Enrique"
+  },
+  {
+    "season": "22/23",
+    "country": "",
+    "club": "Manchester City",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Pep Guardiola"
+  },
+  {
+    "season": "22/23",
+    "country": "",
+    "club": "Al Ahly FC",
+    "international_title": "CAF Champions League Winner",
+    "coach": "Marcel Koller"
+  },
+  {
+    "season": "19/20",
+    "country": "",
+    "club": "Bayern Munich",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Hansi Flick"
+  },
+  {
+    "season": "19/20",
+    "country": "",
+    "club": "Al Ahly FC",
+    "international_title": "CAF Champions League Winner",
+    "coach": "René Weiler"
+  },
+  {
+    "season": "15/16",
+    "country": "",
+    "club": "Mamelodi Sundowns FC",
+    "international_title": "CAF Champions League Winner",
+    "coach": "Pitso Mosimane"
+  },
+  {
+    "season": "14/15",
+    "country": "",
+    "club": "FC Barcelona",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Luis Enrique"
+  },
+  {
+    "season": "12/13",
+    "country": "",
+    "club": "Bayern Munich",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Jupp Heynckes"
+  },
+  {
+    "season": "10/11",
+    "country": "",
+    "club": "FC Porto",
+    "international_title": "Europa League Winner",
+    "coach": "André Villas-Boas"
+  },
+  {
+    "season": "10/11",
+    "country": "",
+    "club": "Esperance Tunis",
+    "international_title": "CAF Champions League Winner",
+    "coach": "Nabil Maaloul"
+  },
+  {
+    "season": "09/10",
+    "country": "",
+    "club": "Inter Milan",
+    "international_title": "UEFA Champions League winner",
+    "coach": "José Mourinho"
+  },
+  {
+    "season": "08/09",
+    "country": "",
+    "club": "FC Barcelona",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Pep Guardiola"
+  },
+  {
+    "season": "05/06",
+    "country": "",
+    "club": "Al Ahly FC",
+    "international_title": "CAF Champions League Winner",
+    "coach": "Manuel José"
+  },
+  {
+    "season": "04/05",
+    "country": "",
+    "club": "CSKA Moscow",
+    "international_title": "UEFA Cup Winner",
+    "coach": "Valeriy Gazzaev"
+  },
+  {
+    "season": "02/03",
+    "country": "",
+    "club": "FC Porto",
+    "international_title": "UEFA Cup Winner",
+    "coach": "José Mourinho"
+  },
+  {
+    "season": "99/00",
+    "country": "",
+    "club": "Hearts of Oak",
+    "international_title": "CAF Champions League Winner",
+    "coach": ""
+  },
+  {
+    "season": "99/00",
+    "country": "",
+    "club": "Galatasaray",
+    "international_title": "UEFA Cup Winner",
+    "coach": "Fatih Terim"
+  },
+  {
+    "season": "98/99",
+    "country": "",
+    "club": "Manchester United",
+    "international_title": "UEFA Champions League winner",
+    "coach": "Alex Ferguson"
+  },
+  {
+    "season": "87/88",
+    "country": "",
+    "club": "PSV Eindhoven",
+    "international_title": "European Champion Clubs' Cup winner",
+    "coach": "Guus Hiddink"
+  },
+  {
+    "season": "1982",
+    "country": "",
+    "club": "IFK Göteborg",
+    "international_title": "UEFA Cup Winner",
+    "coach": "Gunder Bengtsson"
+  },
+  {
+    "season": "75/76",
+    "country": "",
+    "club": "Mouloudia Club Algérois",
+    "international_title": "CAF Champions League Winner",
+    "coach": "Abdelhamid Zouba"
+  },
+  {
+    "season": "72/73",
+    "country": "",
+    "club": "AS Vita Club Kinshasa",
+    "international_title": "CAF Champions League Winner",
+    "coach": ""
+  },
+  {
+    "season": "71/72",
+    "country": "",
+    "club": "Ajax Amsterdam",
+    "international_title": "European Champion Clubs' Cup winner",
+    "coach": "Ștefan Kovács"
+  },
+  {
+    "season": "68/69",
+    "country": "",
+    "club": "CD Cruz Azul",
+    "international_title": "CONCACAF Champions League Winner",
+    "coach": ""
+  },
+  {
+    "season": "66/67",
+    "country": "",
+    "club": "Celtic FC",
+    "international_title": "European Champion Clubs' Cup winner",
+    "coach": "Jock Stein"
+  }
+]
