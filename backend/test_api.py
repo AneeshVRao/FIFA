@@ -13,6 +13,7 @@ from backend.app import (
     lifespan,
     get_fixtures,
     get_predict,
+    get_predict_live,
     get_xg,
     get_shootout,
     get_shootout_montecarlo,
@@ -151,6 +152,32 @@ async def run_tests():
         assert len(squad_data["squad"]) > 0, "Squad roster should not be empty"
         assert any(p["name"] == "Harry Kane" for p in squad_data["squad"]), "Harry Kane should be in England squad"
         print("  [OK] Roster endpoint verified.")
+        
+        print("\n[Test 11] /api/predict/live (Bayesian Prediction Fusion Engine)")
+        # Spain vs Germany at minute 60, Spain leading 1-0 with 1.5 xG vs Germany's 0.4 xG
+        response_live = await get_predict_live(
+            home="Spain", away="Germany", time=60.0,
+            goals_home=1, goals_away=0,
+            xg_home=1.5, xg_away=0.4,
+            red_cards_home=0, red_cards_away=0,
+            date="2026-06-12"
+        )
+        data_live = json.loads(response_live.body.decode("utf-8"))
+        print(f"  Live prediction at min 60 (Spain 1 - 0 Germany): {data_live['live_prediction']}")
+        assert data_live["live_prediction"]["home_win"] > 0.70, "Spain should have a high win probability"
+        
+        # Germany gets a red card
+        response_live_red = await get_predict_live(
+            home="Spain", away="Germany", time=60.0,
+            goals_home=1, goals_away=0,
+            xg_home=1.5, xg_away=0.4,
+            red_cards_home=0, red_cards_away=1,
+            date="2026-06-12"
+        )
+        data_live_red = json.loads(response_live_red.body.decode("utf-8"))
+        print(f"  Live prediction (Germany Red Card): {data_live_red['live_prediction']}")
+        assert data_live_red["live_prediction"]["home_win"] > data_live["live_prediction"]["home_win"], "Spain win probability should increase after Germany red card"
+        print("  [OK] Live Bayesian prediction updates verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 

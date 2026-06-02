@@ -27,19 +27,23 @@ The suite is wrapped in a prestigious **World Cup Television-Broadcast Theme** r
 *   **Double Predictor Comparison**: Shows probability outputs from both the baseline Elo Poisson engine and the Gradient Boosting Classifier (9-feature ML model) using animated progress indicators.
 *   **Squad Rosters**: Displays active player rosters (loaded from WorldCupAPI, football-data.org, or balldontlie API client fallbacks) for selected teams.
 
-### C. Expected Goals (xG) Isometric Pitch Sandbox
+### C. Expected Goals (xG & xGOT) Isometric Pitch Sandbox
 *   **Isometric Pitch**: A styled, 3D-shaded isometric SVG pitch layout. Clicking on the pitch plots a glowing ball marker.
-*   **Dynamic xG Gauge**: Adjust shot variables (Foot/Head, Under Pressure) to compute the goal probability using a Logistic Regression model, rendered in an animated radial wheel.
+*   **Three-Level Modeling**:
+    *   *Spatial Baseline*: Logistic Regression using shot coordinates, angle, and distance.
+    *   *Pre-Shot Model*: 10-feature XGBoost incorporating StatsBomb 360° freeze-frame geometry (goalkeeper positioning, defender pressure, teammates count).
+    *   *Post-Shot Model (xGOT)*: 4-feature XGBoost predicting goals after execution based on target placement and goalkeeper-to-placement distance.
+*   **Dynamic xG Gauge**: Rendered in an animated radial wheel showing actual ML predictions.
 
 ### D. Penalty Shootout Arena
-*   **Granular Kick Modeling**: Calculates outcomes using a 3x3 goal zone matrix (TL, TC, TR, ML, MC, MR, BL, BC, BR) combined with goalkeeper dive directions (L, C, R).
+*   **Logistic Regression Classifier**: Calculates outcomes using a kicker-GK Logistic Regression model mapping the 9-zone goal matrix (TL, TC, TR, ML, MC, MR, BL, BC, BR) and keeper dive direction (L, C, R) combined with roster skill attributes.
+*   **Greedy Kick-Order Optimizer**: Sorts and ranks squad roster players to place the highest-skilled takers in optimal pressure slots (Slots 1-5).
 *   **Goalkeeper Stance & Dive Physics**: Goalkeeper is represented as an animated silhouette diving with realistic spring velocity curves.
-*   **Outcome Indicators**: Target zones glow green (Goal) or red (Save) with particle emission feedback.
-*   **Monte Carlo Heat Map**: Displays a heat map overlay of the goal grid, showing save/goal success rates per zone based on 10,000 simulations.
+*   **Monte Carlo Heat Map**: Runs 10,000 simulations using squad-specific kicker skills and GK save skills to generate conversion rate heatmaps.
 
 ### E. Prediction Fusion Engine
-*   **Prior Probabilities**: Pre-match model outputs establish the prior state.
-*   **Bayesian Updates**: As shots occur, the fusion engine updates live win/draw/loss probabilities, shifting the posterior with each shot's xG value alongside key match event logs (goals, cards, elapsed time).
+*   **Conjugate Bayesian In-game Updates**: As live incidents occur, the engine updates ELO priors using a conjugate Gamma-Poisson Bayesian update.
+*   **In-game State Tracking**: Home and away win probabilities shift dynamically in real-time based on goals, elapsed time, red cards (squad fatigue/strength decay), and cumulative expected goals (xG).
 
 ---
 

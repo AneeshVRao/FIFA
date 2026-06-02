@@ -758,6 +758,75 @@ async def get_predict(
         "ml_prediction": ml_preds
     }
 
+@app.get("/api/predict/live")
+async def get_predict_live(
+    home: str = Query(..., description="Home team name"),
+    away: str = Query(..., description="Away team name"),
+    time: float = Query(0.0, description="Match minute elapsed (0 to 90)"),
+    goals_home: int = Query(0, description="Current home goals"),
+    goals_away: int = Query(0, description="Current away goals"),
+    xg_home: float = Query(0.0, description="Current home expected goals"),
+    xg_away: float = Query(0.0, description="Current away expected goals"),
+    red_cards_home: int = Query(0, description="Current home red cards"),
+    red_cards_away: int = Query(0, description="Current away red cards"),
+    date: str = Query("2026-06-01", description="Simulated timeline date (YYYY-MM-DD)")
+):
+    """Calculates Bayesian prediction updates as live in-game events occur."""
+    try:
+        current_ratings = state["baseline_ratings"].copy()
+        fixtures_list = [dict(f) for f in state["fixtures_seed"]]
+        fixtures_list.sort(key=lambda x: x["date"])
+        sim_date = pd.Timestamp(date).date()
+
+        for idx, fixture in enumerate(fixtures_list, start=1):
+            f_home = fixture["home"]
+            f_away = fixture["away"]
+            fixture_date = pd.Timestamp(fixture["date"]).date()
+            if fixture_date < sim_date:
+                rng = np.random.default_rng(2026 + idx)
+                home_goals_sim, away_goals_sim = simulate_score(current_ratings, f_home, f_away, is_neutral=True, rng=rng)
+                update_elo(current_ratings, f_home, f_away, home_goals_sim, away_goals_sim, is_neutral=True)
+
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        
+        from backend.prediction_fusion import compute_live_probabilities
+        live_probs = compute_live_probabilities(
+            home_team=home,
+            away_team=away,
+            pre_match_prior=elo_preds,
+            time_elapsed=time,
+            goals_home=goals_home,
+            goals_away=goals_away,
+            xg_home=xg_home,
+            xg_away=xg_away,
+            red_cards_home=red_cards_home,
+            red_cards_away=red_cards_away,
+            seed=42
+        )
+        
+        return JSONResponse(content={
+            "home": home,
+            "away": away,
+            "time": time,
+            "goals_home": goals_home,
+            "goals_away": goals_away,
+            "xg_home": xg_home,
+            "xg_away": xg_away,
+            "red_cards_home": red_cards_home,
+            "red_cards_away": red_cards_away,
+            "pre_match_prior": elo_preds,
+            "live_prediction": {
+                "home_win": live_probs["home_win"],
+                "draw": live_probs["draw"],
+                "away_win": live_probs["away_win"]
+            },
+            "in_game_home_xg_rate": live_probs["in_game_home_xg_rate"],
+            "in_game_away_xg_rate": live_probs["in_game_away_xg_rate"]
+        })
+    except Exception as exc:
+        logger.error("Error calculating live predict: %s", exc)
+        raise HTTPException(status_code=500, detail="Could not calculate live prediction.")
+
 @app.get("/api/xg")
 async def get_xg(
     x: float = Query(..., description="Shot X coordinate (0-120)"),

@@ -1,6 +1,6 @@
 # FIFA World Cup Analytics Suite
 
-A prestigious, television-broadcast styled analytics and predictive dashboard for the FIFA World Cup. This application predicts match outcomes using a rolling Elo algorithm combined with a 9-feature Gradient Boosting Classifier, evaluates shot qualities using a spatial Expected Goals (xG) model trained on StatsBomb event data, and simulates penalty shootouts using a 9-zone Monte Carlo simulator with goalkeeper physics.
+A prestigious, television-broadcast styled analytics and predictive dashboard for the FIFA World Cup. This application predicts match outcomes using a rolling Elo algorithm combined with a 9-feature Gradient Boosting Classifier, evaluates shot qualities using a three-level spatial Expected Goals (xG/xGOT) model trained on StatsBomb event data, simulates penalty shootouts using a kicker-GK Logistic Regression classifier with goalkeeper physics, and fuses match statistics in real-time using a conjugate Gamma-Poisson Bayesian update model.
 
 The UI is built as a luxurious, responsive Single Page Application utilizing **Vite, React 18, TailwindCSS, Framer Motion, Recharts, and Lucide Icons**.
 
@@ -12,9 +12,10 @@ The UI is built as a luxurious, responsive Single Page Application utilizing **V
 3.  **Unified Power Ratings**: Blends historical rolling Elo with squad market valuations and official FIFA rankings to calculate boosted competitive ratings.
 4.  **Match Predictor & Radar Compare**: Select any two teams to compare tactical attributes in an animated Radar chart, alongside comparative outcome probabilities and squad listings.
 5.  **Multi-Source Roster Integration**: Fetches official team rosters using a fallback client wrapper connecting to WorldCupAPI, football-data.org, or balldontlie, with a local squad database fallback.
-6.  **xG Sandbox**: An isometric, 3D-shaded vector pitch coordinate plotter showing radial probability gauge output based on distance, angle, headers, and pressure.
-7.  **Penalty Shootout Arena**: An interactive penalty game using zone selection, animated goalkeeper spring dive physics, and an empirical zone-based Monte Carlo conversion heatmap.
-8.  **Intro Loader Opener**: A full-screen entrance animation featuring a custom WebGL shaded golden sphere loader synced with backend model initialization.
+6.  **Expected Goals (xG/xGOT) Sandbox**: An isometric, 3D-shaded vector pitch coordinate plotter showing radial probability gauge output based on a spatial baseline, pre-shot XGBoost (360° freeze frames), and post-shot xGOT models.
+7.  **Penalty Shootout Arena**: An interactive penalty game using zone selection, animated goalkeeper spring dive physics, a kicker-GK Logistic Regression model, a greedy kick-order optimizer, and a Monte Carlo heatmap.
+8.  **Prediction Fusion Engine**: Uses a conjugate Gamma-Poisson Bayesian update to update ELO pre-match priors with in-game minutes, goals, red cards, and cumulative xG.
+9.  **Intro Loader Opener**: A full-screen entrance animation featuring a custom WebGL shaded golden sphere loader synced with backend model initialization.
 
 ---
 
@@ -29,9 +30,10 @@ fifa/
 │   ├── team_metadata.py           # Squad values, FIFA ranks, and Unified Elo calculation
 │   ├── worldcup_api.py            # External roster API client (3 endpoints fallback)
 │   ├── model_match.py             # Gradient Boosting Classifier training pipeline
-│   ├── model_xg.py                # xG Logistic Regression shot modeling pipeline
-│   ├── model_shootout.py          # 9-zone shootout Monte Carlo simulator
-│   └── test_api.py                # TDD unit test suites 1-10
+│   ├── model_xg.py                # xG/xGOT modeling pipeline (spatial, 360°, post-shot)
+│   ├── model_shootout.py          # Kicker-GK Logistic Regression penalty shootout model
+│   ├── prediction_fusion.py       # Bayesian Gamma-Poisson conjugate fusion engine
+│   └── test_api.py                # TDD unit test suites 1-11
 ├── frontend/
 │   ├── src/                       # React source files
 │   │   ├── components/            # UI components (Sidebar, Pitch, Radar, Bracket, Loader)
