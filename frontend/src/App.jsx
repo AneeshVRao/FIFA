@@ -6,6 +6,9 @@ import { TournamentHub } from "./components/TournamentHub";
 import { MatchPredictor } from "./components/MatchPredictor";
 import { XgSandbox } from "./components/XgSandbox";
 import { ShootoutArena } from "./components/ShootoutArena";
+import { LiveMatchSimulator } from "./components/LiveMatchSimulator";
+import { StatsCenter } from "./components/StatsCenter";
+import { TacticsAnalyzer } from "./components/TacticsAnalyzer";
 import OpenerLoader from "./components/OpenerLoader";
 import KnockoutBracket from "./components/KnockoutBracket";
 
@@ -33,6 +36,12 @@ function App() {
         );
       case "match-predictor":
         return <MatchPredictor ratings={ratings} currentDate={currentDate} />;
+      case "live-simulator":
+        return <LiveMatchSimulator ratings={ratings} currentDate={currentDate} />;
+      case "stats-center":
+        return <StatsCenter />;
+      case "tactics-analyzer":
+        return <TacticsAnalyzer ratings={ratings} />;
       case "xg-sandbox":
         return <XgSandbox />;
       case "penalty-simulator":

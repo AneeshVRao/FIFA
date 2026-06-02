@@ -19,6 +19,8 @@ from backend.app import (
     get_shootout_montecarlo,
     get_index,
     get_squad_endpoint,
+    get_transfermarkt_stats,
+    get_tactics_matchup,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -178,6 +180,23 @@ async def run_tests():
         print(f"  Live prediction (Germany Red Card): {data_live_red['live_prediction']}")
         assert data_live_red["live_prediction"]["home_win"] > data_live["live_prediction"]["home_win"], "Spain win probability should increase after Germany red card"
         print("  [OK] Live Bayesian prediction updates verified.")
+        
+        print("\n[Test 12] /api/stats/transfermarkt (Scraped Statistics)")
+        response_stats = await get_transfermarkt_stats(category="premier_league_top_goalscorers")
+        data_stats = json.loads(response_stats.body.decode("utf-8"))
+        print(f"  Scraped stat count: {len(data_stats['data'])}")
+        assert len(data_stats["data"]) > 0, "Scraped statistical records list should not be empty"
+        assert any(p.get("player") == "Erling Haaland" for p in data_stats["data"]), "Haaland should be in the top scorers list"
+        print("  [OK] Transfermarkt stats endpoint verified.")
+        
+        print("\n[Test 13] /api/tactics/matchup (Playstyle Embeddings)")
+        response_tactics = await get_tactics_matchup(home="Spain", away="Germany")
+        data_tactics = json.loads(response_tactics.body.decode("utf-8"))
+        print(f"  Spain tactic vector length: {len(data_tactics['home_vector'])}")
+        print(f"  Closest analogue match similarity: {data_tactics['analogues'][0]['similarity']:.3f}")
+        assert len(data_tactics["home_vector"]) == 10, "Tactic profile embedding must be 10D"
+        assert len(data_tactics["analogues"]) == 5, "Must return exactly 5 closest analogues"
+        print("  [OK] Tactics engine matchup endpoint verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 

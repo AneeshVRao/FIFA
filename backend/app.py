@@ -899,3 +899,47 @@ async def get_squad_endpoint(
     except Exception as exc:
         logger.error("Error fetching squad for %s: %s", team, exc)
         raise HTTPException(status_code=500, detail=f"Could not load squad for {team}")
+
+@app.get("/api/stats/transfermarkt")
+async def get_transfermarkt_stats(
+    category: str = Query(..., description="Statistics category to fetch")
+):
+    """Returns Transfermarkt statistical table cached JSON data."""
+    from backend.scraper import get_scraped_stat, TM_URLS
+    if category not in TM_URLS:
+        raise HTTPException(status_code=400, detail=f"Invalid statistics category. Must be one of: {list(TM_URLS.keys())}")
+    try:
+        data = get_scraped_stat(category)
+        return JSONResponse(content={"category": category, "data": data})
+    except Exception as exc:
+        logger.error("Error fetching Transfermarkt stats for %s: %s", category, exc)
+        raise HTTPException(status_code=500, detail=f"Could not load stats for {category}")
+
+@app.get("/api/tactics/matchup")
+async def get_tactics_matchup(
+    home: str = Query(..., description="Home team name"),
+    away: str = Query(..., description="Away team name")
+):
+    """Returns playstyle vectors and closest historical matchup analogues."""
+    from backend.tactics_engine import get_team_tactic_vector, search_analogues
+    from backend.data_loader import get_wc_teams
+    
+    wc_teams = get_wc_teams()
+    if home not in wc_teams or away not in wc_teams:
+        raise HTTPException(status_code=400, detail="Both teams must be valid 2026 World Cup participants.")
+        
+    try:
+        vec_h = get_team_tactic_vector(home).tolist()
+        vec_a = get_team_tactic_vector(away).tolist()
+        analogues = search_analogues(home, away)
+        
+        return JSONResponse(content={
+            "home": home,
+            "away": away,
+            "home_vector": vec_h,
+            "away_vector": vec_a,
+            "analogues": analogues
+        })
+    except Exception as exc:
+        logger.error("Error compiling tactics matchup for %s vs %s: %s", home, away, exc)
+        raise HTTPException(status_code=500, detail="Tactics matching execution failed.")

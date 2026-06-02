@@ -5,3 +5,7 @@ numpy
 scikit-learn
 statsbombpy
 requests
+beautifulsoup4
+sqlalchemy
+pgvector
+psycopg2-binary
