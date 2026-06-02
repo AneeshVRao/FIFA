@@ -49,3 +49,24 @@ This document tracks the current state of implementation for the FIFA World Cup 
   - [x] Write and run FastAPI lifespan tests in [test_api.py](file:///d:/Projects/ML/fifa/backend/test_api.py).
   - [x] Verify England group-stage qualification under the new Unified Elo rating boost (Test 7).
   - [x] Verify bracket generation (Test 8), extra-time/shootout deciders (Test 9), and roster APIs (Test 10).
+
+- [x] **Phase 9: Three-Level Expected Goals (xG/xGOT) Pipeline**
+  - [x] Train Spatial Logistic Regression baseline model.
+  - [x] Train 10-feature XGBoost Pre-Shot Model using StatsBomb 360° freeze frame features.
+  - [x] Train 4-feature XGBoost Post-Shot Model predicting goals after execution (xGOT).
+  - [x] Serialize model dictionary to `data/model_xg.pkl` and verify predictions.
+
+- [x] **Phase 10: ML Penalty Shootout Model & Greedy Optimizer**
+  - [x] Train kicker-GK Logistic Regression classifier mapping target zones and keeper dive alignment.
+  - [x] Implement greedy kick-order optimizer to arrange players for slots 1-5 (Rank 2 -> 5 -> 4 -> 3 -> 1).
+  - [x] Integrate advanced shootout simulations into ELO knockout simulators in `backend/elo.py`.
+
+- [x] **Phase 11: Bayesian Prediction Fusion Engine**
+  - [x] Implement Gamma-Poisson conjugate Bayesian update to compute in-game win/draw/loss probabilities.
+  - [x] Factor in live scoring, time elapsed, red cards, and cumulative xG.
+  - [x] Expose `/api/predict/live` and write Test 11 verification test cases in `backend/test_api.py`.
+
+- [x] **Phase 12: Custom Scraping Event Engine Proposal**
+  - [x] Brainstorm strategy to harvest player incidents from Sofascore, FBref, and Wikipedia.
+  - [x] Catalog Transfermarkt data targets (Premier League stats, trophies, coach tactical profiles, club heritage).
+  - [x] Compile detailed roadmap in `scraping_event_engine.md`.
