@@ -329,23 +329,13 @@ def simulate_knockout_score(
         else:
             # 3. Penalty Shootout
             penalties = True
-            p_home = 0
-            p_away = 0
             
-            # Initial 5 kicks
-            for _ in range(5):
-                if rng.random() < 0.75:
-                    p_home += 1
-                if rng.random() < 0.75:
-                    p_away += 1
+            # Run simulation using our advanced model_shootout
+            from backend import model_shootout
+            res_shootout = model_shootout.simulate_shootout(rng, home_team, away_team)
             
-            # Sudden death
-            while p_home == p_away:
-                if rng.random() < 0.75:
-                    p_home += 1
-                if rng.random() < 0.75:
-                    p_away += 1
-            
+            p_home = res_shootout.team_a_score
+            p_away = res_shootout.team_b_score
             penalty_scores = [p_home, p_away]
             winner = home_team if p_home > p_away else away_team
 
