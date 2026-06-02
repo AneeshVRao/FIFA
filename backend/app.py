@@ -78,10 +78,11 @@ async def lifespan(app: FastAPI):
         logger.error("Failed to load match predictor model: %s", exc)
         raise exc
 
-    # 4. Load Expected Goals (xG) ML Model
+    # 4. Load Expected Goals (xG) ML Models
     try:
-        state["xg_model"] = model_xg.load_model()
-        logger.info("xG model loaded.")
+        state["xg_models"] = model_xg.load_all_models()
+        state["xg_model"] = state["xg_models"]["xgboost_main"]
+        logger.info("xG models loaded.")
     except Exception as exc:
         logger.error("Failed to load xG model: %s", exc)
         raise exc
@@ -842,16 +843,21 @@ async def get_xg(
     y_val = min(max(y, 0.0), 80.0)
     
     try:
-        # Calculate xG using the trained model
-        val = model_xg.predict_xg(state["xg_model"], x_val, y_val, is_header, under_pressure)
+        # Calculate xG using the trained models
+        val_xgb = model_xg.predict_xg(state["xg_models"]["xgboost_main"], x_val, y_val, is_header, under_pressure)
+        val_lr = model_xg.predict_baseline_xg(state["xg_models"]["logistic_baseline"], x_val, y_val, is_header, under_pressure)
         
         # Dynamic enhancement for visual sandbox:
         # If user is checking exactly on the penalty spot in undefended conditions (no pressure, foot shot),
         # return a value matching the standard penalty baseline xG (~0.76).
         if 107.8 <= x_val <= 108.2 and 39.8 <= y_val <= 40.2 and not is_header and not under_pressure:
-            val = 0.76
+            val_xgb = 0.76
+            val_lr = 0.76
             
-        return {"xg": round(val, 4)}
+        return {
+            "xg": round(val_xgb, 4),
+            "xg_baseline": round(val_lr, 4)
+        }
     except Exception as exc:
         logger.error("Error predicting xG: %s", exc)
         raise HTTPException(status_code=500, detail="Could not calculate xG.")

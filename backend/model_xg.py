@@ -453,6 +453,28 @@ def predict_xg(
     return float(pipeline.predict_proba(features)[:, 1][0])
 
 
+def predict_baseline_xg(
+    pipeline: Pipeline,
+    x: float,
+    y: float,
+    is_header: bool = False,
+    under_pressure: bool = False
+) -> float:
+    """Predict pre-shot xG using the baseline Logistic Regression model (6 spatial features)."""
+    dist = distance_to_goal(x, y)
+    angle = angle_to_goal(x, y)
+
+    features = np.array([[
+        dist,
+        angle,
+        int(is_header),
+        int(under_pressure),
+        x / PITCH_LENGTH,
+        y / PITCH_WIDTH,
+    ]])
+    return float(pipeline.predict_proba(features)[:, 1][0])
+
+
 def predict_post_shot_xg(
     post_pipeline: Pipeline,
     pre_shot_xg: float,
