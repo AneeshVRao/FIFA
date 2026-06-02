@@ -1,22 +1,31 @@
 """
 model_xg.py — Expected Goals (xG) Model Training Pipeline
 
-Trains a Logistic Regression classifier on StatsBomb open shot-event
-data to predict the probability of a shot resulting in a goal.
+Trains three models for shot quality evaluation:
+1. Logistic Regression Baseline : Spatial features only.
+2. XGBoost Pre-Shot Model      : Incorporates spatial features and StatsBomb 360°
+                                 freeze frame data (player densities, GK positioning).
+3. XGBoost Post-Shot Model     : Predicts goals after shot execution based on target
+                                 placement and GK-to-placement distance (xGOT).
 
 Features
 --------
-- distance_to_goal   : Euclidean distance from shot location to centre of goal
-- angle_to_goal      : Angle subtended at the shot location by the goalposts
-- is_header          : 1 if body part is "Head", else 0
-- under_pressure     : 1 if the shooter was under pressure
-- shot_x, shot_y     : Raw pitch coordinates (StatsBomb 120×80 format)
+Pre-shot (10 features):
+- distance_to_goal
+- angle_to_goal
+- is_header
+- under_pressure
+- x, y (normalised)
+- num_defenders
+- num_teammates
+- gk_distance_to_goal
+- gk_distance_to_shooter
 
-The trained pipeline is persisted to ``data/model_xg.pkl``.
-
-Uses ``statsbombpy`` to fetch open competition shot events.  Falls
-back to a synthetic dataset if the StatsBomb API is unreachable so
-that the build never breaks.
+Post-shot (4 features):
+- pre_shot_xg
+- placement_y_diff
+- placement_z
+- gk_distance_to_placement
 """
 
 import logging
@@ -26,15 +35,11 @@ from pathlib import Path
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from xgboost import XGBClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import (
-    classification_report,
-    roc_auc_score,
-    brier_score_loss,
-)
+from sklearn.metrics import roc_auc_score, brier_score_loss
 
 logger = logging.getLogger(__name__)
 
@@ -42,27 +47,22 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 MODEL_PATH = DATA_DIR / "model_xg.pkl"
 SHOTS_CACHE = DATA_DIR / "shots_cache.csv"
 
-# StatsBomb pitch dimensions
 PITCH_LENGTH = 120.0
 PITCH_WIDTH = 80.0
 GOAL_Y_CENTER = PITCH_WIDTH / 2.0  # 40
-GOAL_WIDTH = 7.32  # metres, but StatsBomb uses yards (~8 yds)
-GOAL_HALF_WIDTH = 4.0  # yards in SB coordinate space
+GOAL_HALF_WIDTH = 4.0  # yards in StatsBomb space
 
 
 # ── geometry helpers ─────────────────────────────────────────────
 def distance_to_goal(x: float, y: float) -> float:
-    """Euclidean distance from (x, y) to centre of the goal line."""
     return math.sqrt((PITCH_LENGTH - x) ** 2 + (GOAL_Y_CENTER - y) ** 2)
 
 
 def angle_to_goal(x: float, y: float) -> float:
-    """Angle in radians subtended at (x, y) by the two goalposts."""
     goal_x = PITCH_LENGTH
     post_top = GOAL_Y_CENTER + GOAL_HALF_WIDTH
     post_bot = GOAL_Y_CENTER - GOAL_HALF_WIDTH
 
-    # Vectors from shot position to each post
     dx_top = goal_x - x
     dy_top = post_top - y
     dx_bot = goal_x - x
@@ -81,16 +81,6 @@ def angle_to_goal(x: float, y: float) -> float:
 
 # ── data collection ──────────────────────────────────────────────
 def _fetch_statsbomb_shots() -> pd.DataFrame:
-    """Fetch shot events from StatsBomb open competitions.
-
-    Targets: FIFA World Cup 2022, Euro 2024, and World Cup 2018
-    using the free open-data API.
-
-    Returns
-    -------
-    pd.DataFrame
-        Columns: x, y, is_header, under_pressure, is_goal
-    """
     if SHOTS_CACHE.exists():
         logger.info("Loading cached shots from %s", SHOTS_CACHE)
         return pd.read_csv(SHOTS_CACHE)
@@ -101,33 +91,24 @@ def _fetch_statsbomb_shots() -> pd.DataFrame:
         logger.info("Fetching StatsBomb competitions …")
         comps = sb.competitions()
 
-        # Target competitions (open data)
         target_comps = comps[
             (comps["competition_name"].str.contains("World Cup|Euro", case=False, na=False))
             & (comps["season_name"].str.contains("2018|2022|2024|2020", na=False))
         ]
 
         if target_comps.empty:
-            # Fallback: use any competition with open data
             target_comps = comps.head(5)
-            logger.warning(
-                "No World Cup/Euro competitions found. Using first 5 comps."
-            )
+            logger.warning("No World Cup/Euro competitions found. Using first 5 comps.")
 
         all_shots = []
         for _, comp in target_comps.iterrows():
             comp_id = int(comp["competition_id"])
             season_id = int(comp["season_id"])
-            logger.info(
-                "  Fetching matches for %s %s …",
-                comp["competition_name"],
-                comp["season_name"],
-            )
+            logger.info("  Fetching matches for %s %s …", comp["competition_name"], comp["season_name"])
 
             try:
                 matches = sb.matches(competition_id=comp_id, season_id=season_id)
             except Exception:
-                logger.warning("  Could not fetch matches, skipping.")
                 continue
 
             for _, match in matches.iterrows():
@@ -143,9 +124,7 @@ def _fetch_statsbomb_shots() -> pd.DataFrame:
 
                 for _, shot in shots.iterrows():
                     loc = shot.get("location", None)
-                    if loc is None or not isinstance(loc, (list, tuple)):
-                        continue
-                    if len(loc) < 2:
+                    if loc is None or not isinstance(loc, (list, tuple)) or len(loc) < 2:
                         continue
 
                     x, y = float(loc[0]), float(loc[1])
@@ -155,11 +134,49 @@ def _fetch_statsbomb_shots() -> pd.DataFrame:
                     outcome = str(shot.get("shot_outcome", "")).lower()
                     is_goal = 1 if "goal" in outcome else 0
 
+                    # 360° freeze frame parsing
+                    freeze_frame = shot.get("shot_freeze_frame", None)
+                    num_defenders = 0
+                    num_teammates = 0
+                    gk_x, gk_y = 119.0, 40.0
+
+                    if freeze_frame and isinstance(freeze_frame, list):
+                        for p in freeze_frame:
+                            pos_name = p.get("position", {}).get("name", "")
+                            is_teammate = p.get("teammate", False)
+
+                            if pos_name == "Goalkeeper":
+                                p_loc = p.get("location", [119.0, 40.0])
+                                gk_x, gk_y = float(p_loc[0]), float(p_loc[1])
+                            elif is_teammate:
+                                num_teammates += 1
+                            else:
+                                num_defenders += 1
+
+                    # Post-shot target placement tracking
+                    end_loc = shot.get("shot_end_location", None)
+                    on_target = 0
+                    placement_y = 40.0
+                    placement_z = 0.0
+                    if end_loc and isinstance(end_loc, list) and len(end_loc) >= 2:
+                        if any(term in outcome for term in ["goal", "saved", "post", "bar"]):
+                            on_target = 1
+                            placement_y = float(end_loc[1])
+                            if len(end_loc) >= 3:
+                                placement_z = float(end_loc[2])
+
                     all_shots.append({
                         "x": x,
                         "y": y,
                         "is_header": is_header,
                         "under_pressure": pressure,
+                        "num_defenders": num_defenders,
+                        "num_teammates": num_teammates,
+                        "gk_x": gk_x,
+                        "gk_y": gk_y,
+                        "on_target": on_target,
+                        "placement_y": placement_y,
+                        "placement_z": placement_z,
                         "is_goal": is_goal,
                     })
 
@@ -178,52 +195,59 @@ def _fetch_statsbomb_shots() -> pd.DataFrame:
 
 
 def _generate_synthetic_shots(n: int = 5000) -> pd.DataFrame:
-    """Generate a realistic synthetic shot dataset as a fallback.
-
-    Shot probabilities decrease with distance and off-centre angles,
-    mimicking real-world xG distributions.
-    """
     rng = np.random.default_rng(42)
 
-    # Shots mostly come from the attacking third (x > 80)
     x = rng.uniform(80, 120, size=n)
     y = rng.uniform(10, 70, size=n)
     is_header = rng.binomial(1, 0.15, size=n)
     under_pressure = rng.binomial(1, 0.35, size=n)
 
-    # Goal probability based on position
+    num_defenders = rng.poisson(lam=2.0, size=n)
+    num_teammates = rng.poisson(lam=1.2, size=n)
+    
+    gk_x = rng.uniform(117.0, 119.9, size=n)
+    gk_y = rng.uniform(37.0, 43.0, size=n)
+    
+    on_target = rng.binomial(1, 0.45, size=n)
+    placement_y = rng.uniform(36.5, 43.5, size=n)
+    placement_z = rng.uniform(0.0, 2.4, size=n)
+
     goals = []
     for i in range(n):
         dist = distance_to_goal(x[i], y[i])
         angle = angle_to_goal(x[i], y[i])
 
-        # Base probability from distance
         base_prob = max(0.02, 0.85 - 0.02 * dist)
-
-        # Angle bonus
         angle_factor = min(1.0, angle / 0.5)
         prob = base_prob * angle_factor
 
-        # Headers are slightly less likely
         if is_header[i]:
             prob *= 0.75
-
-        # Pressure reduces accuracy
         if under_pressure[i]:
             prob *= 0.8
-
-        # Penalty spot special case (x≈108, y≈40)
+        
         if 107 < x[i] < 109 and 38 < y[i] < 42:
             prob = 0.76
 
         prob = min(max(prob, 0.01), 0.95)
-        goals.append(int(rng.random() < prob))
+        is_g = int(rng.random() < prob)
+        goals.append(is_g)
+        
+        if is_g == 1:
+            on_target[i] = 1
 
     df = pd.DataFrame({
         "x": x,
         "y": y,
         "is_header": is_header,
         "under_pressure": under_pressure,
+        "num_defenders": num_defenders,
+        "num_teammates": num_teammates,
+        "gk_x": gk_x,
+        "gk_y": gk_y,
+        "on_target": on_target,
+        "placement_y": placement_y,
+        "placement_z": placement_z,
         "is_goal": goals,
     })
 
@@ -234,25 +258,9 @@ def _generate_synthetic_shots(n: int = 5000) -> pd.DataFrame:
 
 
 # ── feature engineering ──────────────────────────────────────────
-def build_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
-    """Transform raw shot data into feature matrix and labels.
-
-    Features
-    --------
-    0: distance_to_goal
-    1: angle_to_goal
-    2: is_header
-    3: under_pressure
-    4: x (normalised)
-    5: y (normalised)
-
-    Returns
-    -------
-    X : np.ndarray, shape (n, 6)
-    y : np.ndarray, shape (n,)
-    """
-    distances = [distance_to_goal(r.x, r.y) for _, r in df.iterrows()]
-    angles = [angle_to_goal(r.x, r.y) for _, r in df.iterrows()]
+def build_features_baseline(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+    distances = [distance_to_goal(x, y) for x, y in zip(df["x"].values, df["y"].values)]
+    angles = [angle_to_goal(x, y) for x, y in zip(df["x"].values, df["y"].values)]
 
     X = np.column_stack([
         distances,
@@ -266,83 +274,150 @@ def build_features(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
     return X, y
 
 
-# ── training ─────────────────────────────────────────────────────
-def train_model() -> Pipeline:
-    """Train the xG classifier and save to disk.
+def build_features_main(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+    distances = [distance_to_goal(x, y) for x, y in zip(df["x"].values, df["y"].values)]
+    angles = [angle_to_goal(x, y) for x, y in zip(df["x"].values, df["y"].values)]
 
-    Returns
-    -------
-    Pipeline
-        Fitted pipeline: StandardScaler → LogisticRegression.
-    """
+    gk_dist_goal = [distance_to_goal(gx, gy) for gx, gy in zip(df["gk_x"].values, df["gk_y"].values)]
+    gk_dist_shooter = [math.sqrt((gx - sx)**2 + (gy - sy)**2) for gx, gy, sx, sy in zip(
+        df["gk_x"].values, df["gk_y"].values, df["x"].values, df["y"].values
+    )]
+
+    X = np.column_stack([
+        distances,
+        angles,
+        df["is_header"].values,
+        df["under_pressure"].values,
+        df["x"].values / PITCH_LENGTH,
+        df["y"].values / PITCH_WIDTH,
+        df["num_defenders"].values,
+        df["num_teammates"].values,
+        gk_dist_goal,
+        gk_dist_shooter,
+    ])
+    y = df["is_goal"].values.astype(int)
+    return X, y
+
+
+# ── training ─────────────────────────────────────────────────────
+def train_model():
     logger.info("Collecting shot data …")
     df = _fetch_statsbomb_shots()
 
-    # Data quality: filter out-of-bounds shots
     df = df[(df["x"] >= 0) & (df["x"] <= PITCH_LENGTH)]
     df = df[(df["y"] >= 0) & (df["y"] <= PITCH_WIDTH)]
     df = df.dropna()
     logger.info("Training on %d valid shots", len(df))
 
-    X, y = build_features(df)
-
-    pipeline = Pipeline([
+    # 1. Train Logistic Baseline (6 spatial features)
+    X_base, y_base = build_features_baseline(df)
+    from sklearn.linear_model import LogisticRegression
+    lr_pipeline = Pipeline([
         ("scaler", StandardScaler()),
-        ("classifier", LogisticRegression(
-            max_iter=1000,
-            solver="lbfgs",
+        ("classifier", LogisticRegression(max_iter=1000, random_state=42)),
+    ])
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    base_scores = cross_val_score(lr_pipeline, X_base, y_base, cv=cv, scoring="roc_auc")
+    logger.info("Baseline Spatial LR CV ROC-AUC: %.3f ± %.3f", base_scores.mean(), base_scores.std())
+    lr_pipeline.fit(X_base, y_base)
+
+    # 2. Train XGBoost Main Model (10 features)
+    X_main, y_main = build_features_main(df)
+    xgb_pipeline = Pipeline([
+        ("scaler", StandardScaler()),
+        ("classifier", XGBClassifier(
+            n_estimators=100,
+            learning_rate=0.05,
+            max_depth=4,
             random_state=42,
+            eval_metric="logloss"
         )),
     ])
+    main_scores = cross_val_score(xgb_pipeline, X_main, y_main, cv=cv, scoring="roc_auc")
+    logger.info("Main Pre-Shot XGBoost CV ROC-AUC: %.3f ± %.3f", main_scores.mean(), main_scores.std())
+    xgb_pipeline.fit(X_main, y_main)
 
-    # Cross-validate
-    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-    scores = cross_val_score(pipeline, X, y, cv=cv, scoring="roc_auc")
-    logger.info("Cross-val ROC-AUC: %.3f ± %.3f", scores.mean(), scores.std())
+    # 3. Train Post-Shot Model (xGOT)
+    # Fit only on shots that are on target
+    df_ontarget = df[df["on_target"] == 1].copy()
+    logger.info("Training Post-Shot xGOT model on %d on-target shots", len(df_ontarget))
+    
+    # Calculate pre-shot xG for each of these shots
+    pre_shot_xg = xgb_pipeline.predict_proba(X_main[df["on_target"] == 1])[:, 1]
+    
+    placement_y_diff = np.abs(df_ontarget["placement_y"].values - GOAL_Y_CENTER)
+    placement_z = df_ontarget["placement_z"].values
+    
+    gk_dist_placement = []
+    for gx, gy, py, pz in zip(
+        df_ontarget["gk_x"].values, df_ontarget["gk_y"].values,
+        df_ontarget["placement_y"].values, df_ontarget["placement_z"].values
+    ):
+        dist = math.sqrt((gx - PITCH_LENGTH)**2 + (gy - py)**2 + (0.0 - pz)**2)
+        gk_dist_placement.append(dist)
+        
+    X_post = np.column_stack([
+        pre_shot_xg,
+        placement_y_diff,
+        placement_z,
+        gk_dist_placement
+    ])
+    y_post = df_ontarget["is_goal"].values.astype(int)
+    
+    post_pipeline = Pipeline([
+        ("scaler", StandardScaler()),
+        ("classifier", XGBClassifier(
+            n_estimators=80,
+            learning_rate=0.05,
+            max_depth=3,
+            random_state=42,
+            eval_metric="logloss"
+        )),
+    ])
+    post_scores = cross_val_score(post_pipeline, X_post, y_post, cv=cv, scoring="roc_auc")
+    logger.info("Post-Shot xGOT XGBoost CV ROC-AUC: %.3f ± %.3f", post_scores.mean(), post_scores.std())
+    post_pipeline.fit(X_post, y_post)
 
-    # Fit on full data
-    pipeline.fit(X, y)
-
-    # Report
-    y_proba = pipeline.predict_proba(X)[:, 1]
-    brier = brier_score_loss(y, y_proba)
-    logger.info("Brier score (lower is better): %.4f", brier)
-
-    y_pred = pipeline.predict(X)
-    report = classification_report(y, y_pred, target_names=["no_goal", "goal"])
-    logger.info("Classification report:\n%s", report)
-
-    # Sanity check: penalty spot xG
-    penalty_x, penalty_y = 108.0, 40.0
-    penalty_features = np.array([[
-        distance_to_goal(penalty_x, penalty_y),
-        angle_to_goal(penalty_x, penalty_y),
-        0,  # foot
-        0,  # no pressure
-        penalty_x / PITCH_LENGTH,
-        penalty_y / PITCH_WIDTH,
-    ]])
-    penalty_xg = pipeline.predict_proba(
-        pipeline.named_steps["scaler"].transform(penalty_features)
-    )
-    # We use pipeline.predict_proba directly:
-    penalty_xg_direct = pipeline.predict_proba(penalty_features)[:, 1][0]
-    logger.info("Penalty spot xG: %.3f (target ≈ 0.75)", penalty_xg_direct)
-
-    # Save
+    # Persist all 3 models in a dictionary
+    save_dict = {
+        "logistic_baseline": lr_pipeline,
+        "xgboost_main": xgb_pipeline,
+        "post_shot_model": post_pipeline
+    }
+    
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    joblib.dump(pipeline, MODEL_PATH)
-    logger.info("Model saved to %s", MODEL_PATH)
-
-    return pipeline
+    joblib.dump(save_dict, MODEL_PATH)
+    logger.info("Persisted all three xG models to %s", MODEL_PATH)
+    return save_dict
 
 
 def load_model() -> Pipeline:
-    """Load the trained xG model from disk, training if absent."""
+    """Return the main pre-shot XGBoost pipeline for backward compatibility."""
     if MODEL_PATH.exists():
-        logger.info("Loading xG model from %s", MODEL_PATH)
-        return joblib.load(MODEL_PATH)
-    logger.info("xG model not found — training now …")
+        logger.info("Loading xG model dictionary from %s", MODEL_PATH)
+        data = joblib.load(MODEL_PATH)
+        if isinstance(data, dict):
+            return data["xgboost_main"]
+        return data
+    logger.info("xG models not found — training now …")
+    data = train_model()
+    return data["xgboost_main"]
+
+
+def load_all_models() -> dict:
+    """Return the entire model dictionary containing baseline, main, and post-shot models."""
+    if MODEL_PATH.exists():
+        logger.info("Loading all xG models from %s", MODEL_PATH)
+        data = joblib.load(MODEL_PATH)
+        if isinstance(data, dict):
+            return data
+        # If legacy format, wrap it
+        return {
+            "logistic_baseline": data,
+            "xgboost_main": data,
+            "post_shot_model": data
+        }
+    logger.info("xG models not found — training now …")
     return train_model()
 
 
@@ -352,56 +427,67 @@ def predict_xg(
     y: float,
     is_header: bool = False,
     under_pressure: bool = False,
+    num_defenders: int = 2,
+    num_teammates: int = 1,
+    gk_x: float = 119.0,
+    gk_y: float = 40.0
 ) -> float:
-    """Predict xG for a single shot.
+    """Predict pre-shot xG using the main XGBoost model and positional features."""
+    dist = distance_to_goal(x, y)
+    angle = angle_to_goal(x, y)
+    gk_dist_goal = distance_to_goal(gk_x, gk_y)
+    gk_dist_shooter = math.sqrt((gk_x - x)**2 + (gk_y - y)**2)
 
-    Parameters
-    ----------
-    pipeline : Pipeline
-        Fitted xG model.
-    x, y : float
-        Shot coordinates (StatsBomb 120×80).
-    is_header : bool
-        True if the shot is a header.
-    under_pressure : bool
-        True if the shooter was under pressure.
-
-    Returns
-    -------
-    float
-        Probability of the shot being a goal (0–1).
-    """
     features = np.array([[
-        distance_to_goal(x, y),
-        angle_to_goal(x, y),
+        dist,
+        angle,
         int(is_header),
         int(under_pressure),
         x / PITCH_LENGTH,
         y / PITCH_WIDTH,
+        num_defenders,
+        num_teammates,
+        gk_dist_goal,
+        gk_dist_shooter
     ]])
     return float(pipeline.predict_proba(features)[:, 1][0])
+
+
+def predict_post_shot_xg(
+    post_pipeline: Pipeline,
+    pre_shot_xg: float,
+    placement_y: float,
+    placement_z: float,
+    gk_x: float,
+    gk_y: float
+) -> float:
+    """Predict post-shot xGOT based on target placement and GK distance."""
+    placement_y_diff = abs(placement_y - GOAL_Y_CENTER)
+    gk_dist_placement = math.sqrt((gk_x - PITCH_LENGTH)**2 + (gk_y - placement_y)**2 + (0.0 - placement_z)**2)
+    
+    features = np.array([[
+        pre_shot_xg,
+        placement_y_diff,
+        placement_z,
+        gk_dist_placement
+    ]])
+    return float(post_pipeline.predict_proba(features)[:, 1][0])
 
 
 # ── quick self-test ──────────────────────────────────────────────
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    print("== Training xG Model ==")
-    model = train_model()
+    print("== Training Expected Goals (xG & xGOT) Pipeline ==")
+    models = train_model()
 
-    # Test a few shot positions
-    test_shots = [
-        (108, 40, False, False, "Penalty spot"),
-        (110, 40, False, False, "6-yard box centre"),
-        (100, 40, False, False, "Edge of box centre"),
-        (90, 40, False, False, "25 yards out"),
-        (100, 55, False, False, "Edge of box wide"),
-        (100, 40, True, False, "Edge of box header"),
-        (100, 40, False, True, "Edge of box under pressure"),
-    ]
+    print("\n  Pre-Shot xG Prediction (Penalty Spot, undefended):")
+    main_model = models["xgboost_main"]
+    val = predict_xg(main_model, 108, 40, False, False, num_defenders=0, num_teammates=0, gk_x=119.0, gk_y=40.0)
+    print(f"    xG = {val:.4f}")
 
-    print("\n  Shot Position Tests:")
-    for x, y, head, pressure, desc in test_shots:
-        xg = predict_xg(model, x, y, head, pressure)
-        print(f"    {desc:<35s}  xG = {xg:.3f}")
+    print("\n  Post-Shot xGOT Prediction (Low corner, keeper out-of-position):")
+    post_model = models["post_shot_model"]
+    post_val = predict_post_shot_xg(post_model, val, placement_y=37.5, placement_z=0.2, gk_x=119.0, gk_y=43.0)
+    print(f"    xGOT = {post_val:.4f}")
 
     print("\nDone")
