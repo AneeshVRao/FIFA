@@ -1,72 +1,277 @@
 [
   {
     "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
+    "player": "Harry Kane",
+    "age": "32",
+    "nat": "England",
+    "club___league": "Bayern Munich",
+    "matches": "31",
+    "goals": "36",
+    "assists": "5",
+    "pts": "41"
   },
   {
     "rank": "2",
-    "entity": "Real Madrid",
-    "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
+    "player": "Michael Olise",
+    "age": "24",
+    "nat": "France",
+    "club___league": "Bayern Munich",
+    "matches": "32",
+    "goals": "15",
+    "assists": "21",
+    "pts": "36"
   },
   {
     "rank": "3",
-    "entity": "Arsenal",
-    "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
+    "player": "Erling Haaland",
+    "age": "25",
+    "nat": "Norway",
+    "club___league": "Manchester City",
+    "matches": "35",
+    "goals": "27",
+    "assists": "8",
+    "pts": "35"
   },
   {
     "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
+    "player": "Luis Díaz",
+    "age": "29",
+    "nat": "Colombia",
+    "club___league": "Bayern Munich",
+    "matches": "32",
+    "goals": "15",
+    "assists": "17",
+    "pts": "32"
   },
   {
     "rank": "5",
-    "entity": "Paris Saint-Germain",
-    "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "player": "Kylian Mbappé",
+    "age": "27",
+    "nat": "France",
+    "club___league": "Real Madrid",
+    "matches": "31",
+    "goals": "25",
+    "assists": "5",
+    "pts": "30"
   },
   {
     "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "player": "Bruno Fernandes",
+    "age": "31",
+    "nat": "Portugal",
+    "club___league": "Manchester United",
+    "matches": "35",
+    "goals": "9",
+    "assists": "21",
+    "pts": "30"
   },
   {
     "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "player": "Lamine Yamal",
+    "age": "18",
+    "nat": "Spain",
+    "club___league": "FC Barcelona",
+    "matches": "28",
+    "goals": "16",
+    "assists": "12",
+    "pts": "28"
   },
   {
     "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
+    "player": "Estéban Lepaul",
+    "age": "26",
+    "nat": "France",
+    "club___league": "2 clubs",
+    "matches": "34",
+    "goals": "21",
+    "assists": "5",
+    "pts": "26"
   },
   {
     "rank": "9",
-    "entity": "Barcelona",
-    "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "player": "Deniz Undav",
+    "age": "29",
+    "nat": "Germany",
+    "club___league": "VfB Stuttgart",
+    "matches": "29",
+    "goals": "19",
+    "assists": "6",
+    "pts": "25"
   },
   {
     "rank": "10",
-    "entity": "Borussia Dortmund",
-    "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "player": "Federico Dimarco",
+    "age": "28",
+    "nat": "Italy",
+    "club___league": "Inter Milan",
+    "matches": "35",
+    "goals": "7",
+    "assists": "18",
+    "pts": "25"
+  },
+  {
+    "rank": "11",
+    "player": "Vedat Muriqi",
+    "age": "32",
+    "nat": "Kosovo",
+    "club___league": "RCD Mallorca",
+    "matches": "37",
+    "goals": "23",
+    "assists": "1",
+    "pts": "24"
+  },
+  {
+    "rank": "12",
+    "player": "Igor Thiago",
+    "age": "24",
+    "nat": "Brazil",
+    "club___league": "Brentford FC",
+    "matches": "38",
+    "goals": "22",
+    "assists": "1",
+    "pts": "23"
+  },
+  {
+    "rank": "13",
+    "player": "Lautaro Martínez",
+    "age": "28",
+    "nat": "Argentina",
+    "club___league": "Inter Milan",
+    "matches": "30",
+    "goals": "17",
+    "assists": "6",
+    "pts": "23"
+  },
+  {
+    "rank": "14",
+    "player": "Mason Greenwood",
+    "age": "24",
+    "nat": "England",
+    "club___league": "Olympique Marseille",
+    "matches": "32",
+    "goals": "16",
+    "assists": "7",
+    "pts": "23"
+  },
+  {
+    "rank": "15",
+    "player": "João Pedro",
+    "age": "24",
+    "nat": "Brazil",
+    "club___league": "Chelsea FC",
+    "matches": "35",
+    "goals": "15",
+    "assists": "8",
+    "pts": "23"
+  },
+  {
+    "rank": "16",
+    "player": "Vinicius Junior",
+    "age": "25",
+    "nat": "Brazil",
+    "club___league": "Real Madrid",
+    "matches": "36",
+    "goals": "16",
+    "assists": "6",
+    "pts": "22"
+  },
+  {
+    "rank": "17",
+    "player": "Christoph Baumgartner",
+    "age": "26",
+    "nat": "Austria",
+    "club___league": "RB Leipzig",
+    "matches": "33",
+    "goals": "13",
+    "assists": "9",
+    "pts": "22"
+  },
+  {
+    "rank": "18",
+    "player": "Amario Cozier-Duberry",
+    "age": "21",
+    "nat": "England",
+    "club___league": "Bolton Wanderers",
+    "matches": "37",
+    "goals": "9",
+    "assists": "13",
+    "pts": "22"
+  },
+  {
+    "rank": "19",
+    "player": "Donyell Malen",
+    "age": "27",
+    "nat": "Netherlands",
+    "club___league": "2 clubs",
+    "matches": "39",
+    "goals": "18",
+    "assists": "3",
+    "pts": "21"
+  },
+  {
+    "rank": "20",
+    "player": "Antoine Semenyo",
+    "age": "26",
+    "nat": "Ghana",
+    "club___league": "2 clubs",
+    "matches": "37",
+    "goals": "17",
+    "assists": "4",
+    "pts": "21"
+  },
+  {
+    "rank": "21",
+    "player": "Yan Diomande",
+    "age": "19",
+    "nat": "Cote d'Ivoire",
+    "club___league": "RB Leipzig",
+    "matches": "33",
+    "goals": "12",
+    "assists": "9",
+    "pts": "21"
+  },
+  {
+    "rank": "22",
+    "player": "Georges Mikautadze",
+    "age": "25",
+    "nat": "Georgia",
+    "club___league": "2 clubs",
+    "matches": "34",
+    "goals": "14",
+    "assists": "6",
+    "pts": "20"
+  },
+  {
+    "rank": "23",
+    "player": "Andrej Kramaric",
+    "age": "34",
+    "nat": "Croatia",
+    "club___league": "TSG 1899 Hoffenheim",
+    "matches": "34",
+    "goals": "14",
+    "assists": "6",
+    "pts": "20"
+  },
+  {
+    "rank": "24",
+    "player": "Ayoube Amaimouni-Echghouyab",
+    "age": "21",
+    "nat": "Morocco",
+    "club___league": "2 clubs",
+    "matches": "35",
+    "goals": "11",
+    "assists": "9",
+    "pts": "20"
+  },
+  {
+    "rank": "25",
+    "player": "Jarrod Bowen",
+    "age": "29",
+    "nat": "England",
+    "club___league": "West Ham United",
+    "matches": "38",
+    "goals": "9",
+    "assists": "11",
+    "pts": "20"
   }
 ]

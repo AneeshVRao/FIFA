@@ -1,15 +1,6 @@
 [
   {
-    "club": "",
-    "name": "",
-    "squad": "560",
-    "ø_age": "26.4 Years",
-    "foreigners": "393",
-    "ø_market_value": "€22.71m",
-    "total_market_value": "€12.72bn"
-  },
-  {
-    "club": "",
+    "club": "Manchester City",
     "name": "Manchester City",
     "squad": "28",
     "ø_age": "26.3",
@@ -18,7 +9,7 @@
     "total_market_value": "€1.32bn"
   },
   {
-    "club": "",
+    "club": "Arsenal FC",
     "name": "Arsenal FC",
     "squad": "24",
     "ø_age": "26.6",
@@ -27,7 +18,7 @@
     "total_market_value": "€1.23bn"
   },
   {
-    "club": "",
+    "club": "Chelsea FC",
     "name": "Chelsea FC",
     "squad": "31",
     "ø_age": "23.7",
@@ -36,7 +27,7 @@
     "total_market_value": "€1.16bn"
   },
   {
-    "club": "",
+    "club": "Liverpool FC",
     "name": "Liverpool FC",
     "squad": "28",
     "ø_age": "26.1",
@@ -45,7 +36,7 @@
     "total_market_value": "€1.02bn"
   },
   {
-    "club": "",
+    "club": "Tottenham Hotspur",
     "name": "Tottenham Hotspur",
     "squad": "30",
     "ø_age": "25.7",
@@ -54,7 +45,7 @@
     "total_market_value": "€811.00m"
   },
   {
-    "club": "",
+    "club": "Manchester United",
     "name": "Manchester United",
     "squad": "27",
     "ø_age": "25.9",
@@ -63,7 +54,7 @@
     "total_market_value": "€748.40m"
   },
   {
-    "club": "",
+    "club": "Newcastle United",
     "name": "Newcastle United",
     "squad": "29",
     "ø_age": "28.0",
@@ -72,7 +63,7 @@
     "total_market_value": "€712.65m"
   },
   {
-    "club": "",
+    "club": "Nottingham Forest",
     "name": "Nottingham Forest",
     "squad": "29",
     "ø_age": "26.7",
@@ -81,7 +72,7 @@
     "total_market_value": "€568.00m"
   },
   {
-    "club": "",
+    "club": "Crystal Palace",
     "name": "Crystal Palace",
     "squad": "31",
     "ø_age": "26.1",
@@ -90,7 +81,7 @@
     "total_market_value": "€559.50m"
   },
   {
-    "club": "",
+    "club": "Aston Villa",
     "name": "Aston Villa",
     "squad": "26",
     "ø_age": "28.1",
@@ -99,7 +90,7 @@
     "total_market_value": "€554.50m"
   },
   {
-    "club": "",
+    "club": "Brighton & Hove Albion",
     "name": "Brighton & Hove Albion",
     "squad": "33",
     "ø_age": "26.5",
@@ -108,7 +99,7 @@
     "total_market_value": "€552.00m"
   },
   {
-    "club": "",
+    "club": "AFC Bournemouth",
     "name": "AFC Bournemouth",
     "squad": "26",
     "ø_age": "25.6",
@@ -117,7 +108,7 @@
     "total_market_value": "€507.10m"
   },
   {
-    "club": "",
+    "club": "Brentford FC",
     "name": "Brentford FC",
     "squad": "31",
     "ø_age": "25.1",
@@ -126,7 +117,7 @@
     "total_market_value": "€484.88m"
   },
   {
-    "club": "",
+    "club": "Everton FC",
     "name": "Everton FC",
     "squad": "26",
     "ø_age": "26.7",
@@ -135,7 +126,7 @@
     "total_market_value": "€450.80m"
   },
   {
-    "club": "",
+    "club": "Fulham FC",
     "name": "Fulham FC",
     "squad": "25",
     "ø_age": "28.0",
@@ -144,7 +135,7 @@
     "total_market_value": "€387.85m"
   },
   {
-    "club": "",
+    "club": "Sunderland AFC",
     "name": "Sunderland AFC",
     "squad": "28",
     "ø_age": "25.2",
@@ -153,7 +144,7 @@
     "total_market_value": "€381.95m"
   },
   {
-    "club": "",
+    "club": "West Ham United",
     "name": "West Ham United",
     "squad": "24",
     "ø_age": "26.8",
@@ -162,7 +153,7 @@
     "total_market_value": "€362.95m"
   },
   {
-    "club": "",
+    "club": "Leeds United",
     "name": "Leeds United",
     "squad": "26",
     "ø_age": "27.4",
@@ -171,7 +162,7 @@
     "total_market_value": "€346.03m"
   },
   {
-    "club": "",
+    "club": "Wolverhampton Wanderers",
     "name": "Wolverhampton Wanderers",
     "squad": "27",
     "ø_age": "26.0",
@@ -180,7 +171,7 @@
     "total_market_value": "€294.05m"
   },
   {
-    "club": "",
+    "club": "Burnley FC",
     "name": "Burnley FC",
     "squad": "31",
     "ø_age": "27.6",

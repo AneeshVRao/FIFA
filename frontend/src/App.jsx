@@ -11,6 +11,7 @@ import { StatsCenter } from "./components/StatsCenter";
 import { TacticsAnalyzer } from "./components/TacticsAnalyzer";
 import OpenerLoader from "./components/OpenerLoader";
 import KnockoutBracket from "./components/KnockoutBracket";
+import { PlayerRecruiter } from "./components/PlayerRecruiter";
 
 function App() {
   const [activeTab, setActiveTab] = useState("tournament-hub");
@@ -48,6 +49,8 @@ function App() {
         return <ShootoutArena />;
       case "tournament-bracket":
         return <KnockoutBracket fixtures={fixtures} />;
+      case "player-recruiter":
+        return <PlayerRecruiter />;
       default:
         return (
           <TournamentHub

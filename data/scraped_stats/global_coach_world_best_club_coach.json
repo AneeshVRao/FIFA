@@ -1,37 +1,182 @@
 [
   {
-    "rank": "1",
-    "coach": "Pep Guardiola",
-    "club": "Manchester City",
-    "tactics": "4-3-3 Attacking",
-    "avg_points_per_match": "2.35"
+    "year": "2025",
+    "manager": "Luis EnriqueParis Saint-Germain",
+    "club": "Paris Saint-Germain",
+    "nat": "Spain"
   },
   {
-    "rank": "2",
-    "coach": "Carlo Ancelotti",
+    "year": "2024",
+    "manager": "Carlo AncelottiReal Madrid",
     "club": "Real Madrid",
-    "tactics": "4-3-1-2 / 4-4-2 Diamond",
-    "avg_points_per_match": "2.28"
+    "nat": "Italy"
   },
   {
-    "rank": "3",
-    "coach": "Xabi Alonso",
-    "club": "Bayer Leverkusen",
-    "tactics": "3-4-2-1",
-    "avg_points_per_match": "2.42"
+    "year": "2023",
+    "manager": "Pep GuardiolaManchester City",
+    "club": "Manchester City",
+    "nat": "Spain"
   },
   {
-    "rank": "4",
-    "coach": "Mikel Arteta",
-    "club": "Arsenal",
-    "tactics": "4-3-3",
-    "avg_points_per_match": "2.12"
+    "year": "2022",
+    "manager": "Carlo AncelottiReal Madrid",
+    "club": "Real Madrid",
+    "nat": "Italy"
   },
   {
-    "rank": "5",
-    "coach": "Simone Inzaghi",
+    "year": "2021",
+    "manager": "Thomas TuchelChelsea FC",
+    "club": "Chelsea FC",
+    "nat": "Germany"
+  },
+  {
+    "year": "2020",
+    "manager": "Hansi FlickBayern Munich",
+    "club": "Bayern Munich",
+    "nat": "Germany"
+  },
+  {
+    "year": "2019",
+    "manager": "Jürgen KloppLiverpool FC",
+    "club": "Liverpool FC",
+    "nat": "Germany"
+  },
+  {
+    "year": "2018",
+    "manager": "Zinédine ZidaneReal Madrid",
+    "club": "Real Madrid",
+    "nat": "France"
+  },
+  {
+    "year": "2017",
+    "manager": "Zinédine ZidaneReal Madrid",
+    "club": "Real Madrid",
+    "nat": "France"
+  },
+  {
+    "year": "2016",
+    "manager": "Diego SimeoneAtlético de Madrid",
+    "club": "Atlético de Madrid",
+    "nat": "Argentina"
+  },
+  {
+    "year": "2015",
+    "manager": "Luis EnriqueFC Barcelona",
+    "club": "FC Barcelona",
+    "nat": "Spain"
+  },
+  {
+    "year": "2014",
+    "manager": "Carlo AncelottiReal Madrid",
+    "club": "Real Madrid",
+    "nat": "Italy"
+  },
+  {
+    "year": "2013",
+    "manager": "Jupp HeynckesBayern Munich",
+    "club": "Bayern Munich",
+    "nat": "Germany"
+  },
+  {
+    "year": "2012",
+    "manager": "José MourinhoReal Madrid",
+    "club": "Real Madrid",
+    "nat": "Portugal"
+  },
+  {
+    "year": "2011",
+    "manager": "Pep GuardiolaFC Barcelona",
+    "club": "FC Barcelona",
+    "nat": "Spain"
+  },
+  {
+    "year": "2010",
+    "manager": "José MourinhoInter Milan",
     "club": "Inter Milan",
-    "tactics": "3-5-2",
-    "avg_points_per_match": "2.18"
+    "nat": "Portugal"
+  },
+  {
+    "year": "2009",
+    "manager": "Pep GuardiolaFC Barcelona",
+    "club": "FC Barcelona",
+    "nat": "Spain"
+  },
+  {
+    "year": "2008",
+    "manager": "Alex FergusonManchester United",
+    "club": "Manchester United",
+    "nat": "Scotland"
+  },
+  {
+    "year": "2007",
+    "manager": "Carlo AncelottiAC Milan",
+    "club": "AC Milan",
+    "nat": "Italy"
+  },
+  {
+    "year": "2006",
+    "manager": "Frank RijkaardFC Barcelona",
+    "club": "FC Barcelona",
+    "nat": "Netherlands"
+  },
+  {
+    "year": "2005",
+    "manager": "José MourinhoChelsea FC",
+    "club": "Chelsea FC",
+    "nat": "Portugal"
+  },
+  {
+    "year": "2004",
+    "manager": "José MourinhoFC Porto",
+    "club": "FC Porto",
+    "nat": "Portugal"
+  },
+  {
+    "year": "2003",
+    "manager": "Carlos BianchiCA Boca Juniors",
+    "club": "CA Boca Juniors",
+    "nat": "Argentina"
+  },
+  {
+    "year": "2002",
+    "manager": "Vicente del BosqueReal Madrid",
+    "club": "Real Madrid",
+    "nat": "Spain"
+  },
+  {
+    "year": "2001",
+    "manager": "Ottmar HitzfeldBayern Munich",
+    "club": "Bayern Munich",
+    "nat": "Germany"
+  },
+  {
+    "year": "2000",
+    "manager": "Carlos BianchiCA Boca Juniors",
+    "club": "CA Boca Juniors",
+    "nat": "Argentina"
+  },
+  {
+    "year": "1999",
+    "manager": "Alex FergusonManchester United",
+    "club": "Manchester United",
+    "nat": "Scotland"
+  },
+  {
+    "year": "1998",
+    "manager": "Marcello LippiJuventus FC",
+    "club": "Juventus FC",
+    "nat": "Italy"
+  },
+  {
+    "year": "1997",
+    "manager": "Ottmar HitzfeldBorussia Dortmund",
+    "club": "Borussia Dortmund",
+    "nat": "Germany"
+  },
+  {
+    "year": "1996",
+    "manager": "Marcello LippiJuventus FC",
+    "club": "Juventus FC",
+    "nat": "Italy"
   }
 ]

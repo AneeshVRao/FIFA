@@ -119,6 +119,24 @@ async def lifespan(app: FastAPI):
         logger.error("Failed to build baseline team forms: %s", exc)
         raise exc
 
+    # 6. Load Expected Threat (xT) model
+    try:
+        from backend.model_xt import load_xt_matrix
+        state["xt_matrix"] = load_xt_matrix()
+        logger.info("xT Expected Threat matrix loaded.")
+    except Exception as exc:
+        logger.error("Failed to load xT expected threat matrix: %s", exc)
+        raise exc
+
+    # 7. Load Pass Completion (xP) model
+    try:
+        from backend.model_xp import load_xp_model
+        state["xp_model"] = load_xp_model()
+        logger.info("xP pass completion model loaded.")
+    except Exception as exc:
+        logger.error("Failed to load xP pass completion model: %s", exc)
+        raise exc
+
     yield
     # Shutdown: clean up
     logger.info("Shutting down backend server...")
@@ -139,6 +157,49 @@ from fastapi.staticfiles import StaticFiles
 assets_dir = FRONTEND_DIR / "dist" / "assets"
 if assets_dir.exists():
     app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+
+def update_team_form(forms_dict, team, goals, opponent_goals):
+    if goals > opponent_goals:
+        pts = 3.0
+    elif goals < opponent_goals:
+        pts = 0.0
+    else:
+        pts = 1.0
+    recent = forms_dict.setdefault(team, [1.0])
+    recent.append(pts)
+    if len(recent) > 5:
+        recent.pop(0)
+    forms_dict[team] = recent
+
+def simulate_knockout_match_with_form(ratings, forms, home, away, is_neutral, rng, sim_completed, shadow_ratings=None, shadow_forms=None):
+    from backend.elo import simulate_knockout_score, update_elo
+    h_recent = forms.get(home, [1.0])
+    a_recent = forms.get(away, [1.0])
+    form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+    
+    if sim_completed:
+        res = simulate_knockout_score(ratings, home, away, is_neutral=is_neutral, rng=rng, form_diff=form_diff)
+        update_elo(ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=is_neutral)
+        if shadow_ratings is not None:
+            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=is_neutral)
+        update_team_form(forms, home, res["home_goals"], res["away_goals"])
+        update_team_form(forms, away, res["away_goals"], res["home_goals"])
+        if shadow_forms is not None:
+            update_team_form(shadow_forms, home, res["home_goals"], res["away_goals"])
+            update_team_form(shadow_forms, away, res["away_goals"], res["home_goals"])
+    else:
+        h_recent_sh = shadow_forms.get(home, [1.0]) if shadow_forms is not None else h_recent
+        a_recent_sh = shadow_forms.get(away, [1.0]) if shadow_forms is not None else a_recent
+        form_diff_sh = sum(h_recent_sh) / len(h_recent_sh) - sum(a_recent_sh) / len(a_recent_sh)
+        
+        res = simulate_knockout_score(ratings, home, away, is_neutral=is_neutral, rng=rng, form_diff=form_diff_sh)
+        update_elo(ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=is_neutral)
+        if shadow_forms is not None:
+            update_team_form(shadow_forms, home, res["home_goals"], res["away_goals"])
+            update_team_form(shadow_forms, away, res["away_goals"], res["home_goals"])
+            
+    return res
 
 
 # ── helper function for tournament state ─────────────────────────
@@ -184,20 +245,20 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         a_recent = team_forms.get(away, [1.0])
         home_form_val = sum(h_recent) / len(h_recent)
         away_form_val = sum(a_recent) / len(a_recent)
+        form_diff = home_form_val - away_form_val
         
         # Calculate Elo ratings and predictions
         home_elo = current_ratings.setdefault(home, 1500.0)
         away_elo = current_ratings.setdefault(away, 1500.0)
         
         # Predictions
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         from backend.team_metadata import TEAM_METADATA
         home_meta = TEAM_METADATA.get(home, {"squad_value": 50.0, "fifa_rank": 80})
         away_meta = TEAM_METADATA.get(away, {"squad_value": 50.0, "fifa_rank": 80})
         squad_diff = home_meta["squad_value"] - away_meta["squad_value"]
         rank_diff = away_meta["fifa_rank"] - home_meta["fifa_rank"]
         squad_ratio = home_meta["squad_value"] / (away_meta["squad_value"] + 1.0)
-        form_diff = home_form_val - away_form_val
 
         features = np.array([[
             home_elo - away_elo,
@@ -225,7 +286,7 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             # Match is COMPLETED -> Simulate deterministically
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + idx)
-            home_goals, away_goals = simulate_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            home_goals, away_goals = simulate_score(current_ratings, home, away, is_neutral=True, rng=rng, form_diff=form_diff)
             
             fixture["home_score"] = home_goals
             fixture["away_score"] = away_goals
@@ -285,7 +346,20 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
     shadow_ratings = current_ratings.copy()
     shadow_forms = copy.deepcopy(team_forms)
     shadow_standings = copy.deepcopy(standings)
-    
+    # Helper to update team forms during simulation
+    def update_team_form(forms_dict, team, goals, opponent_goals):
+        if goals > opponent_goals:
+            pts = 3.0
+        elif goals < opponent_goals:
+            pts = 0.0
+        else:
+            pts = 1.0
+        recent = forms_dict.setdefault(team, [1.0])
+        recent.append(pts)
+        if len(recent) > 5:
+            recent.pop(0)
+        forms_dict[team] = recent
+
     # Run shadow group-stage simulation for any upcoming group fixtures
     for idx, fixture in enumerate(fixtures_list, start=1):
         if fixture["status"] == "upcoming":
@@ -293,10 +367,16 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             away = fixture["away"]
             group_name = fixture["group"]
             
+            h_recent = shadow_forms.get(home, [1.0])
+            a_recent = shadow_forms.get(away, [1.0])
+            form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+            
             rng = np.random.default_rng(2026 + idx)
-            h_goals, a_goals = simulate_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
+            h_goals, a_goals = simulate_score(shadow_ratings, home, away, is_neutral=True, rng=rng, form_diff=form_diff)
             
             update_elo(shadow_ratings, home, away, h_goals, a_goals, is_neutral=True)
+            update_team_form(shadow_forms, home, h_goals, a_goals)
+            update_team_form(shadow_forms, away, a_goals, h_goals)
             
             # Update shadow standings
             h_stat = shadow_standings[group_name][home]
@@ -402,8 +482,12 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         home_elo = current_ratings.setdefault(home, 1500.0)
         away_elo = current_ratings.setdefault(away, 1500.0)
         
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
         # Get Elo prediction
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         
         fixture = {
             "match_id": match_id,
@@ -419,16 +503,13 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         if fixture_date < sim_date:
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            res = simulate_knockout_match_with_form(
+                current_ratings, team_forms, home, away, True, rng, True, shadow_ratings, shadow_forms
+            )
             
             fixture.update(res)
             fixture["home_score"] = res["home_goals"]
             fixture["away_score"] = res["away_goals"]
-            # Update real Elo ratings
-            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            # Sync shadow Elo ratings
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            
             r32_results.append(res["winner"])
         else:
             fixture["status"] = "upcoming"
@@ -437,9 +518,9 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             
             # Simulate shadow winner
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            
+            res = simulate_knockout_match_with_form(
+                shadow_ratings, team_forms, home, away, True, rng, False, shadow_ratings, shadow_forms
+            )
             r32_results.append(res["winner"])
             
         fixtures_list.append(fixture)
@@ -461,7 +542,11 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         fixture_date = pd.Timestamp(m_date).date()
         match_id = idx
         
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         fixture = {
             "match_id": match_id,
             "date": m_date,
@@ -476,12 +561,12 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         if fixture_date < sim_date:
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            res = simulate_knockout_match_with_form(
+                current_ratings, team_forms, home, away, True, rng, True, shadow_ratings, shadow_forms
+            )
             fixture.update(res)
             fixture["home_score"] = res["home_goals"]
             fixture["away_score"] = res["away_goals"]
-            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
             r16_results.append(res["winner"])
         else:
             fixture["status"] = "upcoming"
@@ -489,8 +574,9 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             fixture["away_score"] = None
             
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            res = simulate_knockout_match_with_form(
+                shadow_ratings, team_forms, home, away, True, rng, False, shadow_ratings, shadow_forms
+            )
             r16_results.append(res["winner"])
             
         fixtures_list.append(fixture)
@@ -508,7 +594,11 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         fixture_date = pd.Timestamp(m_date).date()
         match_id = idx
         
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         fixture = {
             "match_id": match_id,
             "date": m_date,
@@ -523,12 +613,12 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         if fixture_date < sim_date:
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            res = simulate_knockout_match_with_form(
+                current_ratings, team_forms, home, away, True, rng, True, shadow_ratings, shadow_forms
+            )
             fixture.update(res)
             fixture["home_score"] = res["home_goals"]
             fixture["away_score"] = res["away_goals"]
-            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
             qf_results.append(res["winner"])
         else:
             fixture["status"] = "upcoming"
@@ -536,8 +626,9 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             fixture["away_score"] = None
             
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            res = simulate_knockout_match_with_form(
+                shadow_ratings, team_forms, home, away, True, rng, False, shadow_ratings, shadow_forms
+            )
             qf_results.append(res["winner"])
             
         fixtures_list.append(fixture)
@@ -553,7 +644,11 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         fixture_date = pd.Timestamp(m_date).date()
         match_id = idx
         
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         fixture = {
             "match_id": match_id,
             "date": m_date,
@@ -568,12 +663,12 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         if fixture_date < sim_date:
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            res = simulate_knockout_match_with_form(
+                current_ratings, team_forms, home, away, True, rng, True, shadow_ratings, shadow_forms
+            )
             fixture.update(res)
             fixture["home_score"] = res["home_goals"]
             fixture["away_score"] = res["away_goals"]
-            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
             
             loser = away if res["winner"] == home else home
             sf_results.append((res["winner"], loser))
@@ -583,8 +678,9 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
             fixture["away_score"] = None
             
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            res = simulate_knockout_match_with_form(
+                shadow_ratings, team_forms, home, away, True, rng, False, shadow_ratings, shadow_forms
+            )
             
             loser = away if res["winner"] == home else home
             sf_results.append((res["winner"], loser))
@@ -599,7 +695,11 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
     
     for home, away, m_date, venue, grp, match_id in ko_finals:
         fixture_date = pd.Timestamp(m_date).date()
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         fixture = {
             "match_id": match_id,
             "date": m_date,
@@ -614,20 +714,21 @@ def calculate_tournament_state(simulated_date_str: str) -> dict:
         if fixture_date < sim_date:
             fixture["status"] = "completed"
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(current_ratings, home, away, is_neutral=True, rng=rng)
+            res = simulate_knockout_match_with_form(
+                current_ratings, team_forms, home, away, True, rng, True, shadow_ratings, shadow_forms
+            )
             fixture.update(res)
             fixture["home_score"] = res["home_goals"]
             fixture["away_score"] = res["away_goals"]
-            update_elo(current_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
         else:
             fixture["status"] = "upcoming"
             fixture["home_score"] = None
             fixture["away_score"] = None
             
             rng = np.random.default_rng(2026 + match_id)
-            res = simulate_knockout_score(shadow_ratings, home, away, is_neutral=True, rng=rng)
-            update_elo(shadow_ratings, home, away, res["home_goals"], res["away_goals"], is_neutral=True)
+            res = simulate_knockout_match_with_form(
+                shadow_ratings, team_forms, home, away, True, rng, False, shadow_ratings, shadow_forms
+            )
             
         fixtures_list.append(fixture)
 
@@ -685,7 +786,8 @@ async def get_predict(
 
     # Compute forms
     # Recreate Elo & form state at date
-    current_ratings = state["baseline_ratings"].copy()
+    from backend.team_metadata import get_unified_elo
+    current_ratings = {team: get_unified_elo(team, elo) for team, elo in state["baseline_ratings"].items()}
     team_forms = {team: list(pts) for team, pts in state["team_recent_results_baseline"].items()}
     fixtures_list = [dict(f) for f in state["fixtures_seed"]]
     fixtures_list.sort(key=lambda x: x["date"])
@@ -697,11 +799,13 @@ async def get_predict(
         fixture_date = pd.Timestamp(fixture["date"]).date()
         if fixture_date < sim_date:
             rng = np.random.default_rng(2026 + idx)
-            home_goals, away_goals = simulate_score(current_ratings, f_home, f_away, is_neutral=True, rng=rng)
-            update_elo(current_ratings, f_home, f_away, home_goals, away_goals, is_neutral=True)
-            
             h_recent = team_forms.get(f_home, [1.0])
             a_recent = team_forms.get(f_away, [1.0])
+            form_diff_match = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+            
+            home_goals, away_goals = simulate_score(current_ratings, f_home, f_away, is_neutral=True, rng=rng, form_diff=form_diff_match)
+            update_elo(current_ratings, f_home, f_away, home_goals, away_goals, is_neutral=True)
+            
             h_pts = 3 if home_goals > away_goals else (1 if home_goals == away_goals else 0)
             a_pts = 3 if away_goals > home_goals else (1 if home_goals == away_goals else 0)
             
@@ -719,9 +823,10 @@ async def get_predict(
     a_recent = team_forms.get(away, [1.0])
     home_form_val = sum(h_recent) / len(h_recent)
     away_form_val = sum(a_recent) / len(a_recent)
+    form_diff = home_form_val - away_form_val
 
     # 1. Elo Prediction (Poisson)
-    elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+    elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
 
     from backend.team_metadata import TEAM_METADATA
     home_meta = TEAM_METADATA.get(home, {"squad_value": 100, "fifa_rank": 50, "fifa_points": 1500})
@@ -729,7 +834,6 @@ async def get_predict(
     squad_diff = home_meta["squad_value"] - away_meta["squad_value"]
     rank_diff = away_meta["fifa_rank"] - home_meta["fifa_rank"]
     squad_ratio = home_meta["squad_value"] / (away_meta["squad_value"] + 1.0)
-    form_diff = home_form_val - away_form_val
 
     # 2. ML Prediction (Logistic Regression)
     features = np.array([[
@@ -776,7 +880,10 @@ async def get_predict_live(
 ):
     """Calculates Bayesian prediction updates as live in-game events occur."""
     try:
-        current_ratings = state["baseline_ratings"].copy()
+        from backend.team_metadata import get_unified_elo
+        current_ratings = {team: get_unified_elo(team, elo) for team, elo in state["baseline_ratings"].items()}
+        team_forms = {team: list(pts) for team, pts in state["team_recent_results_baseline"].items()}
+        
         fixtures_list = [dict(f) for f in state["fixtures_seed"]]
         fixtures_list.sort(key=lambda x: x["date"])
         sim_date = pd.Timestamp(date).date()
@@ -787,10 +894,31 @@ async def get_predict_live(
             fixture_date = pd.Timestamp(fixture["date"]).date()
             if fixture_date < sim_date:
                 rng = np.random.default_rng(2026 + idx)
-                home_goals_sim, away_goals_sim = simulate_score(current_ratings, f_home, f_away, is_neutral=True, rng=rng)
+                h_recent = team_forms.get(f_home, [1.0])
+                a_recent = team_forms.get(f_away, [1.0])
+                form_diff_match = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+                
+                home_goals_sim, away_goals_sim = simulate_score(current_ratings, f_home, f_away, is_neutral=True, rng=rng, form_diff=form_diff_match)
                 update_elo(current_ratings, f_home, f_away, home_goals_sim, away_goals_sim, is_neutral=True)
+                
+                h_pts = 3 if home_goals_sim > away_goals_sim else (1 if home_goals_sim == away_goals_sim else 0)
+                a_pts = 3 if away_goals_sim > home_goals_sim else (1 if home_goals_sim == away_goals_sim else 0)
+                
+                h_recent.append(h_pts)
+                if len(h_recent) > 5:
+                    h_recent.pop(0)
+                team_forms[f_home] = h_recent
+                
+                a_recent.append(a_pts)
+                if len(a_recent) > 5:
+                    a_recent.pop(0)
+                team_forms[f_away] = a_recent
 
-        elo_preds = predict_match(current_ratings, home, away, is_neutral=True)
+        h_recent = team_forms.get(home, [1.0])
+        a_recent = team_forms.get(away, [1.0])
+        form_diff = sum(h_recent) / len(h_recent) - sum(a_recent) / len(a_recent)
+        
+        elo_preds = predict_match(current_ratings, home, away, is_neutral=True, form_diff=form_diff)
         
         from backend.prediction_fusion import compute_live_probabilities
         live_probs = compute_live_probabilities(
@@ -951,3 +1079,54 @@ async def get_tactics_matchup(
     except Exception as exc:
         logger.error("Error compiling tactics matchup for %s vs %s: %s", home, away, exc)
         raise HTTPException(status_code=500, detail="Tactics matching execution failed.")
+
+
+@app.get("/api/xt/heatmap")
+async def get_xt_heatmap():
+    """Returns the pre-computed 12x8 expected threat (xT) matrix."""
+    if "xt_matrix" not in state or state["xt_matrix"] is None:
+        raise HTTPException(status_code=500, detail="xT matrix not loaded.")
+    return JSONResponse(content={"heatmap": state["xt_matrix"].tolist()})
+
+
+@app.get("/api/xp")
+async def get_xp(
+    x_start: float = Query(..., description="Start X coordinate (0-120)"),
+    y_start: float = Query(..., description="Start Y coordinate (0-80)"),
+    x_end: float = Query(..., description="End X coordinate (0-120)"),
+    y_end: float = Query(..., description="End Y coordinate (0-80)"),
+    is_header: int = Query(0, description="1 if pass is a header, 0 otherwise"),
+    under_pressure: int = Query(0, description="1 if under pressure, 0 otherwise")
+):
+    """Computes the pass completion probability using XGBoost xP model."""
+    if "xp_model" not in state or state["xp_model"] is None:
+        raise HTTPException(status_code=500, detail="xP model not loaded.")
+    try:
+        from backend.model_xp import compute_pass_features
+        feat = compute_pass_features(x_start, y_start, x_end, y_end, is_header, under_pressure)
+        prob = state["xp_model"].predict_proba(feat)[0, 1]
+        return JSONResponse(content={"probability": round(float(prob), 4)})
+    except Exception as exc:
+        logger.error("Error predicting pass completion: %s", exc)
+        raise HTTPException(status_code=500, detail="xP prediction calculation failed.")
+
+
+@app.get("/api/players/similar")
+async def get_similar_players(
+    player: str = Query(..., description="Name of active player"),
+    position: str = Query("FW", description="Position of player (FW, MF, DF, GK)")
+):
+    """Returns top 5 similar historical player analogues for an active player."""
+    try:
+        from backend.player_similarity import find_similar_players, get_player_vector_deterministically
+        similar = find_similar_players(player, position)
+        vector = get_player_vector_deterministically(player, position)
+        return JSONResponse(content={
+            "player": player,
+            "position": position,
+            "vector": vector,
+            "similar": similar
+        })
+    except Exception as exc:
+        logger.error("Error finding similar players for %s: %s", player, exc)
+        raise HTTPException(status_code=500, detail="Player similarity matching failed.")

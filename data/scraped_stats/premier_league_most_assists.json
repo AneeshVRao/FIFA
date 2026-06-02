@@ -1,72 +1,227 @@
 [
   {
     "rank": "1",
-    "player": "Ollie Watkins",
-    "club": "Aston Villa",
-    "assists": "13",
-    "matches": "37"
+    "player": "Bruno Fernandes",
+    "nat": "Portugal",
+    "age": "31",
+    "club": "Manchester United",
+    "appearances": "35",
+    "assists": "21"
   },
   {
     "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "assists": "11",
-    "matches": "33"
+    "player": "Rayan Cherki",
+    "nat": "France",
+    "age": "22",
+    "club": "Manchester City",
+    "appearances": "33",
+    "assists": "12"
   },
   {
     "rank": "3",
-    "player": "Kevin De Bruyne",
-    "club": "Manchester City",
-    "assists": "10",
-    "matches": "18"
+    "player": "Jarrod Bowen",
+    "nat": "England",
+    "age": "29",
+    "club": "West Ham United",
+    "appearances": "38",
+    "assists": "11"
   },
   {
     "rank": "4",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "assists": "10",
-    "matches": "32"
+    "player": "Dango Ouattara",
+    "nat": "Burkina Faso",
+    "age": "24",
+    "club": "Brentford FC",
+    "appearances": "32",
+    "assists": "8"
   },
   {
     "rank": "5",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "assists": "10",
-    "matches": "35"
+    "player": "Erling Haaland",
+    "nat": "Norway",
+    "age": "25",
+    "club": "Manchester City",
+    "appearances": "35",
+    "assists": "8"
   },
   {
     "rank": "6",
-    "player": "Kieran Trippier",
-    "club": "Newcastle United",
-    "assists": "10",
-    "matches": "28"
+    "player": "João Pedro",
+    "nat": "Brazil",
+    "age": "24",
+    "club": "Chelsea FC",
+    "appearances": "35",
+    "assists": "8"
   },
   {
     "rank": "7",
-    "player": "Morgan Gibbs-White",
-    "club": "Nottingham Forest",
-    "assists": "10",
-    "matches": "37"
+    "player": "Martin Ødegaard",
+    "nat": "Norway",
+    "age": "27",
+    "club": "Arsenal FC",
+    "appearances": "24",
+    "assists": "7"
   },
   {
     "rank": "8",
-    "player": "Anthony Gordon",
-    "club": "Newcastle United",
-    "assists": "10",
-    "matches": "35"
+    "player": "Mohamed Salah",
+    "nat": "Egypt",
+    "age": "33",
+    "club": "Liverpool FC",
+    "appearances": "27",
+    "assists": "7"
   },
   {
     "rank": "9",
-    "player": "Pascal Groß",
-    "club": "Brighton & Hove Albion",
-    "assists": "10",
-    "matches": "36"
+    "player": "Jérémy Doku",
+    "nat": "Belgium",
+    "age": "23",
+    "club": "Manchester City",
+    "appearances": "30",
+    "assists": "7"
   },
   {
     "rank": "10",
-    "player": "Martin Ødegaard",
-    "club": "Arsenal",
-    "assists": "10",
-    "matches": "35"
+    "player": "Bukayo Saka",
+    "nat": "England",
+    "age": "24",
+    "club": "Arsenal FC",
+    "appearances": "31",
+    "assists": "7"
+  },
+  {
+    "rank": "11",
+    "player": "Omari Hutchinson",
+    "nat": "England",
+    "age": "22",
+    "club": "Nottingham Forest",
+    "appearances": "31",
+    "assists": "7"
+  },
+  {
+    "rank": "12",
+    "player": "Matheus Nunes",
+    "nat": "Portugal",
+    "age": "27",
+    "club": "Manchester City",
+    "appearances": "34",
+    "assists": "7"
+  },
+  {
+    "rank": "13",
+    "player": "Harry Wilson",
+    "nat": "Wales",
+    "age": "29",
+    "club": "Fulham FC",
+    "appearances": "36",
+    "assists": "7"
+  },
+  {
+    "rank": "14",
+    "player": "Declan Rice",
+    "nat": "England",
+    "age": "27",
+    "club": "Arsenal FC",
+    "appearances": "36",
+    "assists": "7"
+  },
+  {
+    "rank": "15",
+    "player": "Dominik Szoboszlai",
+    "nat": "Hungary",
+    "age": "25",
+    "club": "Liverpool FC",
+    "appearances": "36",
+    "assists": "7"
+  },
+  {
+    "rank": "16",
+    "player": "Morgan Rogers",
+    "nat": "England",
+    "age": "23",
+    "club": "Aston Villa",
+    "appearances": "37",
+    "assists": "7"
+  },
+  {
+    "rank": "17",
+    "player": "James Garner",
+    "nat": "England",
+    "age": "25",
+    "club": "Everton FC",
+    "appearances": "38",
+    "assists": "7"
+  },
+  {
+    "rank": "18",
+    "player": "Mohammed Kudus",
+    "nat": "Ghana",
+    "age": "25",
+    "club": "Tottenham Hotspur",
+    "appearances": "19",
+    "assists": "6"
+  },
+  {
+    "rank": "19",
+    "player": "Jack Grealish",
+    "nat": "England",
+    "age": "30",
+    "club": "Everton FC",
+    "appearances": "20",
+    "assists": "6"
+  },
+  {
+    "rank": "20",
+    "player": "Bruno Guimarães",
+    "nat": "Brazil",
+    "age": "28",
+    "club": "Newcastle United",
+    "appearances": "29",
+    "assists": "6"
+  },
+  {
+    "rank": "21",
+    "player": "Jurriën Timber",
+    "nat": "Netherlands",
+    "age": "24",
+    "club": "Arsenal FC",
+    "appearances": "30",
+    "assists": "6"
+  },
+  {
+    "rank": "22",
+    "player": "Lucas Digne",
+    "nat": "France",
+    "age": "32",
+    "club": "Aston Villa",
+    "appearances": "31",
+    "assists": "6"
+  },
+  {
+    "rank": "23",
+    "player": "Leandro Trossard",
+    "nat": "Belgium",
+    "age": "31",
+    "club": "Arsenal FC",
+    "appearances": "31",
+    "assists": "6"
+  },
+  {
+    "rank": "24",
+    "player": "Kiernan Dewsbury-Hall",
+    "nat": "England",
+    "age": "27",
+    "club": "Everton FC",
+    "appearances": "31",
+    "assists": "6"
+  },
+  {
+    "rank": "25",
+    "player": "Granit Xhaka",
+    "nat": "Switzerland",
+    "age": "33",
+    "club": "Sunderland AFC",
+    "appearances": "34",
+    "assists": "6"
   }
 ]

@@ -1,9 +1,142 @@
 [
   {
-    "rank": "",
-    "stadium": "Total:",
-    "capacity": "0",
-    "spectators": "15.727.455",
-    "average": "41.607"
+    "rank": "1",
+    "stadium": "Old TraffordManchester United",
+    "capacity": "74.879",
+    "spectators": "1.405.516",
+    "average": "73.975"
+  },
+  {
+    "rank": "2",
+    "stadium": "London StadiumWest Ham United",
+    "capacity": "62.500",
+    "spectators": "1.184.601",
+    "average": "62.347"
+  },
+  {
+    "rank": "3",
+    "stadium": "Tottenham Hotspur StadiumTottenham Hotspur",
+    "capacity": "62.850",
+    "spectators": "1.159.052",
+    "average": "61.003"
+  },
+  {
+    "rank": "4",
+    "stadium": "AnfieldLiverpool FC",
+    "capacity": "61.276",
+    "spectators": "1.147.390",
+    "average": "60.389"
+  },
+  {
+    "rank": "5",
+    "stadium": "Emirates StadiumArsenal FC",
+    "capacity": "60.704",
+    "spectators": "1.144.129",
+    "average": "60.217"
+  },
+  {
+    "rank": "6",
+    "stadium": "Etihad StadiumManchester City",
+    "capacity": "61.000",
+    "spectators": "1.000.166",
+    "average": "52.640"
+  },
+  {
+    "rank": "7",
+    "stadium": "Hill Dickinson StadiumEverton FC",
+    "capacity": "52.769",
+    "spectators": "990.504",
+    "average": "52.132"
+  },
+  {
+    "rank": "8",
+    "stadium": "St James' ParkNewcastle United",
+    "capacity": "52.258",
+    "spectators": "989.806",
+    "average": "52.095"
+  },
+  {
+    "rank": "9",
+    "stadium": "Villa ParkAston Villa",
+    "capacity": "43.205",
+    "spectators": "797.564",
+    "average": "41.977"
+  },
+  {
+    "rank": "10",
+    "stadium": "Stadium of LightSunderland AFC",
+    "capacity": "48.707",
+    "spectators": "789.088",
+    "average": "46.417"
+  },
+  {
+    "rank": "11",
+    "stadium": "Stamford BridgeChelsea FC",
+    "capacity": "41.631",
+    "spectators": "753.556",
+    "average": "39.661"
+  },
+  {
+    "rank": "12",
+    "stadium": "Elland RoadLeeds United",
+    "capacity": "37.890",
+    "spectators": "697.198",
+    "average": "36.695"
+  },
+  {
+    "rank": "13",
+    "stadium": "AMEX StadiumBrighton & Hove Albion",
+    "capacity": "31.876",
+    "spectators": "596.201",
+    "average": "31.379"
+  },
+  {
+    "rank": "14",
+    "stadium": "The City GroundNottingham Forest",
+    "capacity": "30.404",
+    "spectators": "577.991",
+    "average": "30.421"
+  },
+  {
+    "rank": "15",
+    "stadium": "Molineux StadiumWolverhampton Wanderers",
+    "capacity": "31.750",
+    "spectators": "566.867",
+    "average": "29.835"
+  },
+  {
+    "rank": "16",
+    "stadium": "Craven CottageFulham FC",
+    "capacity": "29.589",
+    "spectators": "517.338",
+    "average": "27.228"
+  },
+  {
+    "rank": "17",
+    "stadium": "Selhurst ParkCrystal Palace",
+    "capacity": "25.486",
+    "spectators": "473.572",
+    "average": "24.925"
+  },
+  {
+    "rank": "18",
+    "stadium": "Turf MoorBurnley FC",
+    "capacity": "21.994",
+    "spectators": "399.090",
+    "average": "21.005"
+  },
+  {
+    "rank": "19",
+    "stadium": "Gtech Community StadiumBrentford FC",
+    "capacity": "17.250",
+    "spectators": "325.505",
+    "average": "17.132"
+  },
+  {
+    "rank": "20",
+    "stadium": "Vitality StadiumAFC Bournemouth",
+    "capacity": "11.307",
+    "spectators": "212.321",
+    "average": "11.175"
   }
 ]

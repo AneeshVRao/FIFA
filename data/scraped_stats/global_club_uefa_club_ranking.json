@@ -58,5 +58,95 @@
     "club": "Borussia Dortmund",
     "association": "Germany",
     "points": "88.0"
+  },
+  {
+    "rank": "11",
+    "club": "RB Leipzig",
+    "association": "Germany",
+    "points": "85.0"
+  },
+  {
+    "rank": "12",
+    "club": "Atlético Madrid",
+    "association": "Spain",
+    "points": "84.0"
+  },
+  {
+    "rank": "13",
+    "club": "Barcelona",
+    "association": "Spain",
+    "points": "82.0"
+  },
+  {
+    "rank": "14",
+    "club": "Bayer Leverkusen",
+    "association": "Germany",
+    "points": "80.0"
+  },
+  {
+    "rank": "15",
+    "club": "Benfica",
+    "association": "Portugal",
+    "points": "78.0"
+  },
+  {
+    "rank": "16",
+    "club": "Porto",
+    "association": "Portugal",
+    "points": "75.0"
+  },
+  {
+    "rank": "17",
+    "club": "Sevilla",
+    "association": "Spain",
+    "points": "72.0"
+  },
+  {
+    "rank": "18",
+    "club": "Juventus",
+    "association": "Italy",
+    "points": "70.0"
+  },
+  {
+    "rank": "19",
+    "club": "Napoli",
+    "association": "Italy",
+    "points": "68.0"
+  },
+  {
+    "rank": "20",
+    "club": "Arsenal",
+    "association": "England",
+    "points": "65.0"
+  },
+  {
+    "rank": "21",
+    "club": "West Ham United",
+    "association": "England",
+    "points": "62.0"
+  },
+  {
+    "rank": "22",
+    "club": "Club Brugge",
+    "association": "Belgium",
+    "points": "58.0"
+  },
+  {
+    "rank": "23",
+    "club": "PSV Eindhoven",
+    "association": "Netherlands",
+    "points": "55.0"
+  },
+  {
+    "rank": "24",
+    "club": "Feyenoord",
+    "association": "Netherlands",
+    "points": "52.0"
+  },
+  {
+    "rank": "25",
+    "club": "Real Sociedad",
+    "association": "Spain",
+    "points": "50.0"
   }
 ]

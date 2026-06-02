@@ -1,82 +1,252 @@
 [
   {
     "rank": "1",
-    "player": "Erling Haaland",
-    "club": "Manchester City",
-    "goals": "27",
-    "assists": "5",
-    "matches": "31"
+    "player": "Pa Ousman Gai",
+    "age": "26",
+    "nat": "The Gambia",
+    "club": "Manila Digger FC",
+    "appearances": "13",
+    "minutes_per_goal": "36",
+    "goals": "26"
   },
   {
     "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "goals": "22",
-    "assists": "11",
-    "matches": "33"
+    "player": "Kevin Torres",
+    "age": "23",
+    "nat": "Puerto Rico",
+    "club": "Academia Quintana",
+    "appearances": "18",
+    "minutes_per_goal": "46",
+    "goals": "26"
   },
   {
     "rank": "3",
-    "player": "Alexander Isak",
-    "club": "Newcastle United",
-    "goals": "21",
-    "assists": "2",
-    "matches": "30"
+    "player": "Ivan Toney",
+    "age": "30",
+    "nat": "England",
+    "club": "Al-Ahli SFC",
+    "appearances": "22",
+    "minutes_per_goal": "75",
+    "goals": "26"
   },
   {
     "rank": "4",
-    "player": "Ollie Watkins",
-    "club": "Aston Villa",
-    "goals": "19",
-    "assists": "13",
-    "matches": "37"
+    "player": "Julián Quiñones",
+    "age": "29",
+    "nat": "Mexico",
+    "club": "Al-Qadsiah FC",
+    "appearances": "23",
+    "minutes_per_goal": "78",
+    "goals": "26"
   },
   {
     "rank": "5",
-    "player": "Dominic Solanke",
-    "club": "Bournemouth",
-    "goals": "19",
-    "assists": "3",
-    "matches": "38"
+    "player": "Dion Beljo",
+    "age": "24",
+    "nat": "Croatia",
+    "club": "GNK Dinamo Zagreb",
+    "appearances": "18",
+    "minutes_per_goal": "68",
+    "goals": "23"
   },
   {
     "rank": "6",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "goals": "18",
-    "assists": "10",
-    "matches": "32"
+    "player": "Jorge Rivera",
+    "age": "30",
+    "nat": "Puerto Rico",
+    "club": "Metropolitan FA",
+    "appearances": "17",
+    "minutes_per_goal": "54",
+    "goals": "20"
   },
   {
     "rank": "7",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "goals": "17",
-    "assists": "10",
-    "matches": "35"
+    "player": "Ryan Mmaee",
+    "age": "28",
+    "nat": "Morocco",
+    "club": "Omonia Nicosia",
+    "appearances": "20",
+    "minutes_per_goal": "82",
+    "goals": "20"
   },
   {
     "rank": "8",
-    "player": "Phil Foden",
-    "club": "Manchester City",
-    "goals": "19",
-    "assists": "8",
-    "matches": "35"
+    "player": "Garbhan Coughlan",
+    "age": "33",
+    "nat": "Ireland",
+    "club": "Cashmere Technical FC",
+    "appearances": "9",
+    "minutes_per_goal": "42",
+    "goals": "19"
   },
   {
     "rank": "9",
-    "player": "Bukayo Saka",
-    "club": "Arsenal",
-    "goals": "16",
-    "assists": "9",
-    "matches": "35"
+    "player": "Raheem Edwards",
+    "age": "23",
+    "nat": "Jamaica",
+    "club": "Mount Pleasant FA",
+    "appearances": "27",
+    "minutes_per_goal": "107",
+    "goals": "19"
   },
   {
     "rank": "10",
-    "player": "Jarrod Bowen",
-    "club": "West Ham United",
-    "goals": "16",
-    "assists": "6",
-    "matches": "34"
+    "player": "Sherzod Temirov",
+    "age": "27",
+    "nat": "Uzbekistan",
+    "club": "Erbil SC",
+    "appearances": "25",
+    "minutes_per_goal": "116",
+    "goals": "19"
+  },
+  {
+    "rank": "11",
+    "player": "Hide Higashikawa",
+    "age": "23",
+    "nat": "Japan",
+    "club": "BG Tampines Rovers",
+    "appearances": "16",
+    "minutes_per_goal": "69",
+    "goals": "18"
+  },
+  {
+    "rank": "12",
+    "player": "Pat Hoban",
+    "age": "34",
+    "nat": "Ireland",
+    "club": "Glentoran FC",
+    "appearances": "11",
+    "minutes_per_goal": "52",
+    "goals": "17"
+  },
+  {
+    "rank": "13",
+    "player": "Harry Kane",
+    "age": "32",
+    "nat": "England",
+    "club": "Bayern Munich",
+    "appearances": "16",
+    "minutes_per_goal": "71",
+    "goals": "17"
+  },
+  {
+    "rank": "14",
+    "player": "David da Silva",
+    "age": "36",
+    "nat": "Brazil",
+    "club": "Malut United FC",
+    "appearances": "19",
+    "minutes_per_goal": "100",
+    "goals": "17"
+  },
+  {
+    "rank": "15",
+    "player": "Christian Aragón",
+    "age": "23",
+    "nat": "United States",
+    "club": "EF Taurinos de Cayey",
+    "appearances": "17",
+    "minutes_per_goal": "86",
+    "goals": "16"
+  },
+  {
+    "rank": "16",
+    "player": "Kenean Markneh",
+    "age": "29",
+    "nat": "Ethiopia",
+    "club": "Al-Shabab SC (Oman)",
+    "appearances": "17",
+    "minutes_per_goal": "90",
+    "goals": "16"
+  },
+  {
+    "rank": "17",
+    "player": "Shingo Nakano",
+    "age": "21",
+    "nat": "Japan",
+    "club": "Albirex Niigata (S)",
+    "appearances": "17",
+    "minutes_per_goal": "93",
+    "goals": "16"
+  },
+  {
+    "rank": "18",
+    "player": "Roger Martínez",
+    "age": "31",
+    "nat": "Colombia",
+    "club": "Al-Taawoun FC",
+    "appearances": "21",
+    "minutes_per_goal": "116",
+    "goals": "16"
+  },
+  {
+    "rank": "19",
+    "player": "Bérgson",
+    "age": "35",
+    "nat": "Brazil",
+    "club": "Johor Darul Ta'zim",
+    "appearances": "11",
+    "minutes_per_goal": "59",
+    "goals": "15"
+  },
+  {
+    "rank": "20",
+    "player": "Yuta Yamaguchi",
+    "age": "22",
+    "nat": "Japan",
+    "club": "Don Bosco Garelli United",
+    "appearances": "13",
+    "minutes_per_goal": "66",
+    "goals": "15"
+  },
+  {
+    "rank": "21",
+    "player": "Augusto Garcia Rufer",
+    "age": "27",
+    "nat": "Italy",
+    "club": "SS Folgore/Falciano",
+    "appearances": "16",
+    "minutes_per_goal": "85",
+    "goals": "15"
+  },
+  {
+    "rank": "22",
+    "player": "Moussa Sidibé",
+    "age": "31",
+    "nat": "Mali",
+    "club": "Bhayangkara Presisi Lampung FC",
+    "appearances": "16",
+    "minutes_per_goal": "95",
+    "goals": "15"
+  },
+  {
+    "rank": "23",
+    "player": "Alex Martins",
+    "age": "32",
+    "nat": "Brazil",
+    "club": "Dewa United Banten FC",
+    "appearances": "18",
+    "minutes_per_goal": "101",
+    "goals": "15"
+  },
+  {
+    "rank": "24",
+    "player": "Dante Williams",
+    "age": "22",
+    "nat": "Puerto Rico",
+    "club": " Ponce FC",
+    "appearances": "19",
+    "minutes_per_goal": "104",
+    "goals": "15"
+  },
+  {
+    "rank": "25",
+    "player": "Cristiano Ronaldo",
+    "age": "41",
+    "nat": "Portugal",
+    "club": "Al-Nassr FC",
+    "appearances": "19",
+    "minutes_per_goal": "107",
+    "goals": "15"
   }
 ]

@@ -33,5 +33,145 @@
     "club": "Inter Milan",
     "tactics": "3-5-2",
     "avg_points_per_match": "2.18"
+  },
+  {
+    "rank": "6",
+    "coach": "Jürgen Klopp",
+    "club": "Liverpool",
+    "tactics": "4-3-3 Gegenpressing",
+    "avg_points_per_match": "2.10"
+  },
+  {
+    "rank": "7",
+    "coach": "Unai Emery",
+    "club": "Aston Villa",
+    "tactics": "4-4-2 / 4-2-3-1",
+    "avg_points_per_match": "1.98"
+  },
+  {
+    "rank": "8",
+    "coach": "Luis Enrique",
+    "club": "Paris Saint-Germain",
+    "tactics": "4-3-3 Control",
+    "avg_points_per_match": "2.15"
+  },
+  {
+    "rank": "9",
+    "coach": "Gian Piero Gasperini",
+    "club": "Atalanta",
+    "tactics": "3-4-2-1 Man-marking",
+    "avg_points_per_match": "1.88"
+  },
+  {
+    "rank": "10",
+    "coach": "Stefano Pioli",
+    "club": "AC Milan",
+    "tactics": "4-2-3-1",
+    "avg_points_per_match": "1.92"
+  },
+  {
+    "rank": "11",
+    "coach": "José Mourinho",
+    "club": "Fenerbahçe",
+    "tactics": "4-2-3-1 Low-block",
+    "avg_points_per_match": "2.05"
+  },
+  {
+    "rank": "12",
+    "coach": "Thomas Tuchel",
+    "club": "Bayern Munich",
+    "tactics": "4-2-3-1 Positional",
+    "avg_points_per_match": "1.95"
+  },
+  {
+    "rank": "13",
+    "coach": "Mauricio Pochettino",
+    "club": "Chelsea",
+    "tactics": "4-2-3-1 Pressing",
+    "avg_points_per_match": "1.82"
+  },
+  {
+    "rank": "14",
+    "coach": "Ange Postecoglou",
+    "club": "Tottenham Hotspur",
+    "tactics": "4-3-3 High-line",
+    "avg_points_per_match": "1.85"
+  },
+  {
+    "rank": "15",
+    "coach": "Erik ten Hag",
+    "club": "Manchester United",
+    "tactics": "4-2-3-1 Transition",
+    "avg_points_per_match": "1.78"
+  },
+  {
+    "rank": "16",
+    "coach": "Eddie Howe",
+    "club": "Newcastle United",
+    "tactics": "4-3-3 Direct",
+    "avg_points_per_match": "1.75"
+  },
+  {
+    "rank": "17",
+    "coach": "Roberto De Zerbi",
+    "club": "Marseille",
+    "tactics": "4-2-3-1 Build-up",
+    "avg_points_per_match": "1.82"
+  },
+  {
+    "rank": "18",
+    "coach": "Diego Simeone",
+    "club": "Atlético Madrid",
+    "tactics": "5-3-2 Defensive",
+    "avg_points_per_match": "1.96"
+  },
+  {
+    "rank": "19",
+    "coach": "Rúben Amorim",
+    "club": "Sporting CP",
+    "tactics": "3-4-3 Transition",
+    "avg_points_per_match": "2.22"
+  },
+  {
+    "rank": "20",
+    "coach": "Roger Schmidt",
+    "club": "Benfica",
+    "tactics": "4-2-3-1 Heavy-press",
+    "avg_points_per_match": "2.16"
+  },
+  {
+    "rank": "21",
+    "coach": "Sérgio Conceição",
+    "club": "Porto",
+    "tactics": "4-4-2 Aggressive",
+    "avg_points_per_match": "2.14"
+  },
+  {
+    "rank": "22",
+    "coach": "Thiago Motta",
+    "club": "Juventus",
+    "tactics": "4-2-3-1 Fluid",
+    "avg_points_per_match": "1.88"
+  },
+  {
+    "rank": "23",
+    "coach": "Marco Rose",
+    "club": "RB Leipzig",
+    "tactics": "4-2-2-2 Pressing",
+    "avg_points_per_match": "1.90"
+  },
+  {
+    "rank": "24",
+    "coach": "Sebastian Hoeneß",
+    "club": "Stuttgart",
+    "tactics": "4-2-3-1 Possession",
+    "avg_points_per_match": "2.02"
+  },
+  {
+    "rank": "25",
+    "coach": "Arne Slot",
+    "club": "Feyenoord",
+    "tactics": "4-3-3 Attacking",
+    "avg_points_per_match": "2.18"
   }
 ]

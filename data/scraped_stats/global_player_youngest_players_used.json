@@ -1,72 +1,227 @@
 [
   {
     "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
+    "player": "Biniyam Abrha",
+    "nat": "Ethiopia",
+    "club___league": "Shagger City FC",
+    "wappen": "Hawasa Ketema SC",
+    "match": "1:2",
+    "age_at_appearance": "14 years 04 months 00 days"
   },
   {
     "rank": "2",
-    "entity": "Real Madrid",
-    "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
+    "player": "Cherenet Ufayisa",
+    "nat": "Ethiopia",
+    "club___league": "Wolayta Dicha SC",
+    "wappen": "Wolayta Dicha SC",
+    "match": "1:1",
+    "age_at_appearance": "14 years 06 months 17 days"
   },
   {
     "rank": "3",
-    "entity": "Arsenal",
-    "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
+    "player": "Diego Palma",
+    "nat": "Guatemala",
+    "club___league": "Deportivo Achuapa",
+    "wappen": "Deportivo Achuapa",
+    "match": "1:1",
+    "age_at_appearance": "14 years 07 months 04 days"
   },
   {
     "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
+    "player": "Federico Cordero",
+    "nat": "Guatemala",
+    "club___league": "Aurora FC",
+    "wappen": "CD Malacateco",
+    "match": "1:0",
+    "age_at_appearance": "15 years 13 days"
   },
   {
     "rank": "5",
-    "entity": "Paris Saint-Germain",
-    "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "player": "Loki Kristjánsson",
+    "nat": "Iceland",
+    "club___league": "Valur Reykjavík",
+    "wappen": "FH Hafnarfjördur",
+    "match": "3:0",
+    "age_at_appearance": "15 years 13 days"
   },
   {
     "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "player": "Oleg Dzyurynets",
+    "nat": "Ukraine",
+    "club___league": "Rukh Lviv",
+    "wappen": "Dynamo Kyiv",
+    "match": "1:5",
+    "age_at_appearance": "15 years 16 days"
   },
   {
     "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "player": "Gabriel Rajković",
+    "nat": "Norway",
+    "club___league": "Vålerenga Fotball Elite",
+    "wappen": "Sandefjord Fotball",
+    "match": "1:0",
+    "age_at_appearance": "15 years 20 days"
   },
   {
     "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
+    "player": "Cephas Osabutey",
+    "nat": "Ghana",
+    "club___league": "Hearts of Oak",
+    "wappen": "Hearts of Oak",
+    "match": "0:3",
+    "age_at_appearance": "15 years 01 month 26 days"
   },
   {
     "rank": "9",
-    "entity": "Barcelona",
-    "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "player": "Luis Jeiner Moreno",
+    "nat": "Colombia",
+    "club___league": "Deportivo Pereira",
+    "wappen": "Llaneros FC",
+    "match": "0:2",
+    "age_at_appearance": "15 years 02 months 13 days"
   },
   {
     "rank": "10",
-    "entity": "Borussia Dortmund",
-    "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "player": "Li-Feng Zachary Yu",
+    "nat": "Hongkong",
+    "club___league": "Hong Kong Rangers",
+    "wappen": "Hong Kong Rangers",
+    "match": "0:2",
+    "age_at_appearance": "15 years 02 months 15 days"
+  },
+  {
+    "rank": "11",
+    "player": "Ramsey Antwi",
+    "nat": "Ghana",
+    "club___league": "Bechem United FC",
+    "wappen": "Bechem United FC",
+    "match": "1:2",
+    "age_at_appearance": "15 years 03 months 20 days"
+  },
+  {
+    "rank": "12",
+    "player": "Akram Ssenyonga",
+    "nat": "Uganda",
+    "club___league": "Express FC",
+    "wappen": "Express FC",
+    "match": "2:1",
+    "age_at_appearance": "15 years 03 months 27 days"
+  },
+  {
+    "rank": "13",
+    "player": "Abraham Larbie",
+    "nat": "Ghana",
+    "club___league": "Heart of Lions FC",
+    "wappen": "Heart of Lions FC",
+    "match": "1:0",
+    "age_at_appearance": "15 years 04 months 06 days"
+  },
+  {
+    "rank": "14",
+    "player": "Elías Banegas",
+    "nat": "Honduras",
+    "club___league": "Lobos de la UPNFM",
+    "wappen": "CD Choloma",
+    "match": "1:2",
+    "age_at_appearance": "15 years 04 months 17 days"
+  },
+  {
+    "rank": "15",
+    "player": "Rayyaan Mohammed",
+    "nat": "Fiji",
+    "club___league": "Nadi FA",
+    "wappen": "Nadi FA",
+    "match": "3:1",
+    "age_at_appearance": "15 years 05 months 04 days"
+  },
+  {
+    "rank": "16",
+    "player": "Arnar Bjarki Gunnleifsson",
+    "nat": "Iceland",
+    "club___league": "Breidablik Kópavogur",
+    "wappen": "ÍA Akranes",
+    "match": "1:0",
+    "age_at_appearance": "15 years 05 months 05 days"
+  },
+  {
+    "rank": "17",
+    "player": "Biruk Eylachew",
+    "nat": "Ethiopia",
+    "club___league": "Ethio Electric SC",
+    "wappen": "Ethio Electric SC",
+    "match": "2:0",
+    "age_at_appearance": "15 years 05 months 05 days"
+  },
+  {
+    "rank": "18",
+    "player": "Setsofia Aqetey",
+    "nat": "Ghana",
+    "club___league": "Vision FC",
+    "wappen": "Hohoe United Football Club",
+    "match": "2:0",
+    "age_at_appearance": "15 years 05 months 09 days"
+  },
+  {
+    "rank": "19",
+    "player": "Isoa Baselala",
+    "nat": "Fiji",
+    "club___league": "Rewa FC",
+    "wappen": "Rewa FC",
+    "match": "0:4",
+    "age_at_appearance": "15 years 05 months 17 days"
+  },
+  {
+    "rank": "20",
+    "player": "Matthew Arana",
+    "nat": "Mexico",
+    "club___league": "Houston Dynamo FC",
+    "wappen": "Los Angeles FC",
+    "match": "0:2",
+    "age_at_appearance": "15 years 06 months 01 day"
+  },
+  {
+    "rank": "21",
+    "player": "Oliver López",
+    "nat": "Paraguay",
+    "club___league": "Sportivo Luqueño",
+    "wappen": "Sportivo Luqueño",
+    "match": "2:2",
+    "age_at_appearance": "15 years 06 months 07 days"
+  },
+  {
+    "rank": "22",
+    "player": "Eniyew Selesh",
+    "nat": "Ethiopia",
+    "club___league": "Kidus Giorgis SA",
+    "wappen": "Bahirdar Ketema SC",
+    "match": "0:2",
+    "age_at_appearance": "15 years 06 months 20 days"
+  },
+  {
+    "rank": "23",
+    "player": "Dawit Kassaw",
+    "nat": "Ethiopia",
+    "club___league": "Shagger City FC",
+    "wappen": "Hawasa Ketema SC",
+    "match": "1:2",
+    "age_at_appearance": "15 years 06 months 27 days"
+  },
+  {
+    "rank": "24",
+    "player": "Tristan Gauti Línberg Arnórsson",
+    "nat": "Iceland",
+    "club___league": "KR Reykjavík",
+    "wappen": "KR Reykjavík",
+    "match": "2:6",
+    "age_at_appearance": "15 years 07 months 03 days"
+  },
+  {
+    "rank": "25",
+    "player": "Agyei Duah",
+    "nat": "Ghana",
+    "club___league": "Dreams FC",
+    "wappen": "Dreams FC",
+    "match": "2:4",
+    "age_at_appearance": "15 years 07 months 06 days"
   }
 ]

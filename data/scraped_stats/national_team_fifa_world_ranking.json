@@ -1,72 +1,227 @@
 [
   {
     "rank": "1",
-    "nation": "Argentina",
-    "points": "1875",
-    "confederation": "CONMEBOL",
-    "total_value": "€818.5m"
+    "nation": "France",
+    "squad_size": "26",
+    "avg_age": "27.0",
+    "total_value": "€1.53bn",
+    "confederation": "UEFA",
+    "points": "1877"
   },
   {
     "rank": "2",
-    "nation": "France",
-    "points": "1877",
+    "nation": "Spain",
+    "squad_size": "26",
+    "avg_age": "26.7",
+    "total_value": "€1.26bn",
     "confederation": "UEFA",
-    "total_value": "€1.53bn"
+    "points": "1876"
   },
   {
     "rank": "3",
-    "nation": "Spain",
-    "points": "1876",
-    "confederation": "UEFA",
-    "total_value": "€1.26bn"
+    "nation": "Argentina",
+    "squad_size": "26",
+    "avg_age": "29.1",
+    "total_value": "€818.50m",
+    "confederation": "CONMEBOL",
+    "points": "1875"
   },
   {
     "rank": "4",
     "nation": "England",
-    "points": "1826",
+    "squad_size": "26",
+    "avg_age": "27.1",
+    "total_value": "€1.31bn",
     "confederation": "UEFA",
-    "total_value": "€1.31bn"
+    "points": "1826"
   },
   {
     "rank": "5",
-    "nation": "Brazil",
-    "points": "1785",
-    "confederation": "CONMEBOL",
-    "total_value": "€950.0m"
+    "nation": "Portugal",
+    "squad_size": "26",
+    "avg_age": "28.0",
+    "total_value": "€1.02bn",
+    "confederation": "UEFA",
+    "points": "1764"
   },
   {
     "rank": "6",
-    "nation": "Belgium",
-    "points": "1768",
-    "confederation": "UEFA",
-    "total_value": "€580.0m"
+    "nation": "Brazil",
+    "squad_size": "26",
+    "avg_age": "29.2",
+    "total_value": "€912.20m",
+    "confederation": "CONMEBOL",
+    "points": "1761"
   },
   {
     "rank": "7",
     "nation": "Netherlands",
-    "points": "1755",
+    "squad_size": "26",
+    "avg_age": "27.7",
+    "total_value": "€837.20m",
     "confederation": "UEFA",
-    "total_value": "€760.0m"
+    "points": "1758"
   },
   {
     "rank": "8",
-    "nation": "Portugal",
-    "points": "1749",
-    "confederation": "UEFA",
-    "total_value": "€980.0m"
+    "nation": "Morocco",
+    "squad_size": "26",
+    "avg_age": "26.4",
+    "total_value": "€488.20m",
+    "confederation": "CAF",
+    "points": "1756"
   },
   {
     "rank": "9",
-    "nation": "Colombia",
-    "points": "1738",
-    "confederation": "CONMEBOL",
-    "total_value": "€280.0m"
+    "nation": "Belgium",
+    "squad_size": "26",
+    "avg_age": "27.6",
+    "total_value": "€542.90m",
+    "confederation": "UEFA",
+    "points": "1735"
   },
   {
     "rank": "10",
-    "nation": "Italy",
-    "points": "1726",
+    "nation": "Germany",
+    "squad_size": "26",
+    "avg_age": "28.0",
+    "total_value": "€998.00m",
     "confederation": "UEFA",
-    "total_value": "€720.0m"
+    "points": "1730"
+  },
+  {
+    "rank": "11",
+    "nation": "Croatia",
+    "squad_size": "26",
+    "avg_age": "28.3",
+    "total_value": "€385.70m",
+    "confederation": "UEFA",
+    "points": "1717"
+  },
+  {
+    "rank": "12",
+    "nation": "Italy",
+    "squad_size": "24",
+    "avg_age": "21.1",
+    "total_value": "€340.90m",
+    "confederation": "UEFA",
+    "points": "1700"
+  },
+  {
+    "rank": "13",
+    "nation": "Colombia",
+    "squad_size": "26",
+    "avg_age": "30.1",
+    "total_value": "€305.25m",
+    "confederation": "CONMEBOL",
+    "points": "1693"
+  },
+  {
+    "rank": "14",
+    "nation": "Senegal",
+    "squad_size": "26",
+    "avg_age": "27.1",
+    "total_value": "€472.90m",
+    "confederation": "CAF",
+    "points": "1689"
+  },
+  {
+    "rank": "15",
+    "nation": "Mexico",
+    "squad_size": "26",
+    "avg_age": "27.9",
+    "total_value": "€194.55m",
+    "confederation": "CONCACAF",
+    "points": "1681"
+  },
+  {
+    "rank": "16",
+    "nation": "USA",
+    "squad_size": "26",
+    "avg_age": "26.9",
+    "total_value": "€378.20m",
+    "confederation": "CONCACAF",
+    "points": "1673"
+  },
+  {
+    "rank": "17",
+    "nation": "Uruguay",
+    "squad_size": "26",
+    "avg_age": "28.7",
+    "total_value": "€405.80m",
+    "confederation": "CONMEBOL",
+    "points": "1673"
+  },
+  {
+    "rank": "18",
+    "nation": "Japan",
+    "squad_size": "26",
+    "avg_age": "27.7",
+    "total_value": "€278.90m",
+    "confederation": "AFC",
+    "points": "1660"
+  },
+  {
+    "rank": "19",
+    "nation": "Switzerland",
+    "squad_size": "26",
+    "avg_age": "28.3",
+    "total_value": "€332.60m",
+    "confederation": "UEFA",
+    "points": "1649"
+  },
+  {
+    "rank": "20",
+    "nation": "Denmark",
+    "squad_size": "23",
+    "avg_age": "26.3",
+    "total_value": "€412.50m",
+    "confederation": "UEFA",
+    "points": "1621"
+  },
+  {
+    "rank": "21",
+    "nation": "Iran",
+    "squad_size": "26",
+    "avg_age": "30.3",
+    "total_value": "€32.65m",
+    "confederation": "AFC",
+    "points": "1615"
+  },
+  {
+    "rank": "22",
+    "nation": "Turkiye",
+    "squad_size": "26",
+    "avg_age": "27.7",
+    "total_value": "€472.70m",
+    "confederation": "UEFA",
+    "points": "1599"
+  },
+  {
+    "rank": "23",
+    "nation": "Ecuador",
+    "squad_size": "26",
+    "avg_age": "26.1",
+    "total_value": "€376.20m",
+    "confederation": "CONMEBOL",
+    "points": "1595"
+  },
+  {
+    "rank": "24",
+    "nation": "Austria",
+    "squad_size": "25",
+    "avg_age": "28.6",
+    "total_value": "€231.70m",
+    "confederation": "UEFA",
+    "points": "1593"
+  },
+  {
+    "rank": "25",
+    "nation": "South Korea",
+    "squad_size": "26",
+    "avg_age": "28.2",
+    "total_value": "€142.30m",
+    "confederation": "AFC",
+    "points": "1589"
   }
 ]

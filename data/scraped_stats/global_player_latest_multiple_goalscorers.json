@@ -1,82 +1,227 @@
 [
   {
-    "rank": "1",
-    "player": "Erling Haaland",
-    "club": "Manchester City",
-    "goals": "27",
-    "assists": "5",
-    "matches": "31"
+    "player": "Francisco González",
+    "nat": "Argentina",
+    "date": "Sun, 31/05/2026",
+    "club___league": "CD O'Higgins",
+    "wappen": "CD Everton",
+    "match": "2:3",
+    "goals": "2"
   },
   {
-    "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "goals": "22",
-    "assists": "11",
-    "matches": "33"
+    "player": "Edinson Mero",
+    "nat": "Ecuador",
+    "date": "Sun, 31/05/2026",
+    "club___league": "Guayaquil City FC",
+    "wappen": "Independiente del Valle",
+    "match": "2:4",
+    "goals": "2"
   },
   {
-    "rank": "3",
-    "player": "Alexander Isak",
-    "club": "Newcastle United",
-    "goals": "21",
-    "assists": "2",
-    "matches": "30"
+    "player": "Carlos González",
+    "nat": "Paraguay",
+    "date": "Sun, 31/05/2026",
+    "club___league": "Independiente del Valle",
+    "wappen": "Independiente del Valle",
+    "match": "2:4",
+    "goals": "2"
   },
   {
-    "rank": "4",
-    "player": "Ollie Watkins",
-    "club": "Aston Villa",
-    "goals": "19",
-    "assists": "13",
-    "matches": "37"
+    "player": "Jarlín Quintero",
+    "nat": "Colombia",
+    "date": "Sun, 31/05/2026",
+    "club___league": "CD Los Chankas",
+    "wappen": "Universidad Técnica de Cajamarca",
+    "match": "2:2",
+    "goals": "2"
   },
   {
-    "rank": "5",
-    "player": "Dominic Solanke",
-    "club": "Bournemouth",
-    "goals": "19",
-    "assists": "3",
-    "matches": "38"
+    "player": "Aron Sigurdarson",
+    "nat": "Iceland",
+    "date": "Sun, 31/05/2026",
+    "club___league": "KR Reykjavík",
+    "wappen": "KA Akureyri",
+    "match": "5:3",
+    "goals": "2"
   },
   {
-    "rank": "6",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "goals": "18",
-    "assists": "10",
-    "matches": "32"
+    "player": "Róbert Elís Hlynsson",
+    "nat": "Iceland",
+    "date": "Sun, 31/05/2026",
+    "club___league": "ÍBV Vestmannaeyjar",
+    "wappen": "Keflavík ÍF",
+    "match": "6:1",
+    "goals": "2"
   },
   {
-    "rank": "7",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "goals": "17",
-    "assists": "10",
-    "matches": "35"
+    "player": "Jhonny Vidales",
+    "nat": "Peru",
+    "date": "Sun, 31/05/2026",
+    "club___league": "FBC Melgar",
+    "wappen": "Alianza Atlético Sullana",
+    "match": "3:1",
+    "goals": "2"
   },
   {
-    "rank": "8",
-    "player": "Phil Foden",
-    "club": "Manchester City",
-    "goals": "19",
-    "assists": "8",
-    "matches": "35"
+    "player": "Mevlan Zeka",
+    "nat": "Kosovo",
+    "date": "Sun, 31/05/2026",
+    "club___league": "FC Malisheva",
+    "wappen": "FC Drita",
+    "match": "3:2",
+    "goals": "2"
   },
   {
-    "rank": "9",
-    "player": "Bukayo Saka",
-    "club": "Arsenal",
-    "goals": "16",
-    "assists": "9",
-    "matches": "35"
+    "player": "Fiton Ademi",
+    "nat": "North Macedonia",
+    "date": "Sun, 31/05/2026",
+    "club___league": "KF Llapi",
+    "wappen": "KF Llapi",
+    "match": "2:3",
+    "goals": "2"
   },
   {
-    "rank": "10",
-    "player": "Jarrod Bowen",
-    "club": "West Ham United",
-    "goals": "16",
-    "assists": "6",
-    "matches": "34"
+    "player": "Tobias Heintz",
+    "nat": "Norway",
+    "date": "Sun, 31/05/2026",
+    "club___league": "IFK Göteborg",
+    "wappen": "IFK Göteborg",
+    "match": "4:5",
+    "goals": "4"
+  },
+  {
+    "player": "Taonsa Axel",
+    "nat": "Cote d'Ivoire",
+    "date": "Sun, 31/05/2026",
+    "club___league": "Västerås SK",
+    "wappen": "IFK Göteborg",
+    "match": "4:5",
+    "goals": "2"
+  },
+  {
+    "player": "Victor Lind",
+    "nat": "Denmark",
+    "date": "Sun, 31/05/2026",
+    "club___league": "Hammarby IF",
+    "wappen": "Hammarby IF",
+    "match": "3:2",
+    "goals": "2"
+  },
+  {
+    "player": "Rafaelson",
+    "nat": "Vietnam",
+    "date": "Sun, 31/05/2026",
+    "club___league": "Thep Xanh Nam Dinh FC",
+    "wappen": "Song Lam Nghe An FC",
+    "match": "3:0",
+    "goals": "3"
+  },
+  {
+    "player": "Eduardo Vargas",
+    "nat": "Chile",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Club Universidad de Chile",
+    "wappen": "Deportes Concepción",
+    "match": "2:1",
+    "goals": "2"
+  },
+  {
+    "player": "André",
+    "nat": "Brazil",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Sport Club Corinthians Paulista",
+    "wappen": "Sport Club Corinthians Paulista",
+    "match": "1:3",
+    "goals": "2"
+  },
+  {
+    "player": "Jean Carlos Blanco",
+    "nat": "Colombia",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Manta FC",
+    "wappen": "Libertad FC",
+    "match": "2:1",
+    "goals": "2"
+  },
+  {
+    "player": "Samuel Lino",
+    "nat": "Brazil",
+    "date": "Sat, 30/05/2026",
+    "club___league": "CR Flamengo",
+    "wappen": "Coritiba Foot Ball Club",
+    "match": "3:0",
+    "goals": "2"
+  },
+  {
+    "player": "Páll Klettskard",
+    "nat": "Faroe Islands",
+    "date": "Sat, 30/05/2026",
+    "club___league": "KÍ Klaksvík",
+    "wappen": "EB/Streymur",
+    "match": "2:1",
+    "goals": "2"
+  },
+  {
+    "player": "Amir Belabid",
+    "nat": "Finland",
+    "date": "Sat, 30/05/2026",
+    "club___league": "FC Lahti",
+    "wappen": "Ilves Tampere",
+    "match": "5:0",
+    "goals": "2"
+  },
+  {
+    "player": "Robbie Ure",
+    "nat": "Scotland",
+    "date": "Sat, 30/05/2026",
+    "club___league": "IK Sirius",
+    "wappen": "IK Sirius",
+    "match": "0:3",
+    "goals": "2"
+  },
+  {
+    "player": "Erik Botheim",
+    "nat": "Norway",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Malmö FF",
+    "wappen": "Halmstads BK",
+    "match": "5:2",
+    "goals": "3"
+  },
+  {
+    "player": "Omar Faraj",
+    "nat": "Palestine",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Halmstads BK",
+    "wappen": "Halmstads BK",
+    "match": "5:2",
+    "goals": "2"
+  },
+  {
+    "player": "Elarif Midiladji",
+    "nat": "Comoros",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Angelus Club",
+    "wappen": "Football Club de Hantsindzi",
+    "match": "2:0",
+    "goals": "2"
+  },
+  {
+    "player": "Fabio Abreu",
+    "nat": "Angola",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Beijing Guoan",
+    "wappen": "Beijing Guoan",
+    "match": "2:3",
+    "goals": "2"
+  },
+  {
+    "player": "Wesley Moraes",
+    "nat": "Brazil",
+    "date": "Sat, 30/05/2026",
+    "club___league": "Shenzhen Peng City",
+    "wappen": "Qingdao Hainiu",
+    "match": "3:2",
+    "goals": "3"
   }
 ]

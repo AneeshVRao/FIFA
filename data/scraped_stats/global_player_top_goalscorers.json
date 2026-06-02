@@ -1,82 +1,227 @@
 [
   {
     "rank": "1",
-    "player": "Erling Haaland",
-    "club": "Manchester City",
-    "goals": "27",
-    "assists": "5",
-    "matches": "31"
+    "player": "Jorge Rivera",
+    "age": "30",
+    "nat": "Puerto Rico",
+    "club___league": "Metropolitan FA",
+    "matches": "33",
+    "goals": "48"
   },
   {
     "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "goals": "22",
-    "assists": "11",
-    "matches": "33"
+    "player": "Kevin Torres",
+    "age": "23",
+    "nat": "Puerto Rico",
+    "club___league": "Academia Quintana",
+    "matches": "31",
+    "goals": "40"
   },
   {
     "rank": "3",
-    "player": "Alexander Isak",
-    "club": "Newcastle United",
-    "goals": "21",
-    "assists": "2",
-    "matches": "30"
+    "player": "Harry Kane",
+    "age": "32",
+    "nat": "England",
+    "club___league": "Bayern Munich",
+    "matches": "31",
+    "goals": "36"
   },
   {
     "rank": "4",
-    "player": "Ollie Watkins",
-    "club": "Aston Villa",
-    "goals": "19",
-    "assists": "13",
-    "matches": "37"
+    "player": "Kevin Hernández",
+    "age": "26",
+    "nat": "Puerto Rico",
+    "club___league": "Puerto Rico Surf",
+    "matches": "34",
+    "goals": "36"
   },
   {
     "rank": "5",
-    "player": "Dominic Solanke",
-    "club": "Bournemouth",
-    "goals": "19",
-    "assists": "3",
-    "matches": "38"
+    "player": "Julián Quiñones",
+    "age": "29",
+    "nat": "Mexico",
+    "club___league": "Al-Qadsiah FC",
+    "matches": "31",
+    "goals": "33"
   },
   {
     "rank": "6",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "goals": "18",
-    "assists": "10",
-    "matches": "32"
+    "player": "Ivan Toney",
+    "age": "30",
+    "nat": "England",
+    "club___league": "Al-Ahli SFC",
+    "matches": "32",
+    "goals": "32"
   },
   {
     "rank": "7",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "goals": "17",
-    "assists": "10",
-    "matches": "35"
+    "player": "Christian Vargas",
+    "age": "27",
+    "nat": "Puerto Rico",
+    "club___league": "Caguas Sporting FC",
+    "matches": "35",
+    "goals": "32"
   },
   {
     "rank": "8",
-    "player": "Phil Foden",
-    "club": "Manchester City",
-    "goals": "19",
-    "assists": "8",
-    "matches": "35"
+    "player": "Dion Beljo",
+    "age": "24",
+    "nat": "Croatia",
+    "club___league": "GNK Dinamo Zagreb",
+    "matches": "36",
+    "goals": "31"
   },
   {
     "rank": "9",
-    "player": "Bukayo Saka",
-    "club": "Arsenal",
-    "goals": "16",
-    "assists": "9",
-    "matches": "35"
+    "player": "Nicolás Martínez",
+    "age": "35",
+    "nat": "Argentina",
+    "club___league": "Deportivo Mixco",
+    "matches": "41",
+    "goals": "31"
   },
   {
     "rank": "10",
-    "player": "Jarrod Bowen",
-    "club": "West Ham United",
-    "goals": "16",
-    "assists": "6",
-    "matches": "34"
+    "player": "Pa Ousman Gai",
+    "age": "26",
+    "nat": "The Gambia",
+    "club___league": "Manila Digger FC",
+    "matches": "20",
+    "goals": "30"
+  },
+  {
+    "rank": "11",
+    "player": "Luis Suárez",
+    "age": "28",
+    "nat": "Colombia",
+    "club___league": "Sporting CP",
+    "matches": "32",
+    "goals": "28"
+  },
+  {
+    "rank": "12",
+    "player": "Cristiano Ronaldo",
+    "age": "41",
+    "nat": "Portugal",
+    "club___league": "Al-Nassr FC",
+    "matches": "30",
+    "goals": "28"
+  },
+  {
+    "rank": "13",
+    "player": "Sherzod Temirov",
+    "age": "27",
+    "nat": "Uzbekistan",
+    "club___league": "Erbil SC",
+    "matches": "34",
+    "goals": "28"
+  },
+  {
+    "rank": "14",
+    "player": "Erling Haaland",
+    "age": "25",
+    "nat": "Norway",
+    "club___league": "Manchester City",
+    "matches": "35",
+    "goals": "27"
+  },
+  {
+    "rank": "15",
+    "player": "Luka Juricic",
+    "age": "29",
+    "nat": "Bosnia-Herzegovina",
+    "club___league": "FK Borac Banja Luka",
+    "matches": "35",
+    "goals": "27"
+  },
+  {
+    "rank": "16",
+    "player": "Bérgson",
+    "age": "35",
+    "nat": "Brazil",
+    "club___league": "Johor Darul Ta'zim",
+    "matches": "22",
+    "goals": "27"
+  },
+  {
+    "rank": "17",
+    "player": "Jordan Williams",
+    "age": "33",
+    "nat": "England",
+    "club___league": "The New Saints",
+    "matches": "31",
+    "goals": "26"
+  },
+  {
+    "rank": "18",
+    "player": "Kylian Mbappé",
+    "age": "27",
+    "nat": "France",
+    "club___league": "Real Madrid",
+    "matches": "31",
+    "goals": "25"
+  },
+  {
+    "rank": "19",
+    "player": "Ayase Ueda",
+    "age": "27",
+    "nat": "Japan",
+    "club___league": "Feyenoord Rotterdam",
+    "matches": "31",
+    "goals": "25"
+  },
+  {
+    "rank": "20",
+    "player": "Ryan Mmaee",
+    "age": "28",
+    "nat": "Morocco",
+    "club___league": "Omonia Nicosia",
+    "matches": "30",
+    "goals": "25"
+  },
+  {
+    "rank": "21",
+    "player": "João Pedro",
+    "age": "34",
+    "nat": "Italy",
+    "club___league": "Atlético de San Luis",
+    "matches": "33",
+    "goals": "25"
+  },
+  {
+    "rank": "22",
+    "player": "Manu Toledano",
+    "age": "23",
+    "nat": "Spain",
+    "club___league": "Mons Calpe SC",
+    "matches": "20",
+    "goals": "25"
+  },
+  {
+    "rank": "23",
+    "player": "Pat Hoban",
+    "age": "34",
+    "nat": "Ireland",
+    "club___league": "Glentoran FC",
+    "matches": "27",
+    "goals": "25"
+  },
+  {
+    "rank": "24",
+    "player": "Jamesley Daniel",
+    "age": "29",
+    "nat": "Haiti",
+    "club___league": "Salcedo FC",
+    "matches": "36",
+    "goals": "25"
+  },
+  {
+    "rank": "25",
+    "player": "Armando González",
+    "age": "23",
+    "nat": "Mexico",
+    "club___league": "Deportivo Guadalajara",
+    "matches": "35",
+    "goals": "24"
   }
 ]

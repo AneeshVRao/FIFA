@@ -1,37 +1,170 @@
 [
   {
-    "rank": "1",
-    "coach": "Pep Guardiola",
-    "club": "Manchester City",
-    "tactics": "4-3-3 Attacking",
-    "avg_points_per_match": "2.35"
+    "year": "2023",
+    "manager": "Lionel ScaloniArgentina",
+    "club": "Argentina",
+    "nat": "Argentina"
   },
   {
-    "rank": "2",
-    "coach": "Carlo Ancelotti",
-    "club": "Real Madrid",
-    "tactics": "4-3-1-2 / 4-4-2 Diamond",
-    "avg_points_per_match": "2.28"
+    "year": "2022",
+    "manager": "Lionel ScaloniArgentina",
+    "club": "Argentina",
+    "nat": "Argentina"
   },
   {
-    "rank": "3",
-    "coach": "Xabi Alonso",
-    "club": "Bayer Leverkusen",
-    "tactics": "3-4-2-1",
-    "avg_points_per_match": "2.42"
+    "year": "2021",
+    "manager": "Roberto ManciniItaly",
+    "club": "Italy",
+    "nat": "Italy"
   },
   {
-    "rank": "4",
-    "coach": "Mikel Arteta",
-    "club": "Arsenal",
-    "tactics": "4-3-3",
-    "avg_points_per_match": "2.12"
+    "year": "2020",
+    "manager": "Didier DeschampsFrance",
+    "club": "France",
+    "nat": "France"
   },
   {
-    "rank": "5",
-    "coach": "Simone Inzaghi",
-    "club": "Inter Milan",
-    "tactics": "3-5-2",
-    "avg_points_per_match": "2.18"
+    "year": "2019",
+    "manager": "Fernando SantosPortugal",
+    "club": "Portugal",
+    "nat": "Portugal"
+  },
+  {
+    "year": "2018",
+    "manager": "Didier DeschampsFrance",
+    "club": "France",
+    "nat": "France"
+  },
+  {
+    "year": "2017",
+    "manager": "Joachim LöwGermany",
+    "club": "Germany",
+    "nat": "Germany"
+  },
+  {
+    "year": "2016",
+    "manager": "Fernando SantosPortugal",
+    "club": "Portugal",
+    "nat": "Portugal"
+  },
+  {
+    "year": "2015",
+    "manager": "Jorge SampaoliChile",
+    "club": "Chile",
+    "nat": "Argentina"
+  },
+  {
+    "year": "2014",
+    "manager": "Joachim LöwGermany",
+    "club": "Germany",
+    "nat": "Germany"
+  },
+  {
+    "year": "2013",
+    "manager": "Vicente del BosqueSpain",
+    "club": "Spain",
+    "nat": "Spain"
+  },
+  {
+    "year": "2012",
+    "manager": "Vicente del BosqueSpain",
+    "club": "Spain",
+    "nat": "Spain"
+  },
+  {
+    "year": "2011",
+    "manager": "Óscar TabárezUruguay",
+    "club": "Uruguay",
+    "nat": "Uruguay"
+  },
+  {
+    "year": "2010",
+    "manager": "Vicente del BosqueSpain",
+    "club": "Spain",
+    "nat": "Spain"
+  },
+  {
+    "year": "2009",
+    "manager": "Vicente del BosqueSpain",
+    "club": "Spain",
+    "nat": "Spain"
+  },
+  {
+    "year": "2008",
+    "manager": "Luis AragonésSpain",
+    "club": "Spain",
+    "nat": "Spain"
+  },
+  {
+    "year": "2007",
+    "manager": "DungaBrazil",
+    "club": "Brazil",
+    "nat": "Brazil"
+  },
+  {
+    "year": "2006",
+    "manager": "Marcello LippiItaly",
+    "club": "Italy",
+    "nat": "Italy"
+  },
+  {
+    "year": "2005",
+    "manager": "Carlos Alberto ParreiraBrazil",
+    "club": "Brazil",
+    "nat": "Brazil"
+  },
+  {
+    "year": "2004",
+    "manager": "Otto RehhagelGreece",
+    "club": "Greece",
+    "nat": "Germany"
+  },
+  {
+    "year": "2003",
+    "manager": "Jacques SantiniFrance",
+    "club": "France",
+    "nat": "France"
+  },
+  {
+    "year": "2002",
+    "manager": "Luiz Felipe ScolariBrazil",
+    "club": "Brazil",
+    "nat": "Brazil"
+  },
+  {
+    "year": "2001",
+    "manager": "Marcelo BielsaArgentina",
+    "club": "Argentina",
+    "nat": "Argentina"
+  },
+  {
+    "year": "2000",
+    "manager": "Roger LemerreFrance",
+    "club": "France",
+    "nat": "France"
+  },
+  {
+    "year": "1999",
+    "manager": "Vanderlei LuxemburgoBrazil",
+    "club": "Brazil",
+    "nat": "Brazil"
+  },
+  {
+    "year": "1998",
+    "manager": "Aimé JacquetFrance",
+    "club": "France",
+    "nat": "France"
+  },
+  {
+    "year": "1997",
+    "manager": "Mario ZagalloBrazil",
+    "club": "Brazil",
+    "nat": "Brazil"
+  },
+  {
+    "year": "1996",
+    "manager": "Berti VogtsGermany",
+    "club": "Germany",
+    "nat": "Germany"
   }
 ]

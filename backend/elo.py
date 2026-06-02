@@ -61,7 +61,7 @@ def _goal_diff_multiplier(goal_diff: int) -> float:
 
 # ── public API ───────────────────────────────────────────────────
 def build_initial_elo(
-    df: pd.DataFrame, lookback_years: int = 8
+    df: pd.DataFrame, lookback_years: int = 25
 ) -> dict[str, float]:
     """Compute Elo ratings for every team in the historical dataset.
 
@@ -182,6 +182,7 @@ def predict_match(
     home_team: str,
     away_team: str,
     is_neutral: bool = True,
+    form_diff: float = 0.0,
 ) -> dict[str, float]:
     """Return win/draw/loss probabilities using the fitted Dixon-Coles Poisson model."""
     ratings.setdefault(home_team, DEFAULT_ELO)
@@ -197,8 +198,7 @@ def predict_match(
         h_meta = TEAM_METADATA.get(home_team, {"squad_value": 50.0, "fifa_rank": 80})
         a_meta = TEAM_METADATA.get(away_team, {"squad_value": 50.0, "fifa_rank": 80})
         squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
-        # Standalone predict defaults form differential to 0.0
-        return dc.predict_probs(elo_diff, squad_ratio, 0.0)
+        return dc.predict_probs(elo_diff, squad_ratio, form_diff)
 
     # Fallback to simple Poisson
     avg_goals = 1.35
@@ -232,6 +232,7 @@ def simulate_score(
     away_team: str,
     is_neutral: bool = True,
     rng: np.random.Generator | None = None,
+    form_diff: float = 0.0,
 ) -> tuple[int, int]:
     """Simulate a single match scoreline using the Dixon-Coles Poisson model."""
     if rng is None:
@@ -250,7 +251,7 @@ def simulate_score(
         h_meta = TEAM_METADATA.get(home_team, {"squad_value": 50.0, "fifa_rank": 80})
         a_meta = TEAM_METADATA.get(away_team, {"squad_value": 50.0, "fifa_rank": 80})
         squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
-        return dc.sample_score(elo_diff, squad_ratio, 0.0, rng)
+        return dc.sample_score(elo_diff, squad_ratio, form_diff, rng)
 
     # Fallback to simple Poisson
     avg_goals = 1.35
@@ -272,6 +273,7 @@ def simulate_knockout_score(
     away_team: str,
     is_neutral: bool = True,
     rng: np.random.Generator | None = None,
+    form_diff: float = 0.0,
 ) -> dict:
     """Simulate a knockout match, resolving draws via Extra Time and Penalties."""
     if rng is None:
@@ -292,8 +294,8 @@ def simulate_knockout_score(
         squad_ratio = h_meta["squad_value"] / (a_meta["squad_value"] + 1.0)
         
         # 1. Regulation 90 minutes
-        home_goals, away_goals = dc.sample_score(elo_diff, squad_ratio, 0.0, rng)
-        lambda_H, lambda_A = dc.predict_lambdas(elo_diff, squad_ratio, 0.0)
+        home_goals, away_goals = dc.sample_score(elo_diff, squad_ratio, form_diff, rng)
+        lambda_H, lambda_A = dc.predict_lambdas(elo_diff, squad_ratio, form_diff)
     else:
         # Fallback to simple Poisson
         avg_goals = 1.35

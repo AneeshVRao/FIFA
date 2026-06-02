@@ -1,72 +1,177 @@
 [
   {
     "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
+    "club": "Metropolitan FA",
+    "trio___goals": "Jorge RiveraHéctor RamosMichael Rivera",
+    "trio": "481614",
+    "trio_goals": "78"
   },
   {
     "rank": "2",
-    "entity": "Real Madrid",
-    "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
+    "club": "Academia Quintana",
+    "trio___goals": "Kevin TorresJan RiveraKyle Carr",
+    "trio": "401414",
+    "trio_goals": "68"
   },
   {
     "rank": "3",
-    "entity": "Arsenal",
-    "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
+    "club": "Bayern Munich",
+    "trio___goals": "Harry KaneMichael OliseLuis Díaz",
+    "trio": "361515",
+    "trio_goals": "66"
   },
   {
     "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
+    "club": "Manila Digger FC",
+    "trio___goals": "Pa Ousman GaiBaboucarr TouraySaikou Ceesay",
+    "trio": "301716",
+    "trio_goals": "63"
   },
   {
     "rank": "5",
-    "entity": "Paris Saint-Germain",
-    "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "club": "Puerto Rico Surf",
+    "trio___goals": "Kevin HernándezLorenzo BáezCristian Hernández",
+    "trio": "361412",
+    "trio_goals": "62"
   },
   {
     "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "club": "Al-Nassr FC",
+    "trio___goals": "Cristiano RonaldoJoão FélixKingsley Coman",
+    "trio": "282010",
+    "trio_goals": "58"
   },
   {
     "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "club": "Al-Qadsiah FC",
+    "trio___goals": "Julián QuiñonesMateo ReteguiNahitan Nández",
+    "trio": "33168",
+    "trio_goals": "57"
   },
   {
     "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
+    "club": "FC RFS",
+    "trio___goals": "Darko LemajicJanis IkaunieksMor Talla",
+    "trio": "28199",
+    "trio_goals": "56"
   },
   {
     "rank": "9",
-    "entity": "Barcelona",
-    "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "club": "Shandong Taishan",
+    "trio___goals": "Valeri QazaishviliZecaCryzan",
+    "trio": "271211",
+    "trio_goals": "50"
   },
   {
     "rank": "10",
-    "entity": "Borussia Dortmund",
-    "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "club": "Inter Miami CF",
+    "trio___goals": "Lionel MessiTadeo AllendeLuis Suárez",
+    "trio": "291110",
+    "trio_goals": "50"
+  },
+  {
+    "rank": "11",
+    "club": "KÍ Klaksvík",
+    "trio___goals": "Páll KlettskardÁrni FrederiksbergPatrik Johannesen",
+    "trio": "211811",
+    "trio_goals": "50"
+  },
+  {
+    "rank": "12",
+    "club": "Johor Darul Ta'zim",
+    "trio___goals": "BérgsonJairoÓscar Arribas",
+    "trio": "27149",
+    "trio_goals": "50"
+  },
+  {
+    "rank": "13",
+    "club": "Paro FC",
+    "trio___goals": "Evan AsanteTimothy OkerekeRassoul Ba",
+    "trio": "181714",
+    "trio_goals": "49"
+  },
+  {
+    "rank": "14",
+    "club": "The New Saints",
+    "trio___goals": "Jordan WilliamsRyan BrobbelBen Wilson",
+    "trio": "26149",
+    "trio_goals": "49"
+  },
+  {
+    "rank": "15",
+    "club": "Omonia Nicosia",
+    "trio___goals": "Ryan MmaeeWilly SemedoEwandro Costa",
+    "trio": "25177",
+    "trio_goals": "49"
+  },
+  {
+    "rank": "16",
+    "club": "GNK Dinamo Zagreb",
+    "trio___goals": "Dion BeljoMonsef BakrarMiha Zajc",
+    "trio": "31108",
+    "trio_goals": "49"
+  },
+  {
+    "rank": "17",
+    "club": "Caguas Sporting FC",
+    "trio___goals": "Christian VargasMarc NievesJoseph Villafañe",
+    "trio": "3298",
+    "trio_goals": "49"
+  },
+  {
+    "rank": "18",
+    "club": "Svay Rieng",
+    "trio___goals": "Kwame PeprahPatrickKrya Saret",
+    "trio": "24177",
+    "trio_goals": "48"
+  },
+  {
+    "rank": "19",
+    "club": "Sporting CP",
+    "trio___goals": "Luis SuárezPedro GonçalvesFrancisco Trincão",
+    "trio": "28137",
+    "trio_goals": "48"
+  },
+  {
+    "rank": "20",
+    "club": "NSÍ Runavík",
+    "trio___goals": "Klaemint OlsenBrandur HendrikssonPetur Knudsen",
+    "trio": "261111",
+    "trio_goals": "48"
+  },
+  {
+    "rank": "21",
+    "club": "Ezra FC",
+    "trio___goals": "Koki NaritaPeeter PhanthavongChanthavixay Khounthoumphone",
+    "trio": "22214",
+    "trio_goals": "47"
+  },
+  {
+    "rank": "22",
+    "club": "Real Madrid",
+    "trio___goals": "Kylian MbappéVinicius JuniorJude Bellingham",
+    "trio": "25166",
+    "trio_goals": "47"
+  },
+  {
+    "rank": "23",
+    "club": " Ponce FC",
+    "trio___goals": "Dante WilliamsManzi ShalitaAhinga Selemani",
+    "trio": "211412",
+    "trio_goals": "47"
+  },
+  {
+    "rank": "24",
+    "club": "Trabzonspor",
+    "trio___goals": "Paul OnuachuFelipe AugustoErnest Muci",
+    "trio": "221311",
+    "trio_goals": "46"
+  },
+  {
+    "rank": "25",
+    "club": "Red Star Belgrade",
+    "trio___goals": "Aleksandar KataiMirko IvanicVasilije Kostov",
+    "trio": "231211",
+    "trio_goals": "46"
   }
 ]

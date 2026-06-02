@@ -1,72 +1,177 @@
 [
   {
     "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
+    "club": "Borussia Dortmund",
+    "country": "Germany",
+    "league": "First Tier",
+    "average_attendance": "81.365"
   },
   {
     "rank": "2",
-    "entity": "Real Madrid",
-    "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
+    "club": "Bayern Munich",
+    "country": "Germany",
+    "league": "First Tier",
+    "average_attendance": "75.000"
   },
   {
     "rank": "3",
-    "entity": "Arsenal",
+    "club": "Manchester United",
     "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
+    "league": "First Tier",
+    "average_attendance": "73.975"
   },
   {
     "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
+    "club": "AC Milan",
+    "country": "Italy",
+    "league": "First Tier",
+    "average_attendance": "73.370"
   },
   {
     "rank": "5",
-    "entity": "Paris Saint-Germain",
-    "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "club": "Inter Milan",
+    "country": "Italy",
+    "league": "First Tier",
+    "average_attendance": "73.020"
   },
   {
     "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "club": "Real Madrid",
+    "country": "Spain",
+    "league": "First Tier",
+    "average_attendance": "71.549"
   },
   {
     "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "club": "Olympique Marseille",
+    "country": "France",
+    "league": "First Tier",
+    "average_attendance": "62.612"
   },
   {
     "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
+    "club": "West Ham United",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "62.347"
   },
   {
     "rank": "9",
-    "entity": "Barcelona",
-    "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "club": "AS Roma",
+    "country": "Italy",
+    "league": "First Tier",
+    "average_attendance": "61.796"
   },
   {
     "rank": "10",
-    "entity": "Borussia Dortmund",
+    "club": "CR Flamengo",
+    "country": "Brazil",
+    "league": "First Tier",
+    "average_attendance": "61.556"
+  },
+  {
+    "rank": "11",
+    "club": "Tottenham Hotspur",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "61.003"
+  },
+  {
+    "rank": "12",
+    "club": "Dalian Yingbo",
+    "country": "China",
+    "league": "First Tier",
+    "average_attendance": "60.970"
+  },
+  {
+    "rank": "13",
+    "club": "Atlético de Madrid",
+    "country": "Spain",
+    "league": "First Tier",
+    "average_attendance": "60.855"
+  },
+  {
+    "rank": "14",
+    "club": "Liverpool FC",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "60.389"
+  },
+  {
+    "rank": "15",
+    "club": "Arsenal FC",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "60.217"
+  },
+  {
+    "rank": "16",
+    "club": "VfB Stuttgart",
     "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "league": "First Tier",
+    "average_attendance": "59.265"
+  },
+  {
+    "rank": "17",
+    "club": "Eintracht Frankfurt",
+    "country": "Germany",
+    "league": "First Tier",
+    "average_attendance": "59.071"
+  },
+  {
+    "rank": "18",
+    "club": "SL Benfica",
+    "country": "Portugal",
+    "league": "First Tier",
+    "average_attendance": "58.690"
+  },
+  {
+    "rank": "19",
+    "club": "Celtic FC",
+    "country": "Scotland",
+    "league": "First Tier",
+    "average_attendance": "58.515"
+  },
+  {
+    "rank": "20",
+    "club": "Real Betis Balompié",
+    "country": "Spain",
+    "league": "First Tier",
+    "average_attendance": "57.427"
+  },
+  {
+    "rank": "21",
+    "club": "Hamburger SV",
+    "country": "Germany",
+    "league": "First Tier",
+    "average_attendance": "56.947"
+  },
+  {
+    "rank": "22",
+    "club": "Ajax Amsterdam",
+    "country": "Netherlands",
+    "league": "First Tier",
+    "average_attendance": "53.531"
+  },
+  {
+    "rank": "23",
+    "club": "Manchester City",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "52.640"
+  },
+  {
+    "rank": "24",
+    "club": "Everton FC",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "52.132"
+  },
+  {
+    "rank": "25",
+    "club": "Newcastle United",
+    "country": "England",
+    "league": "First Tier",
+    "average_attendance": "52.095"
   }
 ]

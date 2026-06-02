@@ -68,5 +68,110 @@
     "club": "Newcastle United",
     "clean_sheets": "6",
     "matches": "15"
+  },
+  {
+    "rank": "11",
+    "player": "Mark Flekken",
+    "club": "Brentford",
+    "clean_sheets": "7",
+    "matches": "37"
+  },
+  {
+    "rank": "12",
+    "player": "Bart Verbruggen",
+    "club": "Brighton & Hove Albion",
+    "clean_sheets": "4",
+    "matches": "21"
+  },
+  {
+    "rank": "13",
+    "player": "Alphonse Areola",
+    "club": "West Ham United",
+    "clean_sheets": "4",
+    "matches": "31"
+  },
+  {
+    "rank": "14",
+    "player": "José Sá",
+    "club": "Wolverhampton Wanderers",
+    "clean_sheets": "4",
+    "matches": "35"
+  },
+  {
+    "rank": "15",
+    "player": "Thomas Kaminski",
+    "club": "Luton Town",
+    "clean_sheets": "2",
+    "matches": "38"
+  },
+  {
+    "rank": "16",
+    "player": "Robert Sánchez",
+    "club": "Chelsea",
+    "clean_sheets": "3",
+    "matches": "16"
+  },
+  {
+    "rank": "17",
+    "player": "Dorde Petrovic",
+    "club": "Chelsea",
+    "clean_sheets": "5",
+    "matches": "23"
+  },
+  {
+    "rank": "18",
+    "player": "James Trafford",
+    "club": "Burnley",
+    "clean_sheets": "2",
+    "matches": "28"
+  },
+  {
+    "rank": "19",
+    "player": "Martin Dúbravka",
+    "club": "Newcastle United",
+    "clean_sheets": "4",
+    "matches": "23"
+  },
+  {
+    "rank": "20",
+    "player": "Sam Johnstone",
+    "club": "Crystal Palace",
+    "clean_sheets": "6",
+    "matches": "20"
+  },
+  {
+    "rank": "21",
+    "player": "Matz Sels",
+    "club": "Nottingham Forest",
+    "clean_sheets": "1",
+    "matches": "16"
+  },
+  {
+    "rank": "22",
+    "player": "Aaron Ramsdale",
+    "club": "Arsenal",
+    "clean_sheets": "3",
+    "matches": "6"
+  },
+  {
+    "rank": "23",
+    "player": "Matt Turner",
+    "club": "Nottingham Forest",
+    "clean_sheets": "2",
+    "matches": "17"
+  },
+  {
+    "rank": "24",
+    "player": "Stefan Ortega",
+    "club": "Manchester City",
+    "clean_sheets": "2",
+    "matches": "9"
+  },
+  {
+    "rank": "25",
+    "player": "Dean Henderson",
+    "club": "Crystal Palace",
+    "clean_sheets": "4",
+    "matches": "18"
   }
 ]

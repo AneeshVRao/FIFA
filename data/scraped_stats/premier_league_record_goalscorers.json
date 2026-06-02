@@ -1,82 +1,252 @@
 [
   {
     "rank": "1",
-    "player": "Erling Haaland",
-    "club": "Manchester City",
-    "goals": "27",
-    "assists": "5",
-    "matches": "31"
+    "player": "Alan Shearer",
+    "nation": "England",
+    "club": "2 Clubs",
+    "appearances": "441",
+    "minutes_played": "38.199",
+    "minutes_per_goal": "147",
+    "goals": "260"
   },
   {
     "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "goals": "22",
-    "assists": "11",
-    "matches": "33"
+    "player": "Harry Kane",
+    "nation": "England",
+    "club": "Tottenham Hotspur",
+    "appearances": "316",
+    "minutes_played": "26.827",
+    "minutes_per_goal": "126",
+    "goals": "213"
   },
   {
     "rank": "3",
-    "player": "Alexander Isak",
-    "club": "Newcastle United",
-    "goals": "21",
-    "assists": "2",
-    "matches": "30"
+    "player": "Wayne Rooney",
+    "nation": "England",
+    "club": "2 Clubs",
+    "appearances": "491",
+    "minutes_played": "38.029",
+    "minutes_per_goal": "183",
+    "goals": "208"
   },
   {
     "rank": "4",
-    "player": "Ollie Watkins",
-    "club": "Aston Villa",
-    "goals": "19",
-    "assists": "13",
-    "matches": "37"
+    "player": "Mohamed Salah",
+    "nation": "Egypt",
+    "club": "2 Clubs",
+    "appearances": "325",
+    "minutes_played": "26.776",
+    "minutes_per_goal": "139",
+    "goals": "193"
   },
   {
     "rank": "5",
-    "player": "Dominic Solanke",
-    "club": "Bournemouth",
-    "goals": "19",
-    "assists": "3",
-    "matches": "38"
+    "player": "Andy Cole",
+    "nation": "England",
+    "club": "6 Clubs",
+    "appearances": "408",
+    "minutes_played": "31.406",
+    "minutes_per_goal": "168",
+    "goals": "187"
   },
   {
     "rank": "6",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "goals": "18",
-    "assists": "10",
-    "matches": "32"
+    "player": "Sergio Agüero",
+    "nation": "Argentina",
+    "club": "Manchester City",
+    "appearances": "275",
+    "minutes_played": "19.865",
+    "minutes_per_goal": "108",
+    "goals": "184"
   },
   {
     "rank": "7",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "goals": "17",
-    "assists": "10",
-    "matches": "35"
+    "player": "Frank Lampard",
+    "nation": "England",
+    "club": "3 Clubs",
+    "appearances": "609",
+    "minutes_played": "48.898",
+    "minutes_per_goal": "276",
+    "goals": "177"
   },
   {
     "rank": "8",
-    "player": "Phil Foden",
-    "club": "Manchester City",
-    "goals": "19",
-    "assists": "8",
-    "matches": "35"
+    "player": "Thierry Henry",
+    "nation": "France",
+    "club": "Arsenal FC",
+    "appearances": "258",
+    "minutes_played": "21.310",
+    "minutes_per_goal": "122",
+    "goals": "175"
   },
   {
     "rank": "9",
-    "player": "Bukayo Saka",
-    "club": "Arsenal",
-    "goals": "16",
-    "assists": "9",
-    "matches": "35"
+    "player": "Robbie Fowler",
+    "nation": "England",
+    "club": "3 Clubs",
+    "appearances": "376",
+    "minutes_played": "27.857",
+    "minutes_per_goal": "171",
+    "goals": "163"
   },
   {
     "rank": "10",
-    "player": "Jarrod Bowen",
-    "club": "West Ham United",
-    "goals": "16",
-    "assists": "6",
-    "matches": "34"
+    "player": "Jermain Defoe",
+    "nation": "England",
+    "club": "5 Clubs",
+    "appearances": "491",
+    "minutes_played": "32.620",
+    "minutes_per_goal": "200",
+    "goals": "163"
+  },
+  {
+    "rank": "11",
+    "player": "Michael Owen",
+    "nation": "England",
+    "club": "4 Clubs",
+    "appearances": "322",
+    "minutes_played": "22.695",
+    "minutes_per_goal": "151",
+    "goals": "150"
+  },
+  {
+    "rank": "12",
+    "player": "Les Ferdinand",
+    "nation": "England",
+    "club": "6 Clubs",
+    "appearances": "349",
+    "minutes_played": "26.085",
+    "minutes_per_goal": "175",
+    "goals": "149"
+  },
+  {
+    "rank": "13",
+    "player": "Teddy Sheringham",
+    "nation": "England",
+    "club": "5 Clubs",
+    "appearances": "417",
+    "minutes_played": "31.902",
+    "minutes_per_goal": "219",
+    "goals": "146"
+  },
+  {
+    "rank": "14",
+    "player": "Jamie Vardy",
+    "nation": "England",
+    "club": "Leicester City",
+    "appearances": "342",
+    "minutes_played": "26.583",
+    "minutes_per_goal": "183",
+    "goals": "145"
+  },
+  {
+    "rank": "15",
+    "player": "Robin van Persie",
+    "nation": "Netherlands",
+    "club": "2 Clubs",
+    "appearances": "280",
+    "minutes_played": "20.121",
+    "minutes_per_goal": "140",
+    "goals": "144"
+  },
+  {
+    "rank": "16",
+    "player": "Jimmy Floyd Hasselbaink",
+    "nation": "Netherlands",
+    "club": "4 Clubs",
+    "appearances": "288",
+    "minutes_played": "21.574",
+    "minutes_per_goal": "170",
+    "goals": "127"
+  },
+  {
+    "rank": "17",
+    "player": "Heung-min Son",
+    "nation": "Korea, South",
+    "club": "Tottenham Hotspur",
+    "appearances": "333",
+    "minutes_played": "24.134",
+    "minutes_per_goal": "190",
+    "goals": "127"
+  },
+  {
+    "rank": "18",
+    "player": "Robbie Keane",
+    "nation": "Ireland",
+    "club": "6 Clubs",
+    "appearances": "342",
+    "minutes_played": "24.223",
+    "minutes_per_goal": "192",
+    "goals": "126"
+  },
+  {
+    "rank": "19",
+    "player": "Nicolas Anelka",
+    "nation": "France",
+    "club": "6 Clubs",
+    "appearances": "364",
+    "minutes_played": "28.168",
+    "minutes_per_goal": "225",
+    "goals": "125"
+  },
+  {
+    "rank": "20",
+    "player": "Dwight Yorke",
+    "nation": "Trinidad and Tobago",
+    "club": "5 Clubs",
+    "appearances": "363",
+    "minutes_played": "26.875",
+    "minutes_per_goal": "218",
+    "goals": "123"
+  },
+  {
+    "rank": "21",
+    "player": "Raheem Sterling",
+    "nation": "England",
+    "club": "4 Clubs",
+    "appearances": "393",
+    "minutes_played": "28.536",
+    "minutes_per_goal": "232",
+    "goals": "123"
+  },
+  {
+    "rank": "22",
+    "player": "Romelu Lukaku",
+    "nation": "Belgium",
+    "club": "4 Clubs",
+    "appearances": "276",
+    "minutes_played": "20.629",
+    "minutes_per_goal": "170",
+    "goals": "121"
+  },
+  {
+    "rank": "23",
+    "player": "Steven Gerrard",
+    "nation": "England",
+    "club": "Liverpool FC",
+    "appearances": "492",
+    "minutes_played": "40.758",
+    "minutes_per_goal": "337",
+    "goals": "121"
+  },
+  {
+    "rank": "24",
+    "player": "Ian Wright",
+    "nation": "England",
+    "club": "2 Clubs",
+    "appearances": "213",
+    "minutes_played": "17.789",
+    "minutes_per_goal": "157",
+    "goals": "113"
+  },
+  {
+    "rank": "25",
+    "player": "Erling Haaland",
+    "nation": "Norway",
+    "club": "Manchester City",
+    "appearances": "132",
+    "minutes_played": "11.037",
+    "minutes_per_goal": "99",
+    "goals": "112"
   }
 ]

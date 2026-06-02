@@ -1,72 +1,538 @@
 [
   {
-    "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
-  },
-  {
-    "rank": "2",
-    "entity": "Real Madrid",
-    "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
-  },
-  {
-    "rank": "3",
-    "entity": "Arsenal",
-    "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
-  },
-  {
-    "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
-  },
-  {
-    "rank": "5",
-    "entity": "Paris Saint-Germain",
     "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "number": "36",
+    "share": "9.2 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€90.00m"
   },
   {
-    "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "country": "Brazil",
+    "number": "33",
+    "share": "8.4 %",
+    "player": "",
+    "club": "Chelsea FC",
+    "market_value": "€80.00m"
   },
   {
-    "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "country": "Netherlands",
+    "number": "33",
+    "share": "8.4 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€90.00m"
   },
   {
-    "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
-  },
-  {
-    "rank": "9",
-    "entity": "Barcelona",
     "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "number": "20",
+    "share": "5.1 %",
+    "player": "",
+    "club": "Arsenal FC",
+    "market_value": "€80.00m"
   },
   {
-    "rank": "10",
-    "entity": "Borussia Dortmund",
     "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "number": "16",
+    "share": "4.1 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€110.00m"
+  },
+  {
+    "country": "Portugal",
+    "number": "15",
+    "share": "3.8 %",
+    "player": "",
+    "club": "Chelsea FC",
+    "market_value": "€60.00m"
+  },
+  {
+    "country": "Argentina",
+    "number": "14",
+    "share": "3.6 %",
+    "player": "",
+    "club": "Chelsea FC",
+    "market_value": "€90.00m"
+  },
+  {
+    "country": "Wales",
+    "number": "13",
+    "share": "3.3 %",
+    "player": "",
+    "club": "Crystal Palace",
+    "market_value": "€35.00m"
+  },
+  {
+    "country": "Sweden",
+    "number": "12",
+    "share": "3.1 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€100.00m"
+  },
+  {
+    "country": "Belgium",
+    "number": "12",
+    "share": "3.1 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€65.00m"
+  },
+  {
+    "country": "Denmark",
+    "number": "11",
+    "share": "2.8 %",
+    "player": "",
+    "club": "Manchester United",
+    "market_value": "€35.00m"
+  },
+  {
+    "country": "Ireland",
+    "number": "11",
+    "share": "2.8 %",
+    "player": "",
+    "club": "Brentford FC",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Scotland",
+    "number": "11",
+    "share": "2.8 %",
+    "player": "",
+    "club": "AFC Bournemouth",
+    "market_value": "€16.00m"
+  },
+  {
+    "country": "Italy",
+    "number": "11",
+    "share": "2.8 %",
+    "player": "",
+    "club": "Newcastle United",
+    "market_value": "€80.00m"
+  },
+  {
+    "country": "Nigeria",
+    "number": "9",
+    "share": "2.3 %",
+    "player": "",
+    "club": "Fulham FC",
+    "market_value": "€28.00m"
+  },
+  {
+    "country": "Norway",
+    "number": "8",
+    "share": "2.0 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€200.00m"
+  },
+  {
+    "country": "United States",
+    "number": "8",
+    "share": "2.0 %",
+    "player": "",
+    "club": "AFC Bournemouth",
+    "market_value": "€25.00m"
+  },
+  {
+    "country": "Senegal",
+    "number": "7",
+    "share": "1.8 %",
+    "player": "",
+    "club": "Everton FC",
+    "market_value": "€50.00m"
+  },
+  {
+    "country": "Morocco",
+    "number": "6",
+    "share": "1.5 %",
+    "player": "",
+    "club": "Sunderland AFC",
+    "market_value": "€25.00m"
+  },
+  {
+    "country": "Cote d'Ivoire",
+    "number": "6",
+    "share": "1.5 %",
+    "player": "",
+    "club": "Manchester United",
+    "market_value": "€50.00m"
+  },
+  {
+    "country": "Serbia",
+    "number": "5",
+    "share": "1.3 %",
+    "player": "",
+    "club": "Nottingham Forest",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Switzerland",
+    "number": "5",
+    "share": "1.3 %",
+    "player": "",
+    "club": "Nottingham Forest",
+    "market_value": "€35.00m"
+  },
+  {
+    "country": "Czech Republic",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Wolverhampton Wanderers",
+    "market_value": "€22.00m"
+  },
+  {
+    "country": "DR Congo",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Newcastle United",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Ghana",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€75.00m"
+  },
+  {
+    "country": "Northern Ireland",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Japan",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€25.00m"
+  },
+  {
+    "country": "Türkiye",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Greece",
+    "number": "4",
+    "share": "1.0 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€25.00m"
+  },
+  {
+    "country": "Burkina Faso",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Brentford FC",
+    "market_value": "€35.00m"
+  },
+  {
+    "country": "Ecuador",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Chelsea FC",
+    "market_value": "€110.00m"
+  },
+  {
+    "country": "Croatia",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€70.00m"
+  },
+  {
+    "country": "Colombia",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Crystal Palace",
+    "market_value": "€27.00m"
+  },
+  {
+    "country": "Jamaica",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Aston Villa",
+    "market_value": "€16.00m"
+  },
+  {
+    "country": "Uruguay",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Manchester United",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Hungary",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€100.00m"
+  },
+  {
+    "country": "Paraguay",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€25.00m"
+  },
+  {
+    "country": "Cameroon",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Manchester United",
+    "market_value": "€80.00m"
+  },
+  {
+    "country": "Ukraine",
+    "number": "3",
+    "share": "0.8 %",
+    "player": "",
+    "club": "Brentford FC",
+    "market_value": "€30.00m"
+  },
+  {
+    "country": "Slovenia",
+    "number": "2",
+    "share": "0.5 %",
+    "player": "",
+    "club": "Manchester United",
+    "market_value": "€65.00m"
+  },
+  {
+    "country": "Egypt",
+    "number": "2",
+    "share": "0.5 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€60.00m"
+  },
+  {
+    "country": "Poland",
+    "number": "2",
+    "share": "0.5 %",
+    "player": "",
+    "club": "Aston Villa",
+    "market_value": "€22.00m"
+  },
+  {
+    "country": "Haiti",
+    "number": "2",
+    "share": "0.5 %",
+    "player": "",
+    "club": "Sunderland AFC",
+    "market_value": "€18.00m"
+  },
+  {
+    "country": "Mali",
+    "number": "2",
+    "share": "0.5 %",
+    "player": "",
+    "club": "Crystal Palace",
+    "market_value": "€13.00m"
+  },
+  {
+    "country": "Uzbekistan",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€35.00m"
+  },
+  {
+    "country": "New Zealand",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Nottingham Forest",
+    "market_value": "€6.00m"
+  },
+  {
+    "country": "Trinidad and Tobago",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Crystal Palace",
+    "market_value": "€300k"
+  },
+  {
+    "country": "Algeria",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Manchester City",
+    "market_value": "€40.00m"
+  },
+  {
+    "country": "Mozambique",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Sunderland AFC",
+    "market_value": "€5.00m"
+  },
+  {
+    "country": "Latvia",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Sunderland AFC",
+    "market_value": "€8.00m"
+  },
+  {
+    "country": "Austria",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Tottenham Hotspur",
+    "market_value": "€20.00m"
+  },
+  {
+    "country": "Romania",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Tottenham Hotspur",
+    "market_value": "€20.00m"
+  },
+  {
+    "country": "Venezuela",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "West Ham United",
+    "market_value": "€1.20m"
+  },
+  {
+    "country": "Korea, South",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Wolverhampton Wanderers",
+    "market_value": "€8.00m"
+  },
+  {
+    "country": "Zimbabwe",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Wolverhampton Wanderers",
+    "market_value": "€450k"
+  },
+  {
+    "country": "Georgia",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Liverpool FC",
+    "market_value": "€28.00m"
+  },
+  {
+    "country": "Bulgaria",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Leeds United",
+    "market_value": "€12.00m"
+  },
+  {
+    "country": "Suriname",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Leeds United",
+    "market_value": "€13.00m"
+  },
+  {
+    "country": "Mexico",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Fulham FC",
+    "market_value": "€4.00m"
+  },
+  {
+    "country": "Guinea-Bissau",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Everton FC",
+    "market_value": "€20.00m"
+  },
+  {
+    "country": "Tunisia",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Burnley FC",
+    "market_value": "€16.00m"
+  },
+  {
+    "country": "Albania",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Burnley FC",
+    "market_value": "€8.00m"
+  },
+  {
+    "country": "South Africa",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Burnley FC",
+    "market_value": "€10.00m"
+  },
+  {
+    "country": "Slovakia",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Burnley FC",
+    "market_value": "€750k"
+  },
+  {
+    "country": "Iceland",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Brentford FC",
+    "market_value": "€2.50m"
+  },
+  {
+    "country": "The Gambia",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€40.00m"
+  },
+  {
+    "country": "Canada",
+    "number": "1",
+    "share": "0.3 %",
+    "player": "",
+    "club": "Brighton & Hove Albion",
+    "market_value": "€500k"
   }
 ]

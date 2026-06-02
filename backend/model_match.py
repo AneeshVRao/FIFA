@@ -51,7 +51,7 @@ DIXON_COLES_PATH = DATA_DIR / "model_dixon_coles.pkl"
 
 
 # ── Dixon-Coles Likelihood Helper ───────────────────────────────
-def negative_log_likelihood(params, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals):
+def negative_log_likelihood(params, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals, weights=None):
     mu, a1, a2, a3, rho = params
     
     # Calculate lambda_H and lambda_A
@@ -79,19 +79,23 @@ def negative_log_likelihood(params, elo_diffs, squad_ratios, form_diffs, home_go
     log_tau = np.log(tau)
     log_l = log_tau - lambda_H - lambda_A + home_goals * np.log(lambda_H) + away_goals * np.log(lambda_A)
     
+    if weights is not None:
+        log_l = log_l * weights
+        
     return -np.sum(log_l)
 
 
 # ── Dixon-Coles Poisson Model ───────────────────────────────────
 class DixonColesPoisson:
-    def __init__(self):
+    def __init__(self, phi=0.00019):
         self.mu = 1.35
         self.a1 = 0.002
         self.a2 = 0.1
         self.a3 = 0.1
         self.rho = 0.05
+        self.phi = phi
 
-    def fit(self, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals):
+    def fit(self, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals, weights=None):
         init_params = [self.mu, self.a1, self.a2, self.a3, self.rho]
         bounds = [
             (0.5, 3.0),      # mu
@@ -104,7 +108,7 @@ class DixonColesPoisson:
         res = opt.minimize(
             negative_log_likelihood,
             init_params,
-            args=(elo_diffs, squad_ratios, form_diffs, home_goals, away_goals),
+            args=(elo_diffs, squad_ratios, form_diffs, home_goals, away_goals, weights),
             bounds=bounds,
             method="L-BFGS-B"
         )
@@ -328,7 +332,13 @@ def build_features(df: pd.DataFrame):
 
     y = np.array(labels)
     
-    return X, y, np.array(elo_diffs), np.array(squad_ratios), np.array(form_diffs), np.array(home_goals), np.array(away_goals)
+    # Calculate temporal decay weights (phi = 0.00019)
+    max_date = df["date"].max()
+    t_i = (max_date - df["date"]).dt.days.values
+    phi = 0.00019
+    weights = np.exp(-phi * t_i)
+    
+    return X, y, np.array(elo_diffs), np.array(squad_ratios), np.array(form_diffs), np.array(home_goals), np.array(away_goals), weights
 
 
 # ── training ─────────────────────────────────────────────────────
@@ -336,11 +346,11 @@ def train_model() -> Pipeline:
     logger.info("Loading historical data …")
     df = load_results()
 
-    cutoff = df["date"].max() - pd.DateOffset(years=10)
+    cutoff = df["date"].max() - pd.DateOffset(years=25)
     df = df[df["date"] >= cutoff].copy()
-    logger.info("Training on %d matches (last 10 years)", len(df))
+    logger.info("Training on %d matches (last 25 years)", len(df))
 
-    X, y, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals = build_features(df)
+    X, y, elo_diffs, squad_ratios, form_diffs, home_goals, away_goals, weights = build_features(df)
 
     # 1. Fit Calibrated XGBoost (Platt Scaling)
     pipeline = Pipeline([
@@ -372,7 +382,7 @@ def train_model() -> Pipeline:
 
     # 2. Fit Dixon-Coles Poisson Model
     dixon_coles = DixonColesPoisson()
-    dixon_coles.fit(elo_diffs, squad_ratios, form_diffs, home_goals, away_goals)
+    dixon_coles.fit(elo_diffs, squad_ratios, form_diffs, home_goals, away_goals, weights=weights)
 
     # Save outputs
     DATA_DIR.mkdir(parents=True, exist_ok=True)

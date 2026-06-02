@@ -68,5 +68,110 @@
     "country": "Germany",
     "score": "87.0",
     "market_value": "€465.0m"
+  },
+  {
+    "rank": "11",
+    "entity": "RB Leipzig",
+    "country": "Germany",
+    "score": "85.5",
+    "market_value": "€480.0m"
+  },
+  {
+    "rank": "12",
+    "entity": "Atlético Madrid",
+    "country": "Spain",
+    "score": "84.2",
+    "market_value": "€410.0m"
+  },
+  {
+    "rank": "13",
+    "entity": "Juventus",
+    "country": "Italy",
+    "score": "82.8",
+    "market_value": "€490.0m"
+  },
+  {
+    "rank": "14",
+    "entity": "Napoli",
+    "country": "Italy",
+    "score": "81.5",
+    "market_value": "€460.0m"
+  },
+  {
+    "rank": "15",
+    "entity": "Benfica",
+    "country": "Portugal",
+    "score": "80.2",
+    "market_value": "€360.0m"
+  },
+  {
+    "rank": "16",
+    "entity": "Porto",
+    "country": "Portugal",
+    "score": "79.0",
+    "market_value": "€320.0m"
+  },
+  {
+    "rank": "17",
+    "entity": "Sporting CP",
+    "country": "Portugal",
+    "score": "78.4",
+    "market_value": "€380.0m"
+  },
+  {
+    "rank": "18",
+    "entity": "Aston Villa",
+    "country": "England",
+    "score": "77.5",
+    "market_value": "€600.0m"
+  },
+  {
+    "rank": "19",
+    "entity": "Tottenham Hotspur",
+    "country": "England",
+    "score": "76.8",
+    "market_value": "€580.0m"
+  },
+  {
+    "rank": "20",
+    "entity": "Manchester United",
+    "country": "England",
+    "score": "75.5",
+    "market_value": "€700.0m"
+  },
+  {
+    "rank": "21",
+    "entity": "Chelsea",
+    "country": "England",
+    "score": "74.8",
+    "market_value": "€850.0m"
+  },
+  {
+    "rank": "22",
+    "entity": "Newcastle United",
+    "country": "England",
+    "score": "73.9",
+    "market_value": "€620.0m"
+  },
+  {
+    "rank": "23",
+    "entity": "Real Sociedad",
+    "country": "Spain",
+    "score": "72.5",
+    "market_value": "€340.0m"
+  },
+  {
+    "rank": "24",
+    "entity": "Athletic Bilbao",
+    "country": "Spain",
+    "score": "71.8",
+    "market_value": "€280.0m"
+  },
+  {
+    "rank": "25",
+    "entity": "AS Roma",
+    "country": "Italy",
+    "score": "70.5",
+    "market_value": "€310.0m"
   }
 ]

@@ -1,72 +1,252 @@
 [
   {
     "rank": "1",
-    "entity": "Manchester City",
-    "country": "England",
-    "score": "98.5",
-    "market_value": "€1.31bn"
+    "club": "Real Madrid",
+    "country": "Spain",
+    "champions_league_&_european_champion_clubs_cup_titles": "15",
+    "europa_league_&_uefa-cup_titles": "2",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "17"
   },
   {
     "rank": "2",
-    "entity": "Real Madrid",
+    "club": "FC Barcelona",
     "country": "Spain",
-    "score": "97.2",
-    "market_value": "€1.04bn"
+    "champions_league_&_european_champion_clubs_cup_titles": "5",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "4",
+    "inter-cities_fairs_cup_wins": "3",
+    "totat_number_of_titles": "12"
   },
   {
     "rank": "3",
-    "entity": "Arsenal",
-    "country": "England",
-    "score": "94.6",
-    "market_value": "€1.16bn"
+    "club": "AC Milan",
+    "country": "Italy",
+    "champions_league_&_european_champion_clubs_cup_titles": "7",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "2",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "9"
   },
   {
     "rank": "4",
-    "entity": "Bayern Munich",
-    "country": "Germany",
-    "score": "93.1",
-    "market_value": "€929.0m"
+    "club": "Liverpool FC",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "6",
+    "europa_league_&_uefa-cup_titles": "3",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "9"
   },
   {
     "rank": "5",
-    "entity": "Paris Saint-Germain",
-    "country": "France",
-    "score": "92.0",
-    "market_value": "€1.02bn"
+    "club": "Bayern Munich",
+    "country": "Germany",
+    "champions_league_&_european_champion_clubs_cup_titles": "6",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "8"
   },
   {
     "rank": "6",
-    "entity": "Liverpool",
-    "country": "England",
-    "score": "91.8",
-    "market_value": "€921.0m"
+    "club": "Sevilla FC",
+    "country": "Spain",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "7",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "7"
   },
   {
     "rank": "7",
-    "entity": "Inter Milan",
-    "country": "Italy",
-    "score": "90.5",
-    "market_value": "€622.0m"
+    "club": "Ajax Amsterdam",
+    "country": "Netherlands",
+    "champions_league_&_european_champion_clubs_cup_titles": "4",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "6"
   },
   {
     "rank": "8",
-    "entity": "Bayer Leverkusen",
-    "country": "Germany",
-    "score": "89.4",
-    "market_value": "€595.0m"
+    "club": "Inter Milan",
+    "country": "Italy",
+    "champions_league_&_european_champion_clubs_cup_titles": "3",
+    "europa_league_&_uefa-cup_titles": "3",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "6"
   },
   {
     "rank": "9",
-    "entity": "Barcelona",
-    "country": "Spain",
-    "score": "88.2",
-    "market_value": "€840.0m"
+    "club": "Juventus FC",
+    "country": "Italy",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "3",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "6"
   },
   {
     "rank": "10",
-    "entity": "Borussia Dortmund",
+    "club": "Chelsea FC",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "2",
+    "cup_winners_cup_titles": "2",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "6"
+  },
+  {
+    "rank": "11",
+    "club": "Manchester United",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "3",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "5"
+  },
+  {
+    "rank": "12",
+    "club": "FC Porto",
+    "country": "Portugal",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "2",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "4"
+  },
+  {
+    "rank": "13",
+    "club": "Tottenham Hotspur",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "3",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "4"
+  },
+  {
+    "rank": "14",
+    "club": "Atlético de Madrid",
+    "country": "Spain",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "3",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "4"
+  },
+  {
+    "rank": "15",
+    "club": "Valencia CF",
+    "country": "Spain",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "2",
+    "totat_number_of_titles": "4"
+  },
+  {
+    "rank": "16",
+    "club": "Paris Saint-Germain",
+    "country": "France",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "3"
+  },
+  {
+    "rank": "17",
+    "club": "Feyenoord Rotterdam",
+    "country": "Netherlands",
+    "champions_league_&_european_champion_clubs_cup_titles": "1",
+    "europa_league_&_uefa-cup_titles": "2",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "3"
+  },
+  {
+    "rank": "18",
+    "club": "Parma Calcio 1913",
+    "country": "Italy",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "2",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "3"
+  },
+  {
+    "rank": "19",
+    "club": "RSC Anderlecht",
+    "country": "Belgium",
+    "champions_league_&_european_champion_clubs_cup_titles": "-",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "2",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "3"
+  },
+  {
+    "rank": "20",
+    "club": "Nottingham Forest",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
+  },
+  {
+    "rank": "21",
+    "club": "SL Benfica",
+    "country": "Portugal",
+    "champions_league_&_european_champion_clubs_cup_titles": "2",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
+  },
+  {
+    "rank": "22",
+    "club": "Aston Villa",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "1",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
+  },
+  {
+    "rank": "23",
+    "club": "PSV Eindhoven",
+    "country": "Netherlands",
+    "champions_league_&_european_champion_clubs_cup_titles": "1",
+    "europa_league_&_uefa-cup_titles": "1",
+    "cup_winners_cup_titles": "-",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
+  },
+  {
+    "rank": "24",
+    "club": "Manchester City",
+    "country": "England",
+    "champions_league_&_european_champion_clubs_cup_titles": "1",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
+  },
+  {
+    "rank": "25",
+    "club": "Borussia Dortmund",
     "country": "Germany",
-    "score": "87.0",
-    "market_value": "€465.0m"
+    "champions_league_&_european_champion_clubs_cup_titles": "1",
+    "europa_league_&_uefa-cup_titles": "-",
+    "cup_winners_cup_titles": "1",
+    "inter-cities_fairs_cup_wins": "-",
+    "totat_number_of_titles": "2"
   }
 ]

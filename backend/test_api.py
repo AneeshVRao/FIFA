@@ -21,6 +21,9 @@ from backend.app import (
     get_squad_endpoint,
     get_transfermarkt_stats,
     get_tactics_matchup,
+    get_xt_heatmap,
+    get_xp,
+    get_similar_players,
 )
 
 logging.basicConfig(level=logging.WARNING)
@@ -216,6 +219,29 @@ async def run_tests():
         assert len(data_tactics["home_vector"]) == 10, "Tactic profile embedding must be 10D"
         assert len(data_tactics["analogues"]) == 5, "Must return exactly 5 closest analogues"
         print("  [OK] Tactics engine matchup endpoint verified.")
+
+        print("\n[Test 14] /api/xt/heatmap (Expected Threat Heatmap)")
+        response_xt = await get_xt_heatmap()
+        data_xt = json.loads(response_xt.body.decode("utf-8"))
+        print(f"  xT Heatmap Shape: {len(data_xt['heatmap'])}x{len(data_xt['heatmap'][0])}")
+        assert len(data_xt["heatmap"]) == 12, "xT heatmap should have 12 rows"
+        assert len(data_xt["heatmap"][0]) == 8, "xT heatmap should have 8 columns"
+        print("  [OK] Expected Threat heatmap verified.")
+
+        print("\n[Test 15] /api/xp (Pass Completion Probability)")
+        response_xp = await get_xp(x_start=50, y_start=40, x_end=70, y_end=50, is_header=0, under_pressure=0)
+        data_xp = json.loads(response_xp.body.decode("utf-8"))
+        print(f"  Pass Completion Probability: {data_xp['probability']:.4f}")
+        assert 0.0 <= data_xp["probability"] <= 1.0, "Probability must be between 0.0 and 1.0"
+        print("  [OK] Pass completion probability verified.")
+
+        print("\n[Test 16] /api/players/similar (Player Similarity Finder)")
+        response_sim = await get_similar_players(player="Jude Bellingham", position="MF")
+        data_sim = json.loads(response_sim.body.decode("utf-8"))
+        print(f"  Bellingham Similar Players: {[p['name'] for p in data_sim['similar']]}")
+        assert len(data_sim["similar"]) == 5, "Should return exactly 5 similar players"
+        assert data_sim["similar"][0]["similarity"] >= 0.90, "Top similarity should be high"
+        print("  [OK] Player similarity recruiter verified.")
         
     print("\nALL API ENDPOINTS VERIFIED AND WORKING SUCCESSFULLY!")
 

@@ -2,81 +2,226 @@
   {
     "rank": "1",
     "player": "Erling Haaland",
+    "nat": "Norway",
+    "age": "25",
     "club": "Manchester City",
-    "goals": "27",
-    "assists": "5",
-    "matches": "31"
+    "appearances": "35",
+    "goals": "27"
   },
   {
     "rank": "2",
-    "player": "Cole Palmer",
-    "club": "Chelsea",
-    "goals": "22",
-    "assists": "11",
-    "matches": "33"
+    "player": "Igor Thiago",
+    "nat": "Brazil",
+    "age": "24",
+    "club": "Brentford FC",
+    "appearances": "38",
+    "goals": "22"
   },
   {
     "rank": "3",
-    "player": "Alexander Isak",
-    "club": "Newcastle United",
-    "goals": "21",
-    "assists": "2",
-    "matches": "30"
+    "player": "Antoine Semenyo",
+    "nat": "Ghana",
+    "age": "26",
+    "club": "for 2 clubs",
+    "appearances": "37",
+    "goals": "17"
   },
   {
     "rank": "4",
     "player": "Ollie Watkins",
+    "nat": "England",
+    "age": "30",
     "club": "Aston Villa",
-    "goals": "19",
-    "assists": "13",
-    "matches": "37"
+    "appearances": "37",
+    "goals": "16"
   },
   {
     "rank": "5",
-    "player": "Dominic Solanke",
-    "club": "Bournemouth",
-    "goals": "19",
-    "assists": "3",
-    "matches": "38"
+    "player": "João Pedro",
+    "nat": "Brazil",
+    "age": "24",
+    "club": "Chelsea FC",
+    "appearances": "35",
+    "goals": "15"
   },
   {
     "rank": "6",
-    "player": "Mohamed Salah",
-    "club": "Liverpool",
-    "goals": "18",
-    "assists": "10",
-    "matches": "32"
+    "player": "Morgan Gibbs-White",
+    "nat": "England",
+    "age": "26",
+    "club": "Nottingham Forest",
+    "appearances": "37",
+    "goals": "15"
   },
   {
     "rank": "7",
-    "player": "Son Heung-min",
-    "club": "Tottenham Hotspur",
-    "goals": "17",
-    "assists": "10",
-    "matches": "35"
+    "player": "Viktor Gyökeres",
+    "nat": "Sweden",
+    "age": "27",
+    "club": "Arsenal FC",
+    "appearances": "36",
+    "goals": "14"
   },
   {
     "rank": "8",
-    "player": "Phil Foden",
-    "club": "Manchester City",
-    "goals": "19",
-    "assists": "8",
-    "matches": "35"
+    "player": "Dominic Calvert-Lewin",
+    "nat": "England",
+    "age": "29",
+    "club": "Leeds United",
+    "appearances": "35",
+    "goals": "14"
   },
   {
     "rank": "9",
-    "player": "Bukayo Saka",
-    "club": "Arsenal",
-    "goals": "16",
-    "assists": "9",
-    "matches": "35"
+    "player": "Danny Welbeck",
+    "nat": "England",
+    "age": "35",
+    "club": "Brighton & Hove Albion",
+    "appearances": "37",
+    "goals": "13"
   },
   {
     "rank": "10",
+    "player": "Junior Kroupi",
+    "nat": "France",
+    "age": "19",
+    "club": "AFC Bournemouth",
+    "appearances": "33",
+    "goals": "13"
+  },
+  {
+    "rank": "11",
+    "player": "Jean-Philippe Mateta",
+    "nat": "France",
+    "age": "28",
+    "club": "Crystal Palace",
+    "appearances": "32",
+    "goals": "12"
+  },
+  {
+    "rank": "12",
+    "player": "Richarlison",
+    "nat": "Brazil",
+    "age": "29",
+    "club": "Tottenham Hotspur",
+    "appearances": "32",
+    "goals": "11"
+  },
+  {
+    "rank": "13",
+    "player": "Hugo Ekitiké",
+    "nat": "France",
+    "age": "23",
+    "club": "Liverpool FC",
+    "appearances": "28",
+    "goals": "11"
+  },
+  {
+    "rank": "14",
+    "player": "Bryan Mbeumo",
+    "nat": "Cameroon",
+    "age": "26",
+    "club": "Manchester United",
+    "appearances": "33",
+    "goals": "11"
+  },
+  {
+    "rank": "15",
+    "player": "Benjamin Sesko",
+    "nat": "Slovenia",
+    "age": "22",
+    "club": "Manchester United",
+    "appearances": "30",
+    "goals": "11"
+  },
+  {
+    "rank": "16",
+    "player": "Zian Flemming",
+    "nat": "Netherlands",
+    "age": "27",
+    "club": "Burnley FC",
+    "appearances": "29",
+    "goals": "11"
+  },
+  {
+    "rank": "17",
+    "player": "Morgan Rogers",
+    "nat": "England",
+    "age": "23",
+    "club": "Aston Villa",
+    "appearances": "37",
+    "goals": "10"
+  },
+  {
+    "rank": "18",
+    "player": "Harry Wilson",
+    "nat": "Wales",
+    "age": "29",
+    "club": "Fulham FC",
+    "appearances": "36",
+    "goals": "10"
+  },
+  {
+    "rank": "19",
+    "player": "Enzo Fernández",
+    "nat": "Argentina",
+    "age": "25",
+    "club": "Chelsea FC",
+    "appearances": "36",
+    "goals": "10"
+  },
+  {
+    "rank": "20",
+    "player": "Matheus Cunha",
+    "nat": "Brazil",
+    "age": "26",
+    "club": "Manchester United",
+    "appearances": "33",
+    "goals": "10"
+  },
+  {
+    "rank": "21",
+    "player": "Cole Palmer",
+    "nat": "England",
+    "age": "24",
+    "club": "Chelsea FC",
+    "appearances": "26",
+    "goals": "10"
+  },
+  {
+    "rank": "22",
+    "player": "Bruno Fernandes",
+    "nat": "Portugal",
+    "age": "31",
+    "club": "Manchester United",
+    "appearances": "35",
+    "goals": "9"
+  },
+  {
+    "rank": "23",
     "player": "Jarrod Bowen",
+    "nat": "England",
+    "age": "29",
     "club": "West Ham United",
-    "goals": "16",
-    "assists": "6",
-    "matches": "34"
+    "appearances": "38",
+    "goals": "9"
+  },
+  {
+    "rank": "24",
+    "player": "Bruno Guimarães",
+    "nat": "Brazil",
+    "age": "28",
+    "club": "Newcastle United",
+    "appearances": "29",
+    "goals": "9"
+  },
+  {
+    "rank": "25",
+    "player": "Raúl Jiménez",
+    "nat": "Mexico",
+    "age": "35",
+    "club": "Fulham FC",
+    "appearances": "36",
+    "goals": "9"
   }
 ]

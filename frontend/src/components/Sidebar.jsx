@@ -1,5 +1,5 @@
 import React from "react";
-import { Trophy, BarChart3, Sparkles, Target, Network, PlayCircle, Database, Compass } from "lucide-react";
+import { Trophy, BarChart3, Sparkles, Target, Network, PlayCircle, Database, Compass, Users } from "lucide-react";
 
 export function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
@@ -9,6 +9,7 @@ export function Sidebar({ activeTab, setActiveTab }) {
     { id: "live-simulator", label: "Live Simulator", icon: PlayCircle },
     { id: "stats-center", label: "Stats Center", icon: Database },
     { id: "tactics-analyzer", label: "Tactics Analyzer", icon: Compass },
+    { id: "player-recruiter", label: "Player Recruiter", icon: Users },
     { id: "xg-sandbox", label: "xG Pitch Sandbox", icon: Target },
     { id: "penalty-simulator", label: "Penalty Shootout", icon: Trophy }
   ];

@@ -1,37 +1,127 @@
 [
   {
-    "rank": "1",
-    "coach": "Pep Guardiola",
-    "club": "Manchester City",
-    "tactics": "4-3-3 Attacking",
-    "avg_points_per_match": "2.35"
+    "coach": "Graham Potter51 years",
+    "current_club": "Sweden",
+    "points_per_match": "1.40"
   },
   {
-    "rank": "2",
-    "coach": "Carlo Ancelotti",
-    "club": "Real Madrid",
-    "tactics": "4-3-1-2 / 4-4-2 Diamond",
-    "avg_points_per_match": "2.28"
+    "coach": "Gary O'Neil43 years",
+    "current_club": "RC Strasbourg Alsace",
+    "points_per_match": "1.67"
   },
   {
-    "rank": "3",
-    "coach": "Xabi Alonso",
-    "club": "Bayer Leverkusen",
-    "tactics": "3-4-2-1",
-    "avg_points_per_match": "2.42"
+    "coach": "Phil Parkinson58 years",
+    "current_club": "Wrexham AFC",
+    "points_per_match": "1.96"
   },
   {
-    "rank": "4",
-    "coach": "Mikel Arteta",
-    "club": "Arsenal",
-    "tactics": "4-3-3",
-    "avg_points_per_match": "2.12"
+    "coach": "Matt Wells37 years",
+    "current_club": "Colorado Rapids",
+    "points_per_match": "1.39"
   },
   {
-    "rank": "5",
-    "coach": "Simone Inzaghi",
-    "club": "Inter Milan",
-    "tactics": "3-5-2",
-    "avg_points_per_match": "2.18"
+    "coach": "Dean Smith55 years",
+    "current_club": "Charlotte FC",
+    "points_per_match": "1.52"
+  },
+  {
+    "coach": "Darren Bazeley53 years",
+    "current_club": "New Zealand",
+    "points_per_match": "1.43"
+  },
+  {
+    "coach": "Ashley Cole45 years",
+    "current_club": "Cesena FC",
+    "points_per_match": "0.75"
+  },
+  {
+    "coach": "Des Buckingham41 years",
+    "current_club": "Al-Kholood Club",
+    "points_per_match": "1.15"
+  },
+  {
+    "coach": "John Herdman50 years",
+    "current_club": "Indonesia",
+    "points_per_match": "1.50"
+  },
+  {
+    "coach": "Mark Jackson48 years",
+    "current_club": "Buriram United",
+    "points_per_match": "2.22"
+  },
+  {
+    "coach": "Lee Johnson44 years",
+    "current_club": "Lommel SK",
+    "points_per_match": "1.77"
+  },
+  {
+    "coach": "Chris Greenacre48 years",
+    "current_club": "Wellington Phoenix",
+    "points_per_match": "0.00"
+  },
+  {
+    "coach": "Stephen Constantine63 years",
+    "current_club": "Rwanda",
+    "points_per_match": "3.00"
+  },
+  {
+    "coach": "Anthony Hudson45 years",
+    "current_club": "Thailand",
+    "points_per_match": "3.00"
+  },
+  {
+    "coach": "Simon Bird42 years",
+    "current_club": "Louisville City FC",
+    "points_per_match": "1.57"
+  },
+  {
+    "coach": "Dominic Casciato-",
+    "current_club": "Tampa Bay Rowdies",
+    "points_per_match": "1.87"
+  },
+  {
+    "coach": "Danny Stone43 years",
+    "current_club": "Orange County SC",
+    "points_per_match": "1.31"
+  },
+  {
+    "coach": "Danny Dichio51 years",
+    "current_club": "Detroit City FC",
+    "points_per_match": "1.51"
+  },
+  {
+    "coach": "Rob Vincent35 years",
+    "current_club": "Pittsburgh Riverhounds SC",
+    "points_per_match": "1.57"
+  },
+  {
+    "coach": "Darren Read56 years",
+    "current_club": "Lee Man",
+    "points_per_match": "1.80"
+  },
+  {
+    "coach": "Ashley Westwood49 years",
+    "current_club": "Kerala Blasters FC",
+    "points_per_match": "2.29"
+  },
+  {
+    "coach": "Matt Pilkington46 years",
+    "current_club": "New York City FC II",
+    "points_per_match": "1.48"
+  },
+  {
+    "coach": "José Figueira44 years",
+    "current_club": "New Zealand U19/U20",
+    "points_per_match": "0.00"
+  },
+  {
+    "coach": "Sean McAuley53 years",
+    "current_club": "Indy Eleven",
+    "points_per_match": "1.49"
+  },
+  {
+    "coach": "Tommy Wheeldon Jr.47 years",
+    "current_club": "Cavalry FC",
+    "points_per_match": "1.74"
   }
 ]
