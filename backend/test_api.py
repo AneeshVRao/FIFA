@@ -142,10 +142,29 @@ async def run_tests():
         print("  [OK] Knockout extra time and penalty deciders simulated and validated.")
 
         print("\n[Test 6] Static file routing")
-        idx_res = await get_index()
-        print(f"  Root route index.html path: {idx_res.path}")
-        assert "index.html" in str(idx_res.path), "Should route index.html"
-        print("  [OK] Static files verified.")
+        import os
+        from pathlib import Path
+        dist_dir = Path("frontend/dist")
+        index_file = dist_dir / "index.html"
+        created_mock = False
+        if not index_file.exists():
+            dist_dir.mkdir(parents=True, exist_ok=True)
+            index_file.write_text("Mock index.html", encoding="utf-8")
+            created_mock = True
+
+        try:
+            idx_res = await get_index()
+            print(f"  Root route index.html path: {idx_res.path}")
+            assert "index.html" in str(idx_res.path), "Should route index.html"
+            print("  [OK] Static files verified.")
+        finally:
+            if created_mock:
+                try:
+                    index_file.unlink()
+                    if dist_dir.exists() and not any(dist_dir.iterdir()):
+                        dist_dir.rmdir()
+                except Exception:
+                    pass
 
         print("\n[Test 10] /api/squad (Team roster endpoint)")
         squad_response = await get_squad_endpoint(team="England")
